@@ -1,10 +1,23 @@
-import {View, Text, StyleSheet ,Button ,Alert} from 'react-native';
+import {View, Text, StyleSheet ,Button ,Alert, TouchableOpacity} from 'react-native';
 import React, { useState } from 'react';
 import Input from '../components/Input';
 import colors from '../constants/Colors';
 import Firebase ,{db} from '../FireBase/fire';
+import {Picker} from '@react-native-picker/picker';
 
 const Login = props => {
+
+    const [selectedLanguage, setSelectedLanguage] = useState();
+    
+    const WhoAmI = [
+        { label: "Social Worker", value: 1 },
+        { label: "Facebook", value: 2 },
+        { label: "Netflix", value: 3 },
+        { label: "Tesla", value: 4 },
+        { label: "Amazon", value: 5 },
+      ];
+
+
     const [EmailInput,setEmail]= useState('');
     const [PassInput,setPass]= useState('');
     const EmailHandler = EmailText => {
@@ -13,9 +26,9 @@ const Login = props => {
     const PassHandler = PassText => {
         setPass(PassText)
     }
-
     
     return(
+        <View style={styles.screen}>
         <View style={styles.InputContainer}>
             <Input
                 testID={'email'} 
@@ -54,6 +67,23 @@ const Login = props => {
                     })
                     })}} color={colors.secondery} />
             </View>
+            <View style={styles.Selection}>
+            <Text>Login as: </Text>
+                <Picker 
+                    mode="dropdown"
+                    selectedValue={selectedLanguage}
+                    onValueChange={(itemValue, itemIndex) =>
+                    setSelectedLanguage(itemValue),
+                    Alert.alert('Hey!','You picked '+selectedLanguage)
+                    }>
+                    <Picker.Item label= "Social Worker" value= '1'  />
+                    <Picker.Item label= "Deaf" value= '2'  />
+                    <Picker.Item label= "Netflix" value= '3'  />
+                    <Picker.Item label= "Tesla" value= '4'  />
+                    <Picker.Item label= "Amazon" value= '5'  />
+                </Picker>
+            </View>
+        </View>
         </View>
     );
 };
@@ -63,6 +93,12 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center'
+    },
+    Selection:{
+        //flex: 1,
+        height: 100,
+        width: 200,
+        justifyContent: 'space-between',
     },
     InputContainer: {
         padding: 10,
