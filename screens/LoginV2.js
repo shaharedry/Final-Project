@@ -2,21 +2,23 @@ import {View, Text , TextInput, StyleSheet ,Button ,Alert, TouchableOpacity , se
 import React, { useState } from 'react';
 import Input from '../components/Input';
 import colors from '../constants/Colors';
-import Firebase ,{db} from '../FireBase/fire';
-import {Picker} from '@react-native-picker/picker';
+import firebase ,{db} from '../FireBase/fire';
 import ModalSelector from 'react-native-modal-selector'
 
-class LoginV2 extends React.Component {
+
+class LoginV2 extends React.Component{
         constructor(){
             super()
             this.state= {
                 email: null,
                 password: null,
-                textInputValue: '',
+                textInputValue: 'User',
+                textInputNum: 0,
                 selectedLanguage : null,
-                From: ['Social Worker', 'User','whatever'],
+                From: ['User', 'Translator','Social Worker','Club','Admin'],
                 data: [],
-                Loaded: true
+                Loaded: true,
+                checked: false
             }
         }
     componentDidMount(){
@@ -33,11 +35,28 @@ class LoginV2 extends React.Component {
         this.setState({data:FormatData})
     }
 
-    EmailHandler(){
-
+    CheckMe(){
+        if(this.state.email != null && this.state.password !=null)
+            return true;
+        return false;
     }
-    PassHandler(){
-        
+
+    GoTo(type){
+        if(type=='Admin'){
+            this.props.navigation.navigate({routeName: 'AdminHomePage'})
+        }
+        if(type=='User'){
+            this.props.navigation.navigate({routeName: 'UserHomePage'})
+        }
+        if(type=='Translator'){
+            this.props.navigation.navigate({routeName: 'TransHomePage'})
+        }
+        if(type=='Social Worker'){
+            this.props.navigation.navigate({routeName: 'SocialHomePage'})
+        }
+        if(type=='Club'){
+            this.props.navigation.navigate({routeName: 'ClubHomePage'})
+        }
     }
 
     render() {
@@ -52,8 +71,8 @@ class LoginV2 extends React.Component {
                         autoCorrect={false}
                         placeholder='Email'
                         keyboardType="email-address"
-                        onChangeText={this.EmailHandler}
-                        value={this.state.email}
+                        onChangeText={(val)=>this.setState({email:val})}
+                        //value={this.state.email}
                     />
                     <Input 
                         testID={'password'}
@@ -62,28 +81,51 @@ class LoginV2 extends React.Component {
                         autoCorrect={false}
                         placeholder='Password'
                         keyboardType="visible-password"
-                        onChangeText={this.PassHandler}
-                        value={this.state.password}
+                        onChangeText={(val)=>this.setState({password:val})}
+                        //value={this.state.password}
                         secureTextEntry={true}
                     />
                     <View style={styles.buttoncontainer}>
                         <Button title="Sign In" onPress={() => {
-                            console.log('pressed Sign In');
-                            db.collection("Admin").where("Email", "==", EmailInput).get().then(function(querySnapshot) {
-                            querySnapshot.forEach(function(doc) {
-                                if(querySnapshot!= null){
-                                    console.log("name from db collection: "+doc.data().fullname)
-                                    props.navigation.navigate({routeName: 'adminProfile'})
-                                }
+                            if(this.CheckMe()==true){
+                                this.setState({checked:true})
+                            }
+                            else{
+                                if(this.state.email==null && this.state.password==null)
+                                    Alert.alert('Error!','Please enter an email and password!')
                                 else{
-                                    Alert.alert('Error!','Please check info again!\nEmail is case sensitive')
-                                    console.log('Error!\nPlease check info again!\nEmail is case sensitive')          
+                                    if(this.state.email==null)
+                                        Alert.alert('Error!','Please enter an email!')
+                                    if(this.state.password==null)
+                                        Alert.alert('Error!','Please enter a password!')
                                 }
-                            })
-                            })}} color={colors.secondery} />
+                            }
+                            let type = this.state.textInputValue
+                            // db.collection(type).where("Email", "==", this.state.email).get().then(function(querySnapshot) {
+                            // querySnapshot.forEach(function(doc) {
+                            //     if(querySnapshot!= null){
+                            //         console.log("name from db collection: "+doc.data().fullname)
+                            //         Alert.alert("Gothere")
+                                    
+                            //     }
+                            //     else{
+                            //         Alert.alert('Error!','Please check info again!\nEmail is case sensitive')
+                            //         console.log('Error!\nPlease check info again!\nEmail is case sensitive')          
+                            //     }
+                            // })
+                            // })
+
+                            firebase
+                            .auth()
+                            .signInWithEmailAndPassword(this.state.email, this.state.password)
+                            .then((res) => {
+                                this.GoTo(type)
+                            }
+                            ).catch(error => this.setState({ errorMessage: error.message }))
+                            }} color={colors.secondery} />
                     </View>
                     <View style={styles.Selection}>
-                    <Text>Login as: </Text>
+                    <Text>Login as: 
                         <ModalSelector
                             // data={this.state.data}
                             // initValue="Select User to login"
@@ -93,17 +135,29 @@ class LoginV2 extends React.Component {
                             // cancelButtonAccessibilityLabel={'Cancel Button'}
                             // onChange={(option)=>{ this.setState({textInputValue:option.label})}}>
                             data={this.state.data}
+                            initValue='User'
                             keyExtractor= {item => item.id}
                             labelExtractor= {item => item.key}
-    
-                            // <TextInput
-                            //     style={{borderWidth:1, borderColor:'#ccc', padding:10, height:30}}
-                            //     editable={false}
-                            //     placeholder="Select User to login"
-                            //     value={this.state.textInputValue} />
-                            />
+                            onChange={(option)=>{ this.setState({textInputValue:option.key}), this.setState({textInputNum:option.id})}}>
+                            {/* {Alert.alert('Picked',''+this.state.textInputValue+' value is : '+this.state.textInputNum)} */}
+
+                            </ModalSelector>
+                            {/* <TextInput
+                                style={{borderWidth:1, borderColor:'#ccc', padding:10, height:30}}
+                                editable={false}
+                                placeholder="Select User to login"
+                                value={this.state.textInputValue} />
+                            > */}
                          {/* </ModalSelector> */}
+                         </Text>
                     </View>
+                    <Text>Login as <Button title="Guest" onPress={() => {
+                            firebase.auth().signInAnonymously().then(()=>{
+                                this.props.navigation.navigate({routeName: 'GuestHomePage'})
+                            }) .catch((error) =>{
+                                Alert.alert('Error!',error)
+                            })
+                        } } color={colors.secondery} /></Text>
                 </View>
                 </View>
             );
