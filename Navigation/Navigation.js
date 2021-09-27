@@ -10,6 +10,12 @@ import signUp2 from '../screens/signUp2'
 import signUp3 from '../screens/signUp3'
 import guestScreen from '../screens/guestScreen'
 import adminProfile from '../screens/adminProfile'
+import AdminHomePage from '../screens/Admin/AdminHomePage';
+import ClubHomePage from '../screens/Club/ClubHomePage';
+import SocialHomePage from '../screens/Social/SocialHomePage';
+import TransHomePage from '../screens/Trans/TransHomePage';
+import UserHomePage from '../screens/User/UserHomePage';
+import GuestHomePage from '../screens/Guest/GuestHomePage';
 
 const AppNavigator = createStackNavigator({
     Main:{ screen: Main ,headerTitle: 'EAR ME'},
@@ -19,7 +25,13 @@ const AppNavigator = createStackNavigator({
     signUp2:{ screen: signUp2 ,headerTitle: 'EAR ME'},
     signUp3:{ screen: signUp3 ,headerTitle: 'EAR ME'},
     guestScreen:{ screen: guestScreen ,headerTitle: 'EAR ME'},
-    adminProfile:{ screen: adminProfile ,headerTitle: 'EAR ME'}
+    adminProfile:{ screen: adminProfile ,headerTitle: 'EAR ME'},
+    AdminHomePage:{ screen: AdminHomePage ,headerTitle: 'EAR ME'},
+    ClubHomePage:{ screen: ClubHomePage ,headerTitle: 'EAR ME'},
+    SocialHomePage:{ screen: SocialHomePage ,headerTitle: 'EAR ME'},
+    TransHomePage:{ screen: TransHomePage ,headerTitle: 'EAR ME'},
+    UserHomePage:{ screen: UserHomePage ,headerTitle: 'EAR ME'},
+    GuestHomePage:{ screen: GuestHomePage ,headerTitle: 'EAR ME'}
 },
 {
     defaultNavigationOptions : {
