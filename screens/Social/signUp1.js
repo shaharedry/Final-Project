@@ -1,12 +1,12 @@
 import React, { useCallback, useState } from 'react';
 import {View, Text, StyleSheet ,Button, Alert } from 'react-native';
-import Firebase, {db} from '../FireBase/fire';
-import colors from '../constants/Colors';
-import Input from '../components/Input';
+import Firebase, {db} from '../../FireBase/fire';
+import Input from '../../components/Input';
+import color from '../../constants/Colors'
 //import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const signUp2 = props => {
-   
+const signUp1 = props => {
+
     const [FullnameInput,setFname]= useState('');
     const FullnameHandler = FullnameText => {
         setFname(FullnameText.replace(/[^A-Za-z]+[^A-Za-z]/))
@@ -15,16 +15,6 @@ const signUp2 = props => {
     const [EmailInput,setEmail]= useState('');
     const EmailHandler = EmailText => {
         setEmail(EmailText.replace(/^[0-9](9,12)/))
-    }
-
-    const [PhoneInput,setPhone]= useState('');
-    const PhoneHandler = PhoneText => {
-        setPhone(PhoneText.replace(/^[0-9](9,12)/))
-    }
-    
-    const [IDInput,setID]= useState('');
-    const IDHandler = IDText => {
-        setID(IDText.replace(/^[0-9](9,9)/))
     }
     
     const [PassInput,setPass]= useState('');
@@ -45,12 +35,10 @@ const signUp2 = props => {
                     uid: response.user.uid,
                     email: EmailInput,
                     fullname: FullnameInput,
-                    phone: PhoneInput,
-                    id: IDInput,
-                    Role: '2',    
+                    Role: '1',    
                     checked: false
                 }
-                db.collection('Users')
+                db.collection('SocielWorker')
                     .doc(FullnameInput)
                     .set(user)
                 //AddItem('ChildFullname',user.fullname);
@@ -59,9 +47,9 @@ const signUp2 = props => {
                 
                 Alert.alert(
                     "Created Succesfully",
-                    "Deaf user "+FullnameInput+" User has been created succesfully!",
+                    "Social Worker "+FullnameInput+" User has been created succesfully!",
                     [
-                      { text: "OK", onPress: () => this.props.navigation.navigate({routeName: 'Main'}) } //fix later
+                      { text: "OK", onPress: () => props.navigation.navigate({routeName: 'adminProfile'}) } //fix later
                     ]
                   );
             }
@@ -84,7 +72,7 @@ const signUp2 = props => {
 
     return (
         <View style={styles.InputContainer}>
-            <Text>Sign Up deaf</Text>
+            <Text>Sign Up Social Worker</Text>
             <Input
                 testID={'fullname'}
                 style={styles.inputField}
@@ -104,26 +92,6 @@ const signUp2 = props => {
                 keyboardType="email-address"
                 onChangeText={EmailHandler}
                 value={EmailInput}
-            />
-            <Input 
-                testID={'phone'}
-                style={styles.inputField}
-                blurOnSubmit
-                autoCorrect={false}
-                placeholder='Phone'
-                keyboardType="phone-pad"
-                onChangeText={PhoneHandler}
-                value={PhoneInput}
-            />
-            <Input
-                testID={'id'}
-                style={styles.inputField}
-                blurOnSubmit
-                autoCorrect={false}
-                placeholder='ID number'
-                keyboardType="number-pad"
-                onChangeText={IDHandler}
-                value={IDInput}
             />
             <Input 
                 testID={'password'}
@@ -175,7 +143,7 @@ const signUp2 = props => {
                                   );
                                   console.log("No Password!");
                             }
-                        }} color={colors.secondery} />
+                        }} color={color.secondery} />
                 </View>
         </View>
     //</TouchableWithoutFeedback>
@@ -221,4 +189,4 @@ buttonContainer:{
 })
 
 
-export default signUp2;
+export default signUp1;
