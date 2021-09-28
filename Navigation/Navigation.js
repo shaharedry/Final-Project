@@ -16,6 +16,7 @@ import SocialHomePage from '../screens/Social/SocialHomePage';
 import TransHomePage from '../screens/Trans/TransHomePage';
 import UserHomePage from '../screens/User/UserHomePage';
 import GuestHomePage from '../screens/Guest/GuestHomePage';
+import signUp4 from '../screens/SignUp4';
 
 const AppNavigator = createStackNavigator({
     Main:{ screen: Main ,headerTitle: 'EAR ME'},
@@ -24,6 +25,7 @@ const AppNavigator = createStackNavigator({
     signUp1:{ screen: signUp1 ,headerTitle: 'EAR ME'},
     signUp2:{ screen: signUp2 ,headerTitle: 'EAR ME'},
     signUp3:{ screen: signUp3 ,headerTitle: 'EAR ME'},
+    signUp4:{ screen: signUp4 ,headerTitle: 'EAR ME'},
     guestScreen:{ screen: guestScreen ,headerTitle: 'EAR ME'},
     adminProfile:{ screen: adminProfile ,headerTitle: 'EAR ME'},
     AdminHomePage:{ screen: AdminHomePage ,headerTitle: 'EAR ME'},

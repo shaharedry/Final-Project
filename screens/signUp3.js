@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import {View, Text, StyleSheet ,Button, Alert } from 'react-native';
 import colors from '../constants/Colors';
+import Firebase, {db} from '../FireBase/fire';
 import Input from '../components/Input';
 //import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -59,9 +60,9 @@ const signUp3 = props => {
                 
                 Alert.alert(
                     "Created Succesfully",
-                    "Deaf user "+FullnameInput+" User has been created succesfully!",
+                    "Interpreter user "+FullnameInput+" User has been created succesfully!",
                     [
-                      { text: "OK", onPress: () => this.props.navigation.navigate({routeName: 'Main'}) }
+                      { text: "OK", onPress: () => props.navigation.navigate({routeName: 'Main'}) } //fix later
                     ]
                   );
             }
@@ -84,7 +85,7 @@ const signUp3 = props => {
 
     return (
         <View style={styles.InputContainer}>
-            <Text>Sign Up deaf</Text>
+            <Text>Sign Up Interpreter</Text>
             <Input
                 testID={'fullname'}
                 style={styles.inputField}
@@ -180,76 +181,7 @@ const signUp3 = props => {
         </View>
     //</TouchableWithoutFeedback>
     );
-
-
-    return (
-        <View style={styles.InputContainer}>
-            <Text>Sign Up interpreter</Text>
-            <Input
-                testID={'fullname'}
-                style={styles.inputField}
-                blurOnSubmit
-                autoCorrect={false}
-                placeholder='Full Name'
-                keyboardType="ascii-capable"
-                onChangeText={FullnameHandler}
-                value={FullnameInput}
-            />
-            <Input 
-                testID={'email'}
-                style={styles.inputField}
-                blurOnSubmit
-                autoCorrect={false}
-                placeholder='Email'
-                keyboardType="email-address"
-                onChangeText={EmailHandler}
-                value={EmailInput}
-            />
-            <Input 
-                testID={'phone'}
-                style={styles.inputField}
-                blurOnSubmit
-                autoCorrect={false}
-                placeholder='Phone'
-                keyboardType="phone-pad"
-                onChangeText={PhoneHandler}
-                value={PhoneInput}
-            />
-            <Input
-                testID={'id'}
-                style={styles.inputField}
-                blurOnSubmit
-                autoCorrect={false}
-                placeholder='ID number'
-                keyboardType="number-pad"
-                onChangeText={IDHandler}
-                value={IDInput}
-            />
-            <Input 
-                testID={'password'}
-                style={styles.inputField}
-                blurOnSubmit
-                autoCorrect={false}
-                placeholder='Password'
-                keyboardType="visible-password"
-                onChangeText={PassHandler}
-                value={PassInput}
-                secureTextEntry={true}
-            />
-            <Input 
-                style={styles.inputField}
-                blurOnSubmit
-                autoCorrect={false}
-                placeholder='Verify Password'
-                keyboardType="visible-password"
-                onChangeText={VerifyHandler}
-                value={VerifyPass}
-                secureTextEntry={true}
-            />
-        </View>
-    //</TouchableWithoutFeedback>
-    );
-};
+                    }
 
 
 const styles = StyleSheet.create({
