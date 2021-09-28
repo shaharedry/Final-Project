@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, TextInput, StyleSheet, TouchableOpacity, Text, Button } from 'react-native'
-import colors from '../constants/Colors';
+import colors from '../../constants/Colors';
 
 const guestScreen= props => {
     return (

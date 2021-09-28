@@ -1,6 +1,7 @@
 import React from 'react'
 import { View, Image, StyleSheet, TouchableOpacity, Text, Button } from 'react-native'
 import colors from '../constants/Colors';
+import firebase ,{db} from '../FireBase/fire';
 
 const Main= props => {
     return (
@@ -24,9 +25,13 @@ const Main= props => {
                 }} color={colors.secondery} />
         </View>
         <View style={styles.buttonContainer}>
-            <Button title="Enter as guest" onPress={() => {
-                props.navigation.navigate({routeName: 'guestScreen'});
-                }} color={colors.secondery}/>
+            <Button title="Enter as guest" onPress={() => {               
+                firebase.auth().signInAnonymously().then(()=>{
+                this.props.navigation.navigate({routeName: 'GuestHomePage'})
+                }) .catch((error) =>{
+                Alert.alert('Error!',error)
+                })
+            }} color={colors.secondery}/>
         </View>
     </View>
     </View>

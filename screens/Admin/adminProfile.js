@@ -1,6 +1,6 @@
 import React,{ useState } from 'react';
 import {View, Text, StyleSheet, Image, Button} from 'react-native';
-import colors from '../constants/Colors'
+import colors from '../../constants/Colors'
 
 import { LogBox } from 'react-native'; /// unfreeze for running on phones
 
