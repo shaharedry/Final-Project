@@ -61,7 +61,7 @@ const signUp2 = props => {
                     "Created Succesfully",
                     "Deaf user "+FullnameInput+" User has been created succesfully!",
                     [
-                      { text: "OK", onPress: () => this.props.navigation.navigate({routeName: 'Main'}) }
+                      { text: "OK", onPress: () => this.props.navigation.navigate({routeName: 'Main'}) } //fix later
                     ]
                   );
             }

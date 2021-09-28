@@ -19,6 +19,11 @@ const Main= props => {
                 }} color={colors.secondery} />
         </View>
         <View style={styles.buttonContainer}>
+            <Button title="LoginV2" onPress={() => {
+                props.navigation.navigate({routeName: 'LoginV2'})
+                }} color={colors.secondery} />
+        </View>
+        <View style={styles.buttonContainer}>
             <Button title="Enter as guest" onPress={() => {
                 props.navigation.navigate({routeName: 'guestScreen'});
                 }} color={colors.secondery}/>
