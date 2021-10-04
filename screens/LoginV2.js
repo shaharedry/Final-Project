@@ -5,7 +5,6 @@ import colors from '../constants/Colors';
 import firebase ,{db} from '../FireBase/fire';
 import ModalSelector from 'react-native-modal-selector'
 
-
 class LoginV2 extends React.Component{
         constructor(){
             super()
@@ -85,6 +84,45 @@ class LoginV2 extends React.Component{
                         //value={this.state.password}
                         secureTextEntry={true}
                     />
+
+
+<View style={styles.Selection}>
+                    <Text>Login as: 
+                        <ModalSelector
+                            // data={this.state.data}
+                            // initValue="Select User to login"
+                            // supportedOrientations={['landscape']}
+                            // accessible={true}
+                            // scrollViewAccessibilityLabel={'Scrollable options'}
+                            // cancelButtonAccessibilityLabel={'Cancel Button'}
+                            // onChange={(option)=>{ this.setState({textInputValue:option.label})}}>
+                            data={this.state.data}
+                            initValue='User'
+                            keyExtractor= {item => item.id}
+                            labelExtractor= {item => item.key}
+                            onChange={(option)=>{ this.setState({textInputValue:option.key}), this.setState({textInputNum:option.id})}}>
+                            {/* {Alert.alert('Picked',''+this.state.textInputValue+' value is : '+this.state.textInputNum)} */}
+
+                            </ModalSelector>
+                            {/* <TextInput
+                                style={{borderWidth:1, borderColor:'#ccc', padding:10, height:30}}
+                                editable={false}
+                                placeholder="Select User to login"
+                                value={this.state.textInputValue} />
+                            > */}
+                         {/* </ModalSelector> */}
+                         </Text>
+                    </View>
+                    <Button title="Login as Guest" onPress={() => {
+                            firebase.auth().signInAnonymously().then(()=>{
+                                this.props.navigation.navigate({routeName: 'GuestHomePage'})
+                            }) .catch((error) =>{
+                                Alert.alert('Error!',error)
+                            })
+                        } } color={colors.secondery} />
+
+
+
                     <View style={styles.buttoncontainer}>
                         <Button title="Sign In" onPress={() => {
                             if(this.CheckMe()==true){
@@ -124,41 +162,8 @@ class LoginV2 extends React.Component{
                             ).catch(error => this.setState({ errorMessage: error.message }))
                             }} color={colors.secondery} />
                     </View>
-                    <View style={styles.Selection}>
-                    <Text>Login as: 
-                        <ModalSelector
-                            // data={this.state.data}
-                            // initValue="Select User to login"
-                            // supportedOrientations={['landscape']}
-                            // accessible={true}
-                            // scrollViewAccessibilityLabel={'Scrollable options'}
-                            // cancelButtonAccessibilityLabel={'Cancel Button'}
-                            // onChange={(option)=>{ this.setState({textInputValue:option.label})}}>
-                            data={this.state.data}
-                            initValue='User'
-                            keyExtractor= {item => item.id}
-                            labelExtractor= {item => item.key}
-                            onChange={(option)=>{ this.setState({textInputValue:option.key}), this.setState({textInputNum:option.id})}}>
-                            {/* {Alert.alert('Picked',''+this.state.textInputValue+' value is : '+this.state.textInputNum)} */}
-
-                            </ModalSelector>
-                            {/* <TextInput
-                                style={{borderWidth:1, borderColor:'#ccc', padding:10, height:30}}
-                                editable={false}
-                                placeholder="Select User to login"
-                                value={this.state.textInputValue} />
-                            > */}
-                         {/* </ModalSelector> */}
-                         </Text>
                     </View>
-                    <Text>Login as <Button title="Guest" onPress={() => {
-                            firebase.auth().signInAnonymously().then(()=>{
-                                this.props.navigation.navigate({routeName: 'GuestHomePage'})
-                            }) .catch((error) =>{
-                                Alert.alert('Error!',error)
-                            })
-                        } } color={colors.secondery} /></Text>
-                </View>
+                    
                 </View>
             );
         }

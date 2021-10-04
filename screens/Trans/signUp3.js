@@ -2,7 +2,7 @@ import React, { useCallback, useState } from 'react';
 import {View, Text, StyleSheet ,Button, Alert } from 'react-native';
 import colors from '../../constants/Colors';
 import Firebase, {db} from '../../FireBase/fire';
-import Input from './../components/Input';
+import Input from '../../components/Input';
 //import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const signUp3 = props => {
