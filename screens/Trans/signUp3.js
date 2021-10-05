@@ -1,12 +1,12 @@
 import React, { useCallback, useState } from 'react';
 import {View, Text, StyleSheet ,Button, Alert } from 'react-native';
-import Firebase, {db} from '../FireBase/fire';
-import Input from '../components/Input';
-import color from '../constants/Colors'
+import colors from '../../constants/Colors';
+import Firebase, {db} from '../../FireBase/fire';
+import Input from '../../components/Input';
 //import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const signUp1 = props => {
-
+const signUp3 = props => {
+    
     const [FullnameInput,setFname]= useState('');
     const FullnameHandler = FullnameText => {
         setFname(FullnameText.replace(/[^A-Za-z]+[^A-Za-z]/))
@@ -15,6 +15,16 @@ const signUp1 = props => {
     const [EmailInput,setEmail]= useState('');
     const EmailHandler = EmailText => {
         setEmail(EmailText.replace(/^[0-9](9,12)/))
+    }
+
+    const [PhoneInput,setPhone]= useState('');
+    const PhoneHandler = PhoneText => {
+        setPhone(PhoneText.replace(/^[0-9](9,12)/))
+    }
+    
+    const [IDInput,setID]= useState('');
+    const IDHandler = IDText => {
+        setID(IDText.replace(/^[0-9](9,9)/))
     }
     
     const [PassInput,setPass]= useState('');
@@ -27,6 +37,7 @@ const signUp1 = props => {
         setVerifyPass(VerifyPassText)
     }
 
+
     const signup = async() =>{ 
         try{
             const response = await Firebase.auth().createUserWithEmailAndPassword(EmailInput, PassInput)
@@ -35,10 +46,12 @@ const signUp1 = props => {
                     uid: response.user.uid,
                     email: EmailInput,
                     fullname: FullnameInput,
-                    Role: '1',    
+                    phone: PhoneInput,
+                    id: IDInput,
+                    Role: '3',    
                     checked: false
                 }
-                db.collection('SocielWorker')
+                db.collection('Interpreter')
                     .doc(FullnameInput)
                     .set(user)
                 //AddItem('ChildFullname',user.fullname);
@@ -47,9 +60,9 @@ const signUp1 = props => {
                 
                 Alert.alert(
                     "Created Succesfully",
-                    "Social Worker "+FullnameInput+" User has been created succesfully!",
+                    "Interpreter user "+FullnameInput+" User has been created succesfully!",
                     [
-                      { text: "OK", onPress: () => props.navigation.navigate({routeName: 'adminProfile'}) } //fix later
+                      { text: "OK", onPress: () => props.navigation.navigate({routeName: 'Main'}) } //fix later
                     ]
                   );
             }
@@ -72,7 +85,7 @@ const signUp1 = props => {
 
     return (
         <View style={styles.InputContainer}>
-            <Text>Sign Up Social Worker</Text>
+            <Text>Sign Up Interpreter</Text>
             <Input
                 testID={'fullname'}
                 style={styles.inputField}
@@ -92,6 +105,26 @@ const signUp1 = props => {
                 keyboardType="email-address"
                 onChangeText={EmailHandler}
                 value={EmailInput}
+            />
+            <Input 
+                testID={'phone'}
+                style={styles.inputField}
+                blurOnSubmit
+                autoCorrect={false}
+                placeholder='Phone'
+                keyboardType="phone-pad"
+                onChangeText={PhoneHandler}
+                value={PhoneInput}
+            />
+            <Input
+                testID={'id'}
+                style={styles.inputField}
+                blurOnSubmit
+                autoCorrect={false}
+                placeholder='ID number'
+                keyboardType="number-pad"
+                onChangeText={IDHandler}
+                value={IDInput}
             />
             <Input 
                 testID={'password'}
@@ -143,12 +176,12 @@ const signUp1 = props => {
                                   );
                                   console.log("No Password!");
                             }
-                        }} color={color.secondery} />
+                        }} color={colors.secondery} />
                 </View>
         </View>
     //</TouchableWithoutFeedback>
     );
-};
+                    }
 
 
 const styles = StyleSheet.create({
@@ -178,15 +211,8 @@ inputField: {
     fontSize: 16,
     borderRadius: 8,
     borderWidth: 1
-},
-buttonContainer:{
-    width: 250,
-    height: 150,
-    justifyContent: 'center',
-    paddingBottom: 100 ,
-    borderRadius: 10
 }
 })
 
 
-export default signUp1;
+export default signUp3;

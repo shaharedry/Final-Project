@@ -1,11 +1,11 @@
 import React, { useCallback, useState } from 'react';
 import {View, Text, StyleSheet ,Button, Alert } from 'react-native';
-import colors from '../constants/Colors';
-import Firebase, {db} from '../FireBase/fire';
-import Input from '../components/Input';
+import colors from '../../constants/Colors';
+import Input from '../../components/Input';
+import Firebase, {db} from '../../FireBase/fire';
 //import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const signUp3 = props => {
+const signUp4 = props => {
     
     const [FullnameInput,setFname]= useState('');
     const FullnameHandler = FullnameText => {
@@ -51,7 +51,7 @@ const signUp3 = props => {
                     Role: '3',    
                     checked: false
                 }
-                db.collection('Interpreter')
+                db.collection('Club')
                     .doc(FullnameInput)
                     .set(user)
                 //AddItem('ChildFullname',user.fullname);
@@ -60,7 +60,7 @@ const signUp3 = props => {
                 
                 Alert.alert(
                     "Created Succesfully",
-                    "Interpreter user "+FullnameInput+" User has been created succesfully!",
+                    "Club user "+FullnameInput+" User has been created succesfully!",
                     [
                       { text: "OK", onPress: () => props.navigation.navigate({routeName: 'Main'}) } //fix later
                     ]
@@ -85,7 +85,8 @@ const signUp3 = props => {
 
     return (
         <View style={styles.InputContainer}>
-            <Text>Sign Up Interpreter</Text>
+            <Text>Sign Up Club</Text> 
+            {/* fix later */}
             <Input
                 testID={'fullname'}
                 style={styles.inputField}
@@ -215,4 +216,4 @@ inputField: {
 })
 
 
-export default signUp3;
+export default signUp4;

@@ -3,24 +3,22 @@ import { createAppContainer } from 'react-navigation';
 import Colors from '../constants/Colors'
 
 import Main from '../screens/Main'
-import Login from '../screens/Login'
 import LoginV2 from '../screens/LoginV2'
-import signUp1 from '../screens/signUp1'
-import signUp2 from '../screens/signUp2'
-import signUp3 from '../screens/signUp3'
-import guestScreen from '../screens/guestScreen'
-import adminProfile from '../screens/adminProfile'
-import AdminHomePage from '../screens/Admin/AdminHomePage';
+import signUp1 from '../screens/Social/signUp1'
+import signUp2 from '../screens/User/signUp2'
+import signUp3 from '../screens/Trans/signUp3'
+import guestScreen from '../screens/Guest/guestScreen'
+import adminProfile from '../screens/Administrator/adminProfile'
+import AdminHomePage from '../screens/Administrator/AdminHomePage';
 import ClubHomePage from '../screens/Club/ClubHomePage';
 import SocialHomePage from '../screens/Social/SocialHomePage';
 import TransHomePage from '../screens/Trans/TransHomePage';
 import UserHomePage from '../screens/User/UserHomePage';
 import GuestHomePage from '../screens/Guest/GuestHomePage';
-import signUp4 from '../screens/SignUp4';
+import signUp4 from '../screens/Club/signUp4';
 
 const AppNavigator = createStackNavigator({
     Main:{ screen: Main ,headerTitle: 'EAR ME'},
-    Login:{ screen: Login ,headerTitle: 'EAR ME'},
     LoginV2:{ screen: LoginV2 ,headerTitle: 'EAR ME'},
     signUp1:{ screen: signUp1 ,headerTitle: 'EAR ME'},
     signUp2:{ screen: signUp2 ,headerTitle: 'EAR ME'},
