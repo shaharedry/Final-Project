@@ -4,7 +4,7 @@ import colors from '../../constants/Colors'
 
 import { LogBox } from 'react-native'; /// unfreeze for running on phones
 
-LogBox.ignoreLogs(['Setting a timer']); /// unfreeze for running on phones
+//LogBox.ignoreLogs(['Setting a timer']); /// unfreeze for running on phones
 
 const adminProfile = props => {
 

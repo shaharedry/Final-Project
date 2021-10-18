@@ -1,22 +1,61 @@
-import React,{ useState } from 'react';
+import React,{ useState ,useEffect} from 'react';
 import {View, Text, StyleSheet, Image, Button} from 'react-native';
 import colors from '../../constants/Colors'
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { withNavigation } from 'react-navigation';
 
 import { LogBox } from 'react-native'; /// unfreeze for running on phones
+import Navigation from '../../Navigation/Navigation';
 
-LogBox.ignoreLogs(['Setting a timer']); /// unfreeze for running on phones
+//LogBox.ignoreLogs(['Setting a timer']); /// unfreeze for running on phones
 
-const ClubHomePage = props => {
+class ClubHomePage extends React.Component {
+    constructor(){
+        super()
+        this.state={
+            Username:null,
+            isLoaded:false
+        }
+    }
+    
+        componentDidMount(){
+            let username = null    
+            try{
+                AsyncStorage.getItem('ClubName')
+                    .then(value => {
+                        if(value!= null) {
+                            username=value;
+                            this.setState({Username:username})
+                        }
+                    })
+                } catch (error){
+                    console.warn(error)
+            }
+            this.setState({isLoaded:true})
+        }
 
-    const [user, setUser] = useState()
 
-    return (
-        <View style={styles.screen}>
-            <Text>ClubHomePage Profile Screen</Text>
-            <Text>Hello!</Text> 
-        </View>   
-    );
+    render(){
+        if(this.state.isLoaded){
+            return (
+                <View style={styles.screen}>
+                    <Text>ClubHomePage Profile Screen</Text>
+                    <Text>Hello {this.state.Username}!</Text> 
+
+                    <View style={styles.buttonContainer}>
+                        <Button title="Club Info" onPress={() => {
+                        this.props.navigation.navigate({routeName: 'ClubInfo'})
+                            }} color={colors.secondery} />
+                    </View>
+                </View>   
+            );
+        }
+        else{
+            return(
+                <Text>Nothing Loaded,Please wait!</Text>
+            )
+        }
+    }
 };
 
 

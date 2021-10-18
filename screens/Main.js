@@ -21,8 +21,8 @@ class Main extends React.Component {
                     }} color={colors.secondery} />
             </View>
             <View style={styles.buttonContainer}>
-                <Button title="LoginV2" onPress={() => {
-                    this.props.navigation.navigate({routeName: 'LoginV2'})
+                <Button title="Speak" onPress={() => {
+                    this.props.navigation.navigate({routeName: 'TextToSpeach'})
                     }} color={colors.secondery} />
             </View>
             <View style={styles.buttonContainer}>
