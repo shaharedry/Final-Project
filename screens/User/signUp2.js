@@ -50,7 +50,7 @@ const signUp2 = props => {
                     Role: '2',    
                     checked: false
                 }
-                db.collection('Users')
+                db.collection('User')
                     .doc(FullnameInput)
                     .set(user)
                 //AddItem('ChildFullname',user.fullname);
