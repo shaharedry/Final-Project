@@ -8,10 +8,15 @@ class ClubInfo extends React.Component {
     constructor(){
         super()
         this.state={
-            Name:'null',
-            PhoneNum:null,
+            1:null,
+            2:null,
+            3:null,
+            4:null,
+            5:null,
+            Address:null,
             Email:null,
-            ID:null,
+            Fax:null,
+            Phone:null,
             isLoaded:false,
             gotname:false
         }
@@ -21,29 +26,54 @@ class ClubInfo extends React.Component {
 
     componentDidMount(){
         db.collection('Club').get().then( snapshot =>{
-            let Userame=null;
-            let phone=null;
-            let temail=null;
-            let Id=null;
+            // let first=null;
+            // let second=null;
+            // let third=null;
+            // let fourth=null;
+            // let fifth=null;
+            // let add=null;
+            // let emai=null;
+            // let fax=null;
+            // let phon=null;
             snapshot.forEach( doc =>{
-                const KEY = Object.keys(doc.data());
-                KEY.forEach( (key_id) => {
-                    if(key_id=='fullname'){
-                        if(doc.data().fullname == UserName){
-                            Userame = doc.data().fullname
-                            phone = doc.data().phone
-                            temail = doc.data().email
-                            Id = doc.data().id
-                        }
-                        this.setState({PhoneNum:phone})
-                        this.setState({Email:temail})
-                        this.setState({ID:Id})
-                        this.setState({Name:Userame})
-                    }
-                })
-            })
+            //     const KEY = Object.keys(doc.data());
+            //     KEY.forEach( (key_id) => {
+            //         if(key_id=='fullname'){
+            //             if(doc.data().fullname == UserName){
+            //                 Userame = doc.data().fullname
+            //                 phone = doc.data().phone
+            //                 temail = doc.data().email
+            //                 Id = doc.data().id
+            //             }
+            //             this.setState({PhoneNum:phone})
+            //             this.setState({Email:temail})
+            //             this.setState({ID:Id})
+            //             this.setState({Name:Userame})
+            //         }
+            //     })
+                // first = doc.data().first
+                // second = doc.data().second
+                // third = doc.data().third
+                // fourth = doc.data().fourth
+                // fifth = doc.data().fifth
+                // add = doc.data().Address
+                // emai = doc.data().Email
+                // fax = doc.data().Fax
+                // phon = doc.data().Phone
+                this.setState({1:doc.data().first})
+                this.setState({2:doc.data().second})
+                this.setState({3:doc.data().third})
+                this.setState({4:doc.data().fourth})
+                this.setState({5:doc.data().fifth})
+                this.setState({Address:doc.data().Address})
+                this.setState({Email:doc.data().Email})
+                this.setState({Fax:doc.data().Fax})
+                this.setState({Phone:doc.data().Phone})
+            }
+            )
         })
         this.setState({isLoaded:true})
+        this.setState({gotname:true})
     }
 
 
@@ -51,10 +81,10 @@ class ClubInfo extends React.Component {
         if(this.state.isLoaded==true && this.state.gotname==true){
         return (
             <View>
-                <Text>Name: {(this.state.Name)}</Text> 
-                <Text>PhoneNumber: {(this.state.PhoneNum)}</Text>
+                <Text>Address: {(this.state.Address)}</Text> 
+                <Text>PhoneNumber: {(this.state.Phone)}</Text>
                 <Text>Email: {(this.state.Email)}</Text> 
-                <Text>ID: {(this.state.ID)}</Text> 
+                <Text>Fax: {(this.state.Fax)}</Text> 
             </View>
         ); 
         }

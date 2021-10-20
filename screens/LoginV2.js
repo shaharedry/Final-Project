@@ -17,7 +17,7 @@ class LoginV2 extends React.Component{
                 textInputValue: 'User',
                 textInputNum: 0,
                 selectedLanguage : null,
-                From: ['User', 'Translator','Social Worker','Club','Admin'],
+                From: ['User', 'Translator','SocialWorker','ClubWorker','Admin'],
                 data: [],
                 Loaded: true,
                 checked: false
@@ -45,7 +45,6 @@ class LoginV2 extends React.Component{
 
     GoTo(type){
         if(type=='Admin'){
-            this.AddItem('AdminName',this.state.fullname);
             //Alert.alert('Checking!','fullname is: '+this.state.whatchyamacallit)
             this.props.navigation.navigate({routeName: 'AdminHomePage'})
         }
@@ -55,15 +54,15 @@ class LoginV2 extends React.Component{
             this.props.navigation.navigate({routeName: 'UserHomePage'})
         }
         if(type=='Translator'){
-            this.AddItem('TranslatorName',doc.data().fullname);
+            this.AddItem('TranslatorName',this.state.fullname);
             this.props.navigation.navigate({routeName: 'TransHomePage'})
         }
-        if(type=='Social Worker'){
-            this.AddItem('SocialWorkerName',doc.data().fullname);
+        if(type=='SocialWorker'){
+            this.AddItem('SocialWorkerName',this.state.fullname);
             this.props.navigation.navigate({routeName: 'SocialHomePage'})
         }
-        if(type=='Club'){
-            this.AddItem('ClubName',doc.data().fullname);
+        if(type=='ClubWorker'){
+            this.AddItem('ClubName',this.state.fullname);
             this.props.navigation.navigate({routeName: 'ClubHomePage'})
         }
     }
