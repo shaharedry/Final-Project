@@ -26,6 +26,21 @@ class Main extends React.Component {
                     }} color={colors.secondery} />
             </View>
             <View style={styles.buttonContainer}>
+                <Button title="Create User" onPress={() => {
+                    this.props.navigation.navigate({routeName: 'Request2'})
+                    }} color={colors.secondery} />
+            </View>
+            <View style={styles.buttonContainer}>
+                <Button title="Create Translator User" onPress={() => {
+                    this.props.navigation.navigate({routeName: 'Request3'})
+                    }} color={colors.secondery} />
+            </View>
+            <View style={styles.buttonContainer}>
+                <Button title="Verify User" onPress={() => {
+                    this.props.navigation.navigate({routeName: 'VerifyUser'})
+                    }} color={colors.secondery} />
+            </View>
+            <View style={styles.buttonContainer}>
             <Button title="Login as Guest" onPress={() => {
                 firebase.auth().signInAnonymously().then(()=>{
                     this.props.navigation.navigate({routeName: 'GuestHomePage'})
@@ -45,7 +60,7 @@ class Main extends React.Component {
 const styles = StyleSheet.create({
 screen: {
     flex: 1,
-    padding : 100,
+    padding : 150,
     alignItems: 'center',
     flexDirection: 'column',
     alignItems: 'center',
@@ -55,7 +70,7 @@ buttonContainer:{
     width: 250,
     height: 150,
     justifyContent: 'center',
-    paddingBottom: 100 ,
+    paddingBottom: 20 ,
     borderRadius: 10
 },
 ImageContainer: {

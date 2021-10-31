@@ -58,6 +58,7 @@ class LoginV2 extends React.Component{
             this.props.navigation.navigate({routeName: 'TransHomePage'})
         }
         if(type=='SocialWorker'){
+            Alert.alert('Title','name is: '+this.state.fullname )
             this.AddItem('SocialWorkerName',this.state.fullname);
             this.props.navigation.navigate({routeName: 'SocialHomePage'})
         }

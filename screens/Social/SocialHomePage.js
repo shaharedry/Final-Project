@@ -1,22 +1,62 @@
-import React,{ useState } from 'react';
-import {View, Text, StyleSheet, Image, Button} from 'react-native';
+import React,{ useState ,useEffect} from 'react';
+import {View, Text, StyleSheet, Image, Button, Alert} from 'react-native';
 import colors from '../../constants/Colors'
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { withNavigation } from 'react-navigation';
 
 import { LogBox } from 'react-native'; /// unfreeze for running on phones
+import Navigation from '../../Navigation/Navigation';
 
 //LogBox.ignoreLogs(['Setting a timer']); /// unfreeze for running on phones
 
-const SocialHomePage = props => {
+class SocialHomePage extends React.Component {
+    constructor(){
+        super()
+        this.state={
+            Username:null,
+            isLoaded:false
+        }
+    }
+    
+        componentDidMount(){
+            let username = null    
+            try{
+                AsyncStorage.getItem('SocialWorkerName')
+                    .then(value => {
+                        if(value!= null) {
+                            username=value;
+                            this.setState({Username:username})
+                            Alert.alert('Title','name from async is: '+username)
+                        }
+                    })
+                } catch (error){
+                    console.warn(error)
+            }
+            this.setState({isLoaded:true})
+        }
 
-    const [user, setUser] = useState()
 
-    return (
-        <View style={styles.screen}>
-            <Text>SocialHomePage Profile Screen</Text>
-            <Text>Hello!</Text> 
-        </View>   
-    );
+    render(){
+        if(this.state.isLoaded){
+            return (
+                <View style={styles.screen}>
+                    <Text>SocialWorkerHomePage Profile Screen</Text>
+                    <Text>Hello {this.state.Username}!</Text> 
+
+                    <View style={styles.buttonContainer}>
+                        <Button title="Club Info" onPress={() => {
+                        this.props.navigation.navigate({routeName: 'SocialInfo'})
+                            }} color={colors.secondery} />
+                    </View>
+                </View>   
+            );
+        }
+        else{
+            return(
+                <Text>Nothing Loaded,Please wait!</Text>
+            )
+        }
+    }
 };
 
 

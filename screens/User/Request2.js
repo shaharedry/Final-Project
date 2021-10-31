@@ -1,12 +1,12 @@
 import React, { useCallback, useState } from 'react';
 import {View, Text, StyleSheet ,Button, Alert } from 'react-native';
 import Firebase, {db} from '../../FireBase/fire';
+import colors from '../../constants/Colors';
 import Input from '../../components/Input';
-import color from '../../constants/Colors'
 //import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const signUp1 = props => {
-
+const Request2 = props => {
+   
     const [FullnameInput,setFname]= useState('');
     const FullnameHandler = FullnameText => {
         setFname(FullnameText.replace(/[^A-Za-z]+[^A-Za-z]/))
@@ -15,6 +15,16 @@ const signUp1 = props => {
     const [EmailInput,setEmail]= useState('');
     const EmailHandler = EmailText => {
         setEmail(EmailText.replace(/^[0-9](9,12)/))
+    }
+
+    const [PhoneInput,setPhone]= useState('');
+    const PhoneHandler = PhoneText => {
+        setPhone(PhoneText.replace(/^[0-9](9,12)/))
+    }
+    
+    const [IDInput,setID]= useState('');
+    const IDHandler = IDText => {
+        setID(IDText.replace(/^[0-9](9,9)/))
     }
     
     const [PassInput,setPass]= useState('');
@@ -35,10 +45,14 @@ const signUp1 = props => {
                     uid: response.user.uid,
                     email: EmailInput,
                     fullname: FullnameInput,
-                    Role: '1',    
-                    checked: false
+                    phone: PhoneInput,
+                    id: IDInput,
+                    Role: '2',    
+                    checked: false,
+                    TranslatorHours:null,
+                    Verified: false
                 }
-                db.collection('SocialWorker')
+                db.collection('User')
                     .doc(FullnameInput)
                     .set(user)
                 //AddItem('ChildFullname',user.fullname);
@@ -47,9 +61,9 @@ const signUp1 = props => {
                 
                 Alert.alert(
                     "Created Succesfully",
-                    "Social Worker "+FullnameInput+" User has been created succesfully!",
+                    "Deaf user "+FullnameInput+" User has been created succesfully!",
                     [
-                      { text: "OK", onPress: () => props.navigation.navigate({routeName: 'adminProfile'}) } //fix later
+                      { text: "OK", onPress: () => this.props.navigation.navigate({routeName: 'Main'}) } //fix later
                     ]
                   );
             }
@@ -72,7 +86,7 @@ const signUp1 = props => {
 
     return (
         <View style={styles.InputContainer}>
-            <Text>Sign Up Social Worker</Text>
+            <Text>Sign Up deaf</Text>
             <Input
                 testID={'fullname'}
                 style={styles.inputField}
@@ -92,6 +106,26 @@ const signUp1 = props => {
                 keyboardType="email-address"
                 onChangeText={EmailHandler}
                 value={EmailInput}
+            />
+            <Input 
+                testID={'phone'}
+                style={styles.inputField}
+                blurOnSubmit
+                autoCorrect={false}
+                placeholder='Phone'
+                keyboardType="phone-pad"
+                onChangeText={PhoneHandler}
+                value={PhoneInput}
+            />
+            <Input
+                testID={'id'}
+                style={styles.inputField}
+                blurOnSubmit
+                autoCorrect={false}
+                placeholder='ID number'
+                keyboardType="number-pad"
+                onChangeText={IDHandler}
+                value={IDInput}
             />
             <Input 
                 testID={'password'}
@@ -143,7 +177,7 @@ const signUp1 = props => {
                                   );
                                   console.log("No Password!");
                             }
-                        }} color={color.secondery} />
+                        }} color={colors.secondery} />
                 </View>
         </View>
     //</TouchableWithoutFeedback>
@@ -189,4 +223,4 @@ buttonContainer:{
 })
 
 
-export default signUp1;
+export default Request2;
