@@ -1,5 +1,6 @@
 import React from 'react'; 
-import {View, Text, StyleSheet, Alert} from 'react-native';
+import {View, Text, StyleSheet, Alert, Button, TextInput} from 'react-native';
+import Colors from '../../constants/Colors';
 import firebase ,{db} from '../../FireBase/fire'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -8,77 +9,160 @@ class SocialInfo extends React.Component {
     constructor(){
         super()
         this.state={
-            Name:'null',
-            PhoneNum:null,
-            Email:null,
-            ID:null,
+            address:null,
+            email:null,
+            fax:null,
+            Language:null,
+            phone:null,
+            workingHours:null,
             isLoaded:false,
-            gotname:false
+            Edit:false
         }
     }
 
 
 
     componentDidMount(){
-        let UserName = null    
-        try{
-            AsyncStorage.getItem('UserName')
-                .then(value => {
-                    if(value!= null) {
-                        UserName=value;
-                        this.setState({gotname:true})
-                    }
-                })
-            } catch (error){
-                console.warn(error)
-        }
-        console.log("UserName is : "+UserName)
-        db.collection('User').get().then( snapshot =>{
-            let Userame=null;
-            let phone=null;
-            let temail=null;
-            let Id=null;
+        db.collection('Social').get().then( snapshot =>{
             snapshot.forEach( doc =>{
-                const KEY = Object.keys(doc.data());
-                KEY.forEach( (key_id) => {
-                    if(key_id=='fullname'){
-                        if(doc.data().fullname == UserName){
-                            Userame = doc.data().fullname
-                            phone = doc.data().phone
-                            temail = doc.data().email
-                            Id = doc.data().id
-                        }
-                        this.setState({PhoneNum:phone})
-                        this.setState({Email:temail})
-                        this.setState({ID:Id})
-                        this.setState({Name:Userame})
-                    }
-                })
-            })
+                this.setState({address:doc.data().Address})
+                this.setState({email:doc.data().Email})
+                this.setState({fax:doc.data().Fax})
+                this.setState({Language:doc.data().Languages})
+                this.setState({phone:doc.data().Phone})
+                this.setState({workingHours:doc.data().WorkingHours})
+            }
+            )
         })
         this.setState({isLoaded:true})
     }
 
 
+    UpdateInfo(){
+        const Info = {
+            Address:this.state.address ,
+            Email:this.state.email ,
+            Fax:this.state.fax ,
+            Languages:this.state.Language,
+            Phone:this.state.phone ,
+            WorkingHours:this.state.workingHours
+        }
+      firebase.database().ref('Social/' + 'Info').update(Info)
+    }
+
     render(){
-        if(this.state.isLoaded==true && this.state.gotname==true){
-        return (
-            <View>
-                <Text>Name: {(this.state.Name)}</Text> 
-                <Text>PhoneNumber: {(this.state.PhoneNum)}</Text>
-                <Text>Email: {(this.state.Email)}</Text> 
-                <Text>ID: {(this.state.ID)}</Text> 
-            </View>
-        ); 
+        if(this.state.isLoaded==true){
+            if(this.state.Edit==false){
+                return (
+                    <View>
+                        <Text>Address: {(this.state.address)}</Text> 
+                        <Text>Email: {(this.state.email)}</Text>
+                        <Text>Phone: {(this.state.phone)}</Text> 
+                        <Text>Fax: {(this.state.fax)}</Text> 
+                        <Text>Languages: {(this.state.Language)}</Text> 
+                        <Text>Working Hours: {(this.state.workingHours)}</Text> 
+
+
+                        
+                        <Button title="Edit" onPress={() => {
+                            this.setState({Edit:true})
+                        }} color={Colors.secondery} />
+                    </View>
+                ); 
+            }
+            else{
+                return (
+                  <View>
+                    <Text>Adress:</Text>         
+                    <TextInput
+                    style={styles.inputField}
+                    blurOnSubmit
+                    autoCorrect={false}
+                    placeholder='Full Name'
+                    keyboardType="ascii-capable"
+                    onChangeText={(AddVal)=>this.setState({address:AddVal})}
+                    value={this.state.address}
+                    />
+                    <Text>Email: </Text>
+                    <TextInput
+                    style={styles.inputField}
+                    blurOnSubmit
+                    autoCorrect={false}
+                    placeholder='Full Name'
+                    keyboardType="ascii-capable"
+                    onChangeText={(EmailVal)=>this.setState({email:EmailVal})}
+                    value={this.state.email}
+                    />
+                    <Text>PhoneNumber: </Text>
+                    <TextInput
+                    style={styles.inputField}
+                    blurOnSubmit
+                    autoCorrect={false}
+                    placeholder='Full Name'
+                    keyboardType="ascii-capable"
+                    onChangeText={(PhoneVal)=>this.setState({phone:PhoneVal})}
+                    value={this.state.phone}
+                    />
+                    <Text>Fax: </Text>
+                    <TextInput
+                    style={styles.inputField}
+                    blurOnSubmit
+                    autoCorrect={false}
+                    placeholder='Full Name'
+                    keyboardType="ascii-capable"
+                    onChangeText={(FaxVal)=>this.setState({fax:FaxVal})}
+                    value={this.state.fax}
+                    />
+                    <Text>Languages: </Text>
+                    <TextInput
+                    style={styles.inputField}
+                    blurOnSubmit
+                    autoCorrect={false}
+                    placeholder='Full Name'
+                    keyboardType="ascii-capable"
+                    onChangeText={(LangVal)=>this.setState({Language:LangVal})}
+                    value={this.state.Language}
+                    />
+                    <Text>Working Hours: </Text>
+                    <TextInput
+                    style={styles.inputField}
+                    blurOnSubmit
+                    autoCorrect={false}
+                    placeholder='Full Name'
+                    keyboardType="ascii-capable"
+                    onChangeText={(WHVal)=>this.setState({workingHours:WHVal})}
+                    value={this.state.workingHours}
+                    />
+                    <Button title="Finish Editing" onPress={() => {
+                         Alert.alert('Save Changes?','Are you sure u would like to save this changes?',
+                            [
+                              {
+                                text: "Yes",
+                                onPress: () => {
+                                  this.UpdateInfo();
+                                  this.setState({Edit:false})
+                                },
+                              },
+                              {
+                                text: "No",
+                                onPress: () => {
+                                  this.setState({Edit:false})
+                                }
+                              },
+                            ])
+                        }}color={Colors.secondery} />
+                    </View>
+                )
+            }
         }
         else{
             return(
                 <Text>Nothing Loaded,Please wait!</Text>
             )
         }
+    
     }
 }
-            
             const styles = StyleSheet.create({
                 screen: {
                     marginTop: 5,
