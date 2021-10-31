@@ -38,7 +38,7 @@ const signUp1 = props => {
                     Role: '1',    
                     checked: false
                 }
-                db.collection('SocielWorker')
+                db.collection('SocialWorker')
                     .doc(FullnameInput)
                     .set(user)
                 //AddItem('ChildFullname',user.fullname);

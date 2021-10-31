@@ -4,7 +4,7 @@ import colors from '../../constants/Colors'
 
 import { LogBox } from 'react-native'; /// unfreeze for running on phones
 
-LogBox.ignoreLogs(['Setting a timer']); /// unfreeze for running on phones
+//LogBox.ignoreLogs(['Setting a timer']); /// unfreeze for running on phones
 
 const AdminHomePage = props => {
     return (
@@ -24,6 +24,11 @@ const AdminHomePage = props => {
             <View style={styles.buttonContainer}>
                 <Button title="Create a Interpreter User" onPress={() => {
                     props.navigation.navigate({routeName: 'signUp3'})
+                    }} color={colors.secondery} />
+            </View>
+            <View style={styles.buttonContainer}>
+                <Button title="Create a User" onPress={() => {
+                    props.navigation.navigate({routeName: 'signUp2'})
                     }} color={colors.secondery} />
             </View>
         </View>   

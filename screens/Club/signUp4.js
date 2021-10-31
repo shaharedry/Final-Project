@@ -51,7 +51,7 @@ const signUp4 = props => {
                     Role: '3',    
                     checked: false
                 }
-                db.collection('Club')
+                db.collection('ClubWorker')
                     .doc(FullnameInput)
                     .set(user)
                 //AddItem('ChildFullname',user.fullname);

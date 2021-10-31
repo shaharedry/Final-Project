@@ -5,7 +5,7 @@ import colors from '../../constants/Colors';
 import Input from '../../components/Input';
 //import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const signUp2 = props => {
+const Request2 = props => {
    
     const [FullnameInput,setFname]= useState('');
     const FullnameHandler = FullnameText => {
@@ -48,7 +48,9 @@ const signUp2 = props => {
                     phone: PhoneInput,
                     id: IDInput,
                     Role: '2',    
-                    checked: false
+                    checked: false,
+                    TranslatorHours:null,
+                    Verified: false
                 }
                 db.collection('User')
                     .doc(FullnameInput)
@@ -221,4 +223,4 @@ buttonContainer:{
 })
 
 
-export default signUp2;
+export default Request2;

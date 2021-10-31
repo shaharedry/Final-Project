@@ -4,6 +4,8 @@ import Input from '../components/Input';
 import colors from '../constants/Colors';
 import firebase ,{db} from '../FireBase/fire';
 import ModalSelector from 'react-native-modal-selector'
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { State } from 'react-native-gesture-handler';
 
 class LoginV2 extends React.Component{
         constructor(){
@@ -11,10 +13,11 @@ class LoginV2 extends React.Component{
             this.state= {
                 email: null,
                 password: null,
+                fullname: null,
                 textInputValue: 'User',
                 textInputNum: 0,
                 selectedLanguage : null,
-                From: ['User', 'Translator','Social Worker','Club','Admin'],
+                From: ['User', 'Translator','SocialWorker','ClubWorker','Admin'],
                 data: [],
                 Loaded: true,
                 checked: false
@@ -42,19 +45,35 @@ class LoginV2 extends React.Component{
 
     GoTo(type){
         if(type=='Admin'){
+            //Alert.alert('Checking!','fullname is: '+this.state.whatchyamacallit)
             this.props.navigation.navigate({routeName: 'AdminHomePage'})
         }
         if(type=='User'){
+            this.AddItem('UserName',this.state.fullname);
+            //Alert.alert('Checking!','fullname  is: '+this.state.whatchyamacallit)
             this.props.navigation.navigate({routeName: 'UserHomePage'})
         }
         if(type=='Translator'){
+            this.AddItem('TranslatorName',this.state.fullname);
             this.props.navigation.navigate({routeName: 'TransHomePage'})
         }
-        if(type=='Social Worker'){
+        if(type=='SocialWorker'){
+            Alert.alert('Title','name is: '+this.state.fullname )
+            this.AddItem('SocialWorkerName',this.state.fullname);
             this.props.navigation.navigate({routeName: 'SocialHomePage'})
         }
-        if(type=='Club'){
+        if(type=='ClubWorker'){
+            this.AddItem('ClubName',this.state.fullname);
             this.props.navigation.navigate({routeName: 'ClubHomePage'})
+        }
+    }
+
+    AddItem = async (saveas,save) =>{
+        try{
+            console.log("saving to async storage: "+ save)
+            await AsyncStorage.setItem(saveas,save)
+        } catch (error){
+            console.warn(error)
         }
     }
 
@@ -86,31 +105,18 @@ class LoginV2 extends React.Component{
                     />
 
 
-<View style={styles.Selection}>
+                <View style={styles.Selection}>
                     <Text>Login as: 
                         <ModalSelector
-                            // data={this.state.data}
-                            // initValue="Select User to login"
-                            // supportedOrientations={['landscape']}
-                            // accessible={true}
-                            // scrollViewAccessibilityLabel={'Scrollable options'}
-                            // cancelButtonAccessibilityLabel={'Cancel Button'}
-                            // onChange={(option)=>{ this.setState({textInputValue:option.label})}}>
+
                             data={this.state.data}
                             initValue='User'
                             keyExtractor= {item => item.id}
                             labelExtractor= {item => item.key}
                             onChange={(option)=>{ this.setState({textInputValue:option.key}), this.setState({textInputNum:option.id})}}>
-                            {/* {Alert.alert('Picked',''+this.state.textInputValue+' value is : '+this.state.textInputNum)} */}
-
+                            
                             </ModalSelector>
-                            {/* <TextInput
-                                style={{borderWidth:1, borderColor:'#ccc', padding:10, height:30}}
-                                editable={false}
-                                placeholder="Select User to login"
-                                value={this.state.textInputValue} />
-                            > */}
-                         {/* </ModalSelector> */}
+
                          </Text>
                     </View>
                     <Button title="Login as Guest" onPress={() => {
@@ -139,6 +145,55 @@ class LoginV2 extends React.Component{
                                 }
                             }
                             let type = this.state.textInputValue
+                            let EmailInput = this.state.email
+                            let PassInput = this.state.password
+                            // firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then(
+                            //    (res) => {
+                            //      this.GoTo(type)
+                            // }
+                            // ).catch(error => this.setState({ errorMessage: error.message }))
+                            // }} color={colors.secondery} />
+                            let tempname;
+                            firebase.auth().signInWithEmailAndPassword(EmailInput, PassInput)
+                            .then(
+                                (res) => {
+                                    db.collection(type).where("email", "==", EmailInput).get().then(
+                                        snapshot => {
+                                            snapshot.forEach(
+                                                function(doc) {
+                                                    // if(doc.data().email == EmailInput)
+                                                    tempname = doc.data().fullname
+                                                    //Alert.alert('Checking!','fullname  is: '+tempname)
+                                                    //this.GoTo(type);
+                                                }
+                                            )
+                                            ,
+                                            //Alert.alert('Checking!','fullname  is: '+tempname),
+                                            this.setState({fullname:tempname}),
+                                            this.GoTo(type)
+                                        }  
+                                    )
+                                    //this.setState({whatchyamacallit:tempname})
+                                    //Alert.alert('Checking!','fullname  is: '+this.state.whatchyamacallit+' should be '+tempname)
+                                    //this.GoTo(type)
+                                }
+                        )}} /> 
+                        </View>
+                        
+                    </View>
+                    
+                </View>
+            )}
+        else{
+            return(
+                <Text>Still Loading..</Text>
+            )
+        }
+    }
+};
+
+
+
                             // db.collection(type).where("Email", "==", this.state.email).get().then(function(querySnapshot) {
                             // querySnapshot.forEach(function(doc) {
                             //     if(querySnapshot!= null){
@@ -153,27 +208,16 @@ class LoginV2 extends React.Component{
                             // })
                             // })
 
-                            firebase
-                            .auth()
-                            .signInWithEmailAndPassword(this.state.email, this.state.password)
-                            .then((res) => {
-                                this.GoTo(type)
-                            }
-                            ).catch(error => this.setState({ errorMessage: error.message }))
-                            }} color={colors.secondery} />
-                    </View>
-                    </View>
-                    
-                </View>
-            );
-        }
-        else{
-            return(
-                <Text>Still Loading..</Text>
-            )
-        }
-    }
-};
+                            // firebase
+                            // .auth()
+                            // .signInWithEmailAndPassword(this.state.email, this.state.password)
+                            // .then((res) => {
+
+                            //     this.GoTo(type)
+                            // }
+                            // ).catch(error => this.setState({ errorMessage: error.message }))
+                            // }} color={colors.secondery} />
+
 
 const styles = StyleSheet.create({
     screen: {

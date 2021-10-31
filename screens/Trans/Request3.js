@@ -1,12 +1,12 @@
 import React, { useCallback, useState } from 'react';
 import {View, Text, StyleSheet ,Button, Alert } from 'react-native';
-import Firebase, {db} from '../../FireBase/fire';
 import colors from '../../constants/Colors';
+import Firebase, {db} from '../../FireBase/fire';
 import Input from '../../components/Input';
 //import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const signUp2 = props => {
-   
+const Request3 = props => {
+    
     const [FullnameInput,setFname]= useState('');
     const FullnameHandler = FullnameText => {
         setFname(FullnameText.replace(/[^A-Za-z]+[^A-Za-z]/))
@@ -37,6 +37,7 @@ const signUp2 = props => {
         setVerifyPass(VerifyPassText)
     }
 
+
     const signup = async() =>{ 
         try{
             const response = await Firebase.auth().createUserWithEmailAndPassword(EmailInput, PassInput)
@@ -47,10 +48,12 @@ const signUp2 = props => {
                     fullname: FullnameInput,
                     phone: PhoneInput,
                     id: IDInput,
-                    Role: '2',    
-                    checked: false
+                    Role: '3',    
+                    checked: false,
+                    Verified: false,
+                    HoursDone:null
                 }
-                db.collection('User')
+                db.collection('Interpreter')
                     .doc(FullnameInput)
                     .set(user)
                 //AddItem('ChildFullname',user.fullname);
@@ -59,9 +62,9 @@ const signUp2 = props => {
                 
                 Alert.alert(
                     "Created Succesfully",
-                    "Deaf user "+FullnameInput+" User has been created succesfully!",
+                    "Interpreter user "+FullnameInput+" User has been created succesfully!",
                     [
-                      { text: "OK", onPress: () => this.props.navigation.navigate({routeName: 'Main'}) } //fix later
+                      { text: "OK", onPress: () => props.navigation.navigate({routeName: 'Main'}) } //fix later
                     ]
                   );
             }
@@ -84,7 +87,7 @@ const signUp2 = props => {
 
     return (
         <View style={styles.InputContainer}>
-            <Text>Sign Up deaf</Text>
+            <Text>Sign Up Interpreter</Text>
             <Input
                 testID={'fullname'}
                 style={styles.inputField}
@@ -180,7 +183,7 @@ const signUp2 = props => {
         </View>
     //</TouchableWithoutFeedback>
     );
-};
+                    }
 
 
 const styles = StyleSheet.create({
@@ -210,15 +213,8 @@ inputField: {
     fontSize: 16,
     borderRadius: 8,
     borderWidth: 1
-},
-buttonContainer:{
-    width: 250,
-    height: 150,
-    justifyContent: 'center',
-    paddingBottom: 100 ,
-    borderRadius: 10
 }
 })
 
 
-export default signUp2;
+export default Request3;
