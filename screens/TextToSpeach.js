@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {View, Button, StyleSheet, TextInput} from 'react-native'
 import * as Speech from 'expo-speech';
 import {AutoGrowingTextInput} from 'react-native-autogrow-textinput'
+import colors from '../constants/Colors';
 
 class TextToSpeach extends Component {
     constructor(){
@@ -30,7 +31,7 @@ class TextToSpeach extends Component {
                 <Button title="Speak" onPress={() => {
                     this.speak(this.state.txtSpeach)
                     this.ChangeVal()
-                }}/>
+                }} color={colors.secondery}/>
             </View>
         );
     }}
