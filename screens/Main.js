@@ -60,22 +60,22 @@ class Main extends React.Component {
 const styles = StyleSheet.create({
 screen: {
     flex: 1,
-    padding : 150,
+    padding : 40,
     alignItems: 'center',
     flexDirection: 'column',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
 },
 buttonContainer:{
     width: 250,
-    height: 150,
-    justifyContent: 'center',
-    paddingBottom: 20 ,
-    borderRadius: 10
+    height: 80,
+    // justifyContent: 'center',
+    // paddingBottom: 20 ,
+    // borderRadius: 10
 },
 ImageContainer: {
     width: 200,
-    height: 150,
+    height: 80,
     alignContent: 'center',
     alignItems: 'center',
     justifyContent: 'center',

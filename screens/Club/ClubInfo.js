@@ -62,15 +62,15 @@ class ClubInfo extends React.Component {
                 // emai = doc.data().Email
                 // fax = doc.data().Fax
                 // phon = doc.data().Phone
-                this.setState({1:doc.data().first})
-                this.setState({2:doc.data().second})
-                this.setState({3:doc.data().third})
-                this.setState({4:doc.data().fourth})
-                this.setState({5:doc.data().fifth})
-                this.setState({Address:doc.data().Address})
-                this.setState({Email:doc.data().Email})
-                this.setState({Fax:doc.data().Fax})
-                this.setState({Phone:doc.data().Phone})
+                this.setState({1:doc.data().Info.first})
+                this.setState({2:doc.data().Info.second})
+                this.setState({3:doc.data().Info.third})
+                this.setState({4:doc.data().Info.fourth})
+                this.setState({5:doc.data().Info.fifth})
+                this.setState({Address:doc.data().Info.Address})
+                this.setState({Email:doc.data().Info.Email})
+                this.setState({Fax:doc.data().Info.Fax})
+                this.setState({Phone:doc.data().Info.Phone})
             }
             )
         })
@@ -90,10 +90,21 @@ class ClubInfo extends React.Component {
           fourth:this.state[4] , 
           fifth:this.state[5] ,
         }
+
       // db.collection('Club').set
       // .doc('Info')
       // .set(Info)
-      firebase.database().ref('Club/' + 'Info').update(Info)
+      Alert.alert("Checker","Fax value is: "+this.state.Fax)
+      db.collection("Club").doc('Info').update({Address:this.state.Address ,
+        Email:this.state.Email ,
+        Fax:this.state.Fax ,
+        Phone:this.state.Phone ,
+        first:this.state[1] ,
+        second:this.state[2] , 
+        third:this.state[3] , 
+        fourth:this.state[4] , 
+        fifth:this.state[5] ,})
+      //firebase.database().ref('Club/' + 'Info').update({Info, OnComplete:Alert.alert('Done!')})
     }
 
     render(){
@@ -105,7 +116,9 @@ class ClubInfo extends React.Component {
                 <Text>PhoneNumber: {(this.state.Phone)}</Text>
                 <Text>Email: {(this.state.Email)}</Text> 
                 <Text>Fax: {(this.state.Fax)}</Text> 
-
+                <Text>Working Hours: </Text>
+                <Text>Sunday, Tuesday, Wednesday, Thursday: {(this.state[1])}</Text>  
+                <Text>Monday: {(this.state[2])}</Text> 
                 <Button title="Edit" onPress={() => {
                   this.setState({Edit:true})
                 }} color={Colors.secondery} />

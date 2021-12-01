@@ -24,7 +24,7 @@ class VerifyUser extends React.Component {
                 const KEY = Object.keys(doc.data());
                 KEY.forEach( (key_id) => {
                     if(key_id=='Verified'){
-                        if(doc.data().Verified == false){
+                        if(doc.data().Verified == 'false'){
                             const data = doc.data()
                             let i=0;
                             Unverified.push({
@@ -92,7 +92,9 @@ class VerifyUser extends React.Component {
                 //     uid: this.state.UnverifiedUsers[i].uid,
                 //     Verified:true
                 // })
-                db.collection("Users").document(name).update("Verified",true)
+                db.collection("User").doc(checkname).update({Verified:'true'})
+                //firebase.database().ref('User/' + checkname + '/Verified').set('true')
+                //firebase.firestore().collection('User').doc(checkname).set(Verified,true)
         }    
         Alert.alert('Updated!','Refreshing page',[
             {

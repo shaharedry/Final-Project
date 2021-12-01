@@ -39,15 +39,35 @@ class SocialInfo extends React.Component {
 
 
     UpdateInfo(){
-        const Info = {
-            Address:this.state.address ,
-            Email:this.state.email ,
-            Fax:this.state.fax ,
-            Languages:this.state.Language,
-            Phone:this.state.phone ,
-            WorkingHours:this.state.workingHours
-        }
-      firebase.database().ref('Social/' + 'Info').update(Info)
+        // const Info = {
+        //     Address:this.state.address ,
+        //     Email:this.state.email ,
+        //     Fax:this.state.fax ,
+        //     Languages:this.state.Language,
+        //     Phone:this.state.phone ,
+        //     WorkingHours:this.state.workingHours
+        // }
+        const Info_Address=this.state.address
+        const Info_Email=this.state.email
+        const Info_Fax=this.state.fax
+        const Info_Languages=this.state.Language
+        const Info_Phone=this.state.phone
+        const Info_WorkingHours=this.state.workingHours
+
+      db.collection("Social").doc('Info').update({Address:Info_Address ,
+        Email:Info_Email ,
+        Fax:Info_Fax ,
+        Languages:Info_Languages,
+        Phone:Info_Phone ,
+        WorkingHours:Info_WorkingHours})
+      // firebase.database().ref('Social/' + 'Info').update({
+      //   Address:Info_Address ,
+      //   Email:Info_Email ,
+      //   Fax:Info_Fax ,
+      //   Languages:Info_Languages,
+      //   Phone:Info_Phone ,
+      //   WorkingHours:Info_WorkingHours
+      // })
     }
 
     render(){
