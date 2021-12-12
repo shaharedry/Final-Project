@@ -17,7 +17,11 @@ class SocialHomePage extends React.Component {
             isLoaded:false
         }
     }
-    
+    resetAction = StackActions.reset({
+        index: 0,
+        actions: [NavigationActions.navigate({ routeName: 'Main' })],
+      });
+
         componentDidMount(){
             let username = null    
             try{
@@ -42,11 +46,40 @@ class SocialHomePage extends React.Component {
                 <View style={styles.screen}>
                     <Text>SocialWorkerHomePage Profile Screen</Text>
                     <Text>Hello {this.state.Username}!</Text> 
-
+                    <View style={styles.buttonContainer}>
+                        <Button title="Create User" onPress={() => {
+                            this.props.navigation.navigate({routeName: 'Request2'})
+                            }} color={colors.secondery} />
+                    </View>
+                    <View style={styles.buttonContainer}>
+                        <Button title="Create Translator User" onPress={() => {
+                            this.props.navigation.navigate({routeName: 'Request3'})
+                            }} color={colors.secondery} />
+                    </View>
+                    <View style={styles.buttonContainer}>
+                        <Button title="Create Social User" onPress={() => {
+                            this.props.navigation.navigate({routeName: 'SignUp1'})
+                            }} color={colors.secondery} />
+                    </View>
+                    <View style={styles.buttonContainer}>
+                        <Button title="Verify User" onPress={() => {
+                            this.props.navigation.navigate({routeName: 'VerifyUser'})
+                            }} color={colors.secondery} />
+                    </View>
+                    <View style={styles.buttonContainer}>
+                        <Button title="Verify Translator User" onPress={() => {
+                            this.props.navigation.navigate({routeName: 'VerifyTransUser'})
+                            }} color={colors.secondery} />
+                    </View>
                     <View style={styles.buttonContainer}>
                         <Button title="Club Info" onPress={() => {
                         this.props.navigation.navigate({routeName: 'SocialInfo'})
                             }} color={colors.secondery} />
+                    </View>
+                    <View style={styles.buttonContainer}>
+                        <Button title="Logout" onPress={() => {
+                            props.navigation.dispatch(resetAction);
+                        }} color={colors.secondery} />
                     </View>
                 </View>   
             );

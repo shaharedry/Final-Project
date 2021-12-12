@@ -5,6 +5,7 @@ import colors from '../constants/Colors';
 import firebase ,{db} from '../FireBase/fire';
 import ModalSelector from 'react-native-modal-selector'
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { NavigationActions } from 'react-navigation'
 import { State } from 'react-native-gesture-handler';
 
 class LoginV2 extends React.Component{
@@ -46,25 +47,40 @@ class LoginV2 extends React.Component{
     GoTo(type){
         if(type=='Admin'){
             //Alert.alert('Checking!','fullname is: '+this.state.whatchyamacallit)
-            this.props.navigation.navigate({routeName: 'AdminHomePage'})
+            this.props.navigation.reset(
+                [NavigationActions.navigate({routeName: 'AdminHomePage'})],
+                0,
+            );
         }
         if(type=='User'){
             this.AddItem('UserName',this.state.fullname);
             //Alert.alert('Checking!','fullname  is: '+this.state.whatchyamacallit)
-            this.props.navigation.navigate({routeName: 'UserHomePage'})
+            this.props.navigation.reset(
+                [NavigationActions.navigate({routeName: 'UserHomePage'})],
+                0,
+            );
         }
         if(type=='Translator'){
             this.AddItem('TranslatorName',this.state.fullname);
-            this.props.navigation.navigate({routeName: 'TransHomePage'})
+            this.props.navigation.reset(
+                [NavigationActions.navigate({routeName: 'TransHomePage'})],
+                0,
+            );
         }
         if(type=='SocialWorker'){
             Alert.alert('Title','name is: '+this.state.fullname )
             this.AddItem('SocialWorkerName',this.state.fullname);
-            this.props.navigation.navigate({routeName: 'SocialHomePage'})
+            this.props.navigation.reset(
+                [NavigationActions.navigate({routeName: 'ClubHomePage'})],
+                0,
+            );
         }
         if(type=='ClubWorker'){
             this.AddItem('ClubName',this.state.fullname);
-            this.props.navigation.navigate({routeName: 'ClubHomePage'})
+            this.props.navigation.reset(
+                [NavigationActions.navigate({routeName: 'ClubHomePage'})],
+                0,
+            );
         }
     }
 
@@ -153,7 +169,7 @@ class LoginV2 extends React.Component{
                             // }
                             // ).catch(error => this.setState({ errorMessage: error.message }))
                             // }} color={colors.secondery} />
-                            let tempname;
+                            let tempname=null;
                             firebase.auth().signInWithEmailAndPassword(EmailInput, PassInput)
                             .then(
                                 (res) => {

@@ -86,7 +86,7 @@ const Request2 = props => {
 
     return (
         <View style={styles.InputContainer}>
-            <Text>Sign Up deaf</Text>
+            <Text>Sign Up as User</Text>
             <Input
                 testID={'fullname'}
                 style={styles.inputField}
@@ -207,10 +207,11 @@ InputContainer: {
 },
 inputField: {
     padding: 10,
-    marginTop: 5,
+    marginTop: 15,
     marginBottom: 10,
     fontSize: 16,
-    borderRadius: 8,
+    width:180,
+    borderRadius: 18,
     borderWidth: 1
 },
 buttonContainer:{

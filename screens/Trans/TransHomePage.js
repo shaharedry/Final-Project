@@ -34,6 +34,10 @@ class TransHomePage extends React.Component {
             this.setState({isLoaded:true})
         }
 
+    resetAction = StackActions.reset({
+        index: 0,
+        actions: [NavigationActions.navigate({ routeName: 'Main' })],
+      });
 
     render(){
         if(this.state.isLoaded){
@@ -46,6 +50,11 @@ class TransHomePage extends React.Component {
                         <Button title="Personal Info" onPress={() => {
                         this.props.navigation.navigate({routeName: 'TransInfo'})
                             }} color={colors.secondery} />
+                    </View>
+                    <View style={styles.buttonContainer}>
+                        <Button title="Logout" onPress={() => {
+                            props.navigation.dispatch(resetAction)
+                        }} color={colors.secondery} />
                     </View>
                 </View>   
             );
