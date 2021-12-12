@@ -36,7 +36,8 @@ const signUp1 = props => {
                     uid: response.user.uid,
                     email: EmailInput,
                     fullname: FullnameInput,
-                    Role: '1',    
+                    Role: '1',  
+                    Verified: 'false',  
                     checked: false
                 }
                 db.collection('SocialWorker')

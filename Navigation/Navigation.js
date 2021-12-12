@@ -69,6 +69,9 @@ const AppNavigator = createStackNavigator({
 },
 {
     defaultNavigationOptions : {
+        headerShown: true,
+        
+        //headerTransparent: true,
         headerTitleAlign: 'center',
         //headerTitle: 'Ear Me',
         headerStyle: {

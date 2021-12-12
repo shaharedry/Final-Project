@@ -11,6 +11,7 @@
     "@react-native-async-storage/async-storage": "^1.15.9",
     "@react-native-picker/picker": "^1.16.5",
     "expo": "~42.0.1",
+    "expo-cli": "^4.12.12",
     "expo-speech": "^9.2.1",
     "expo-status-bar": "~1.0.4",
     "firebase": "^8.8.1",

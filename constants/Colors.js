@@ -1,5 +1,5 @@
 export default{
     primary: 'white',
-    secondery: 'pink',
+    secondery: 'red',
     title: 'darkblue'
 }
