@@ -1,34 +1,37 @@
 import React,{ useState } from 'react';
 import {View, Text, StyleSheet, Image, Button} from 'react-native';
 import colors from '../../constants/Colors'
+import { NavigationActions ,StackActions } from 'react-navigation'
 
 import { LogBox } from 'react-native'; /// unfreeze for running on phones
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 //LogBox.ignoreLogs(['Setting a timer']); /// unfreeze for running on phones
 
 const AdminHomePage = props => {
+
+    const resetAction = StackActions.reset({
+        index: 0,
+        actions: [NavigationActions.navigate({ routeName: 'Main' })],
+      });
     return (
         <View style={styles.screen}>
-            <Text>AdminHomePage Profile Screen</Text>
-            <Text>Hello!</Text> 
+            <Text>Admin Profile Screen</Text>
+            <Text>Hello!</Text>
+            <Text></Text><Text></Text><Text></Text><Text></Text><Text></Text><Text></Text><Text></Text><Text></Text><Text></Text><Text></Text><Text></Text><Text></Text><Text></Text><Text></Text><Text></Text><Text></Text> 
             <View style={styles.buttonContainer}>
                 <Button title="Crate a Social Worker User" onPress={() => {
                     props.navigation.navigate({routeName: 'signUp1'})
                     }} color={colors.secondery} />
             </View>
             <View style={styles.buttonContainer}>
-                <Button title="Create a Club User" onPress={() => {
-                    props.navigation.navigate({routeName: 'signUp4'})
-                    }} color={colors.secondery} />
-            </View>
-            <View style={styles.buttonContainer}>
-                <Button title="Create a Interpreter User" onPress={() => {
-                    props.navigation.navigate({routeName: 'signUp3'})
-                    }} color={colors.secondery} />
-            </View>
-            <View style={styles.buttonContainer}>
-                <Button title="Create a User" onPress={() => {
-                    props.navigation.navigate({routeName: 'signUp2'})
+                <Button title="Logout" onPress={() => {
+                    props.navigation.dispatch(resetAction);
+                    // props.navigation.reset(
+                    //     AsyncStorage.clear()
+                    //     [NavigationActions.navigate({routeName: 'Main'})],
+                    //     0,
+                    // );
                     }} color={colors.secondery} />
             </View>
         </View>   
@@ -44,7 +47,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         flexDirection: 'column',
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
     },
     ImageContainer: {
         width: 100,
@@ -60,8 +63,8 @@ const styles = StyleSheet.create({
         height: '100%'
     },
     buttonContainer:{
-        width: 150,
-        height: 50,
+        width: 250,
+        height: 90,
         justifyContent: 'center',
         paddingBottom: 10 ,
         paddingTop: 10,
