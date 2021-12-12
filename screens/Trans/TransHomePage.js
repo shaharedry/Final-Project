@@ -3,7 +3,7 @@ import {View, Text, StyleSheet, Image, Button} from 'react-native';
 import colors from '../../constants/Colors'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { withNavigation } from 'react-navigation';
-
+import { NavigationActions ,StackActions } from 'react-navigation'
 import { LogBox } from 'react-native'; /// unfreeze for running on phones
 import Navigation from '../../Navigation/Navigation';
 
@@ -34,10 +34,6 @@ class TransHomePage extends React.Component {
             this.setState({isLoaded:true})
         }
 
-    resetAction = StackActions.reset({
-        index: 0,
-        actions: [NavigationActions.navigate({ routeName: 'Main' })],
-      });
 
     render(){
         if(this.state.isLoaded){
@@ -53,7 +49,10 @@ class TransHomePage extends React.Component {
                     </View>
                     <View style={styles.buttonContainer}>
                         <Button title="Logout" onPress={() => {
-                            props.navigation.dispatch(resetAction)
+                            props.navigation.dispatch(StackActions.reset({
+                                index: 0,
+                                actions: [NavigationActions.navigate({ routeName: 'Main' })],
+                              }))
                         }} color={colors.secondery} />
                     </View>
                 </View>   

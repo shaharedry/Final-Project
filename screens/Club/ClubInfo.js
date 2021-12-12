@@ -62,15 +62,15 @@ class ClubInfo extends React.Component {
                 // emai = doc.data().Email
                 // fax = doc.data().Fax
                 // phon = doc.data().Phone
-                this.setState({1:doc.data().Info.first})
-                this.setState({2:doc.data().Info.second})
-                this.setState({3:doc.data().Info.third})
-                this.setState({4:doc.data().Info.fourth})
-                this.setState({5:doc.data().Info.fifth})
-                this.setState({Address:doc.data().Info.Address})
-                this.setState({Email:doc.data().Info.Email})
-                this.setState({Fax:doc.data().Info.Fax})
-                this.setState({Phone:doc.data().Info.Phone})
+                this.setState({1:doc.data().first})
+                this.setState({2:doc.data().second})
+                this.setState({3:doc.data().third})
+                this.setState({4:doc.data().fourth})
+                this.setState({5:doc.data().fifth})
+                this.setState({Address:doc.data().Address})
+                this.setState({Email:doc.data().Email})
+                this.setState({Fax:doc.data().Fax})
+                this.setState({Phone:doc.data().Phone})
             }
             )
         })
@@ -94,7 +94,7 @@ class ClubInfo extends React.Component {
       // db.collection('Club').set
       // .doc('Info')
       // .set(Info)
-      Alert.alert("Checker","Fax value is: "+this.state.Fax)
+      //Alert.alert("Checker","Fax value is: "+this.state.Fax)
       db.collection("Club").doc('Info').update({Address:this.state.Address ,
         Email:this.state.Email ,
         Fax:this.state.Fax ,

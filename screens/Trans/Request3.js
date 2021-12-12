@@ -87,7 +87,7 @@ const Request3 = props => {
 
     return (
         <View style={styles.InputContainer}>
-            <Text>Sign Up Interpreter</Text>
+            <Text>Sign Up Translator</Text>
             <Input
                 testID={'fullname'}
                 style={styles.inputField}
