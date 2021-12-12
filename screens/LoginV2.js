@@ -68,10 +68,10 @@ class LoginV2 extends React.Component{
             );
         }
         if(type=='SocialWorker'){
-            Alert.alert('Title','name is: '+this.state.fullname )
+            //Alert.alert('Title','name is: '+this.state.fullname )
             this.AddItem('SocialWorkerName',this.state.fullname);
             this.props.navigation.reset(
-                [NavigationActions.navigate({routeName: 'ClubHomePage'})],
+                [NavigationActions.navigate({routeName: 'SocialHomePage'})],
                 0,
             );
         }

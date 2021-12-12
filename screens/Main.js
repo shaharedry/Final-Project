@@ -2,7 +2,9 @@ import React, { useState } from 'react'
 import { View, Image, StyleSheet, TouchableOpacity, Text, Alert, Button } from 'react-native'
 import colors from '../constants/Colors';
 import firebase ,{db} from '../FireBase/fire';
-
+import { LogBox } from 'react-native';
+LogBox.ignoreLogs(['Setting a timer']);
+LogBox.ignoreLogs(['Require cycle']);
 class Main extends React.Component {
     render(){
         return (

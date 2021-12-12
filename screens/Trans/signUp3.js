@@ -3,6 +3,7 @@ import {View, Text, StyleSheet ,Button, Alert } from 'react-native';
 import colors from '../../constants/Colors';
 import Firebase, {db} from '../../FireBase/fire';
 import Input from '../../components/Input';
+import { NavigationActions ,StackActions } from 'react-navigation'
 //import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const signUp3 = props => {
@@ -91,7 +92,7 @@ const signUp3 = props => {
 
     return (
         <View style={styles.InputContainer}>
-            <Text>Sign Up Interpreter</Text>
+            <Text>Sign Up Translator</Text>
             <Input
                 testID={'fullname'}
                 style={styles.inputField}
