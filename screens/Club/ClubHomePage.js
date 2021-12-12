@@ -17,6 +17,10 @@ class ClubHomePage extends React.Component {
             isLoaded:false
         }
     }
+    resetAction = StackActions.reset({
+        index: 0,
+        actions: [NavigationActions.navigate({ routeName: 'Main' })],
+      });
     
         componentDidMount(){
             let username = null    
@@ -47,6 +51,16 @@ class ClubHomePage extends React.Component {
                         this.props.navigation.navigate({routeName: 'ClubInfo'})
                             }} color={colors.secondery} />
                     </View>
+                    <View style={styles.buttonContainer}>
+                        <Button title="Logout" onPress={() => {
+                            props.navigation.dispatch(resetAction);
+                            // props.navigation.reset(
+                            //     AsyncStorage.clear()
+                            //     [NavigationActions.navigate({routeName: 'Main'})],
+                            //     1,
+                            // );
+                    }} color={colors.secondery} />
+            </View>
                 </View>   
             );
         }

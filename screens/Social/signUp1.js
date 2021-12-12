@@ -27,6 +27,7 @@ const signUp1 = props => {
         setVerifyPass(VerifyPassText)
     }
 
+    
     const signup = async() =>{ 
         try{
             const response = await Firebase.auth().createUserWithEmailAndPassword(EmailInput, PassInput)
@@ -50,7 +51,7 @@ const signUp1 = props => {
                     "Created Succesfully",
                     "Social Worker "+FullnameInput+" User has been created succesfully!",
                     [
-                      { text: "OK", onPress: () => props.navigation.navigate({routeName: 'adminProfile'}) } //fix later
+                      { text: "OK", onPress: () => props.navigation.navigate({routeName: 'AdminHomePage'}) } //fix later
                     ]
                   );
             }
@@ -174,10 +175,11 @@ InputContainer: {
 },
 inputField: {
     padding: 10,
-    marginTop: 5,
+    marginTop: 15,
     marginBottom: 10,
     fontSize: 16,
-    borderRadius: 8,
+    width:180,
+    borderRadius: 18,
     borderWidth: 1
 },
 buttonContainer:{

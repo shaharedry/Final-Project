@@ -37,7 +37,11 @@ const signUp3 = props => {
         setVerifyPass(VerifyPassText)
     }
 
-
+    const resetAction = StackActions.reset({
+        index: 0,
+        actions: [NavigationActions.navigate({ routeName: 'Main' })],
+      });
+      
     const signup = async() =>{ 
         try{
             const response = await Firebase.auth().createUserWithEmailAndPassword(EmailInput, PassInput)
@@ -48,8 +52,10 @@ const signUp3 = props => {
                     fullname: FullnameInput,
                     phone: PhoneInput,
                     id: IDInput,
-                    Role: '3',    
-                    checked: false
+                    Role: '3',   
+                    Verified: false, 
+                    checked: false,
+                    HoursDone:null
                 }
                 db.collection('Interpreter')
                     .doc(FullnameInput)
@@ -206,12 +212,13 @@ InputContainer: {
 },
 inputField: {
     padding: 10,
-    marginTop: 5,
+    marginTop: 15,
     marginBottom: 10,
     fontSize: 16,
-    borderRadius: 8,
+    width:180,
+    borderRadius: 18,
     borderWidth: 1
-}
+},
 })
 
 
