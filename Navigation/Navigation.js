@@ -18,14 +18,14 @@ import ClubInfo from '../screens/Club/ClubInfo';
 import SocialHomePage from '../screens/Social/SocialHomePage';
 import signUp1 from '../screens/Social/signUp1'
 import SocialInfo from '../screens/Social/SocialInfo';
-import VerifyUser from '../screens/Social/VerifyUser';
+//import VerifyUser from '../screens/Social/VerifyUser';
 
 //Translator
 import TransHomePage from '../screens/Trans/TransHomePage';
 import signUp3 from '../screens/Trans/signUp3'
 import TransInfo from '../screens/Trans/TransInfo';
 import Request3 from '../screens/Trans/Request3';
-import VerifyTransUser from '../screens/Social/VerifyTransUser';
+//import VerifyTransUser from '../screens/Social/VerifyTransUser';
 
 //User
 import UserHomePage from '../screens/User/UserHomePage';
@@ -36,7 +36,7 @@ import Request2 from '../screens/User/Request2';
 //Guest
 import GuestHomePage from '../screens/Guest/GuestHomePage';
 import guestScreen from '../screens/Guest/guestScreen'
-
+//import SpeachToText from '../screens/SpeachToText';
 import TextToSpeach from '../screens/TextToSpeach';
 import Test from '../screens/Test.js';
 
@@ -47,7 +47,7 @@ const AppNavigator = createStackNavigator({
     signUp2:{ screen: signUp2 ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"Create User"}},
     signUp3:{ screen: signUp3 ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"Create Translator User"}},
     signUp4:{ screen: signUp4 ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"Create Club User"}},
-    VerifyUser:{ screen: VerifyUser , headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"Verify User"}},
+   // VerifyUser:{ screen: VerifyUser , headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"Verify User"}},
     Request2: { screen: Request2 , headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"Create User"}},
     Request3: { screen: Request3 , headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"Create Translator User"}},
     guestScreen:{ screen: guestScreen ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"Guest Screen"}},
@@ -59,7 +59,8 @@ const AppNavigator = createStackNavigator({
     UserHomePage:{ screen: UserHomePage ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"User HomePage"}},
     GuestHomePage:{ screen: GuestHomePage ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"Guest HomePage"}},
     TextToSpeach:{ screen: TextToSpeach ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"Text to Speach"}},
-    VerifyTransUser:{ screen: VerifyTransUser ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"Verify Translator User"}},
+    // SpeachToText:{ screen: SpeachToText ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"Speach To Text"}},
+    //VerifyTransUser:{ screen: VerifyTransUser ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"Verify Translator User"}},
 
     UserInfo:{ screen: UserInfo ,headerTitle: 'EAR ME'},
     SocialInfo:{ screen: SocialInfo ,headerTitle: 'EAR ME'},
