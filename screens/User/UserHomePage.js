@@ -17,7 +17,11 @@ class UserHomePage extends React.Component {
             isLoaded:false
         }
     }
-    
+    resetAction = StackActions.reset({
+        index: 0,
+        actions: [NavigationActions.navigate({ routeName: 'Main' })],
+      });
+      
         componentDidMount(){
             let username = null    
             try{
@@ -48,11 +52,13 @@ class UserHomePage extends React.Component {
                     </View>
                     <View style={styles.buttonContainer}>
                         <Button title="Logout" onPress={() => {
-                                props.navigation.dispatch(StackActions.reset({
-                                    index: 0,
-                                    actions: [NavigationActions.navigate({ routeName: 'Main' })],
-                                  }));
-                            }} color={colors.secondery} />
+                            this.props.navigation.dispatch(this.resetAction);
+                            // props.navigation.reset(
+                            //     AsyncStorage.clear()
+                            //     [NavigationActions.navigate({routeName: 'Main'})],
+                            //     1,
+                            // );
+                    }} color={colors.secondery} />
                     </View>
                 </View>   
             );
