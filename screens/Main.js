@@ -23,9 +23,15 @@ class Main extends React.Component {
                     }} color={colors.secondery} />
             </View>
 
-            {/* <View style={styles.buttonContainer}>
-                <Button title="Speak" onPress={() => {
+            <View style={styles.buttonContainer}>
+                <Button title="Text to Speach" onPress={() => {
                     this.props.navigation.navigate({routeName: 'TextToSpeach'})
+                    }} color={colors.secondery} />
+            </View>
+
+            {/* <View style={styles.buttonContainer}>
+                <Button title="Speach to Text" onPress={() => {
+                    this.props.navigation.navigate({routeName: 'SpeachToText'})
                     }} color={colors.secondery} />
             </View> */}
 

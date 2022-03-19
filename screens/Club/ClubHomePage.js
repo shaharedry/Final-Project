@@ -53,7 +53,7 @@ class ClubHomePage extends React.Component {
                     </View>
                     <View style={styles.buttonContainer}>
                         <Button title="Logout" onPress={() => {
-                            props.navigation.dispatch(resetAction);
+                            this.props.navigation.dispatch(this.resetAction);
                             // props.navigation.reset(
                             //     AsyncStorage.clear()
                             //     [NavigationActions.navigate({routeName: 'Main'})],
