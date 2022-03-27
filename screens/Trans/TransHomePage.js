@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
     },
     buttonContainer:{
         width: 150,
-        height: 50,
+        height: 60,
         justifyContent: 'center',
         paddingBottom: 10 ,
         paddingTop: 10,
