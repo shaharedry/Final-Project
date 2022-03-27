@@ -1,5 +1,6 @@
 import React from 'react'; 
-import {View, Text, StyleSheet, Alert} from 'react-native';
+import Colors from '../../constants/Colors';
+import {View, Text,TextInput, StyleSheet, Alert, Button} from 'react-native';
 import firebase ,{db} from '../../FireBase/fire'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -59,17 +60,102 @@ class TransInfo extends React.Component {
         this.setState({isLoaded:true})
     }
 
+    UpdateInfo(){
+        const Info_Name=this.state.Name
+        const Info_Email=this.state.Email
+        const Info_Phone=this.state.PhoneNum
+        const Info_ID=this.state.ID
+
+      db.collection("Interpreter").doc(Info_Name).update({
+        email:Info_Email ,
+        id:Info_ID ,
+        fullname:Info_Name ,
+        phone:Info_Phone})
+    }
+
+    CheckValidPhone(){
+      var x=this.state.PhoneNum
+      if ((!isNaN(x)) && ((x.length)==10) == false){
+        Alert.alert('Error!','Invalid Phone Number!')
+        return false
+      }
+      return true
+    }
+
+    CheckValidEmail(){
+      var x=this.state.Email
+      for(var i=0;i<(x.length);i++){
+        if(x[i]=='@')
+        return true;
+      }
+      Alert.alert('Error!','Invalid Email address!')
+      return false
+    }
 
     render(){
         if(this.state.isLoaded==true && this.state.gotname==true){
-        return (
-            <View>
-                <Text>Name: {(this.state.Name)}</Text> 
-                <Text>PhoneNumber: {(this.state.PhoneNum)}</Text>
-                <Text>Email: {(this.state.Email)}</Text> 
-                <Text>ID: {(this.state.ID)}</Text> 
-            </View>
-        ); 
+            if(this.state.Edit==false){
+                return (
+                    <View>
+                        <Text>Name: {(this.state.Name)}</Text> 
+                        <Text>Email: {(this.state.Email)}</Text>
+                        <Text>Phone: {(this.state.PhoneNum)}</Text> 
+                        <Text>ID: {(this.state.ID)}</Text> 
+                        
+                        <Button title="Edit" onPress={() => {
+                            this.setState({Edit:true})
+                        }} color={Colors.secondery} />
+                    </View>
+                ); 
+            }
+            else{
+                return (
+                  <View>
+                    <Text>Name: {(this.state.Name)}</Text> 
+                    <Text>ID: {(this.state.ID)}</Text> 
+                    <Text>Email: </Text>
+                    <TextInput
+                    style={styles.inputField}
+                    blurOnSubmit
+                    autoCorrect={false}
+                    placeholder='email address'
+                    keyboardType="email-address"
+                    onChangeText={(EmailVal)=>this.setState({Email:EmailVal})}
+                    value={this.state.Email}
+                    />
+                    <Text>PhoneNumber: </Text>
+                    <TextInput
+                    style={styles.inputField}
+                    blurOnSubmit
+                    autoCorrect={false}
+                    placeholder='Phone Number'
+                    keyboardType="phone-pad"
+                    onChangeText={(PhoneVal)=>this.setState({PhoneNum:PhoneVal})}
+                    value={this.state.PhoneNum}
+                    />
+                    <Button title="Finish Editing" onPress={() => {
+                         Alert.alert('Save Changes?','Are you sure u would like to save this changes?',
+                            [
+                              {
+                                text: "Yes",
+                                onPress: () => {
+                                  if(this.CheckValidPhone() && this.CheckValidEmail()){
+                                    this.UpdateInfo();
+                                    this.setState({Edit:false})
+                                  }
+                                },
+                              },
+                              {
+                                text: "No",
+                                onPress: () => {
+                                  this.setState({Edit:false})
+                                }
+                              },
+                            ])
+                        }}color={Colors.secondery} />
+                    </View>
+                )
+            }
         }
         else{
             return(
