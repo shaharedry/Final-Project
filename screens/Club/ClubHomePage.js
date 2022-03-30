@@ -52,6 +52,11 @@ class ClubHomePage extends React.Component {
                             }} color={colors.secondery} />
                     </View>
                     <View style={styles.buttonContainer}>
+                        <Button title="Delete Interpreter" onPress={() => {
+                        this.props.navigation.navigate({routeName: 'DeleteInterpreter'})
+                            }} color={colors.secondery} />
+                    </View>
+                    <View style={styles.buttonContainer}>
                         <Button title="Logout" onPress={() => {
                             this.props.navigation.dispatch(this.resetAction);
                             // props.navigation.reset(

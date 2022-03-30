@@ -13,6 +13,8 @@ import AdminHomePage from '../screens/Administrator/AdminHomePage';
 import ClubHomePage from '../screens/Club/ClubHomePage';
 import signUp4 from '../screens/Club/signUp4';
 import ClubInfo from '../screens/Club/ClubInfo';
+import DeleteInterpreter from '../screens/Club/DeleteInterpreter';
+import DeleteUser from '../screens/Club/DeleteUser';
 
 //Social
 import SocialHomePage from '../screens/Social/SocialHomePage';
@@ -40,6 +42,7 @@ import guestScreen from '../screens/Guest/guestScreen'
 import TextToSpeach from '../screens/TextToSpeach';
 import Test from '../screens/Test.js';
 
+
 const AppNavigator = createStackNavigator({
     Main:{ screen: Main ,headerTitle: 'EAR ME'},
     LoginV2:{ screen: LoginV2 ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"Login"}},
@@ -59,6 +62,8 @@ const AppNavigator = createStackNavigator({
     UserHomePage:{ screen: UserHomePage ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"User HomePage"}},
     GuestHomePage:{ screen: GuestHomePage ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"Guest HomePage"}},
     TextToSpeach:{ screen: TextToSpeach ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"Text to Speach"}},
+    DeleteInterpreter:{ screen: DeleteInterpreter ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"Delete Interpreter"}},
+    DeleteUser:{ screen: DeleteUser ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"Delete User"}},
     // SpeachToText:{ screen: SpeachToText ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"Speach To Text"}},
     //VerifyTransUser:{ screen: VerifyTransUser ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"Verify Translator User"}},
 
