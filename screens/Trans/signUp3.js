@@ -17,6 +17,10 @@ const signUp3 = props => {
     const EmailHandler = EmailText => {
         setEmail(EmailText.replace(/^[0-9](9,12)/))
     }
+    const [DisplayEmailInput,setDisplayEmail]= useState('');
+    const DisplayEmailHandler = EmailText => {
+        setDisplayEmail(DisplayEmailText.replace(/^[0-9](9,12)/))
+    }
 
     const [PhoneInput,setPhone]= useState('');
     const PhoneHandler = PhoneText => {
@@ -50,6 +54,7 @@ const signUp3 = props => {
                 const user = {
                     uid: response.user.uid,
                     email: EmailInput,
+                    DisplayEmail: DisplayEmailInput,
                     fullname: FullnameInput,
                     phone: PhoneInput,
                     id: IDInput,
@@ -112,6 +117,16 @@ const signUp3 = props => {
                 keyboardType="email-address"
                 onChangeText={EmailHandler}
                 value={EmailInput}
+            />
+                        <Input 
+                testID={'DisplayEmail'}
+                style={styles.inputField}
+                blurOnSubmit
+                autoCorrect={false}
+                placeholder='Email to contact'
+                keyboardType="email-address"
+                onChangeText={DisplayEmailHandler}
+                value={DisplayEmailInput}
             />
             <Input 
                 testID={'phone'}

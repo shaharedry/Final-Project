@@ -51,6 +51,11 @@ class UserHomePage extends React.Component {
                             }} color={colors.secondery} />
                     </View>
                     <View style={styles.buttonContainer}>
+                        <Button title="Interpreter List" onPress={() => {
+                        this.props.navigation.navigate({routeName: 'ViewInfo'})
+                            }} color={colors.secondery} />
+                    </View>
+                    <View style={styles.buttonContainer}>
                         <Button title="Logout" onPress={() => {
                             this.props.navigation.dispatch(this.resetAction);
                             // props.navigation.reset(

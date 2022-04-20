@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, Image, StyleSheet, TouchableOpacity, Text, Alert, Button } from 'react-native'
+import { View, Image, StyleSheet, TouchableOpacity, Text, Alert, Button , Linking} from 'react-native'
 import colors from '../constants/Colors';
 import firebase ,{db} from '../FireBase/fire';
 import { LogBox } from 'react-native';
@@ -50,11 +50,12 @@ class Main extends React.Component {
                     this.props.navigation.navigate({routeName: ''})
                     }} color={colors.secondery} />
             </View>
-            {/* <View style={styles.buttonContainer}>
-                <Button title="Verify User" onPress={() => {
-                    this.props.navigation.navigate({routeName: 'VerifyUser'})
+
+            <View style={styles.buttonContainer}>
+                <Button title="Interpreter Site" onPress={() => {
+                    Linking.openURL('https://www.signnow.co.il/')
                     }} color={colors.secondery} />
-            </View> */}
+            </View>
             {/* <View style={styles.buttonContainer}>
             <Button title="Login as Guest" onPress={() => {
                 firebase.auth().signInAnonymously().then(()=>{
