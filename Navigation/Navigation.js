@@ -39,7 +39,7 @@ import ViewInfo from '../screens/ViewInfo';
 //Guest
 import GuestHomePage from '../screens/Guest/GuestHomePage';
 import guestScreen from '../screens/Guest/guestScreen'
-//import SpeachToText from '../screens/SpeachToText';
+import SpeachToText from '../screens/SpeachToText';
 import TextToSpeach from '../screens/TextToSpeach';
 import Test from '../screens/Test.js';
 
@@ -66,7 +66,7 @@ const AppNavigator = createStackNavigator({
     DeleteInterpreter:{ screen: DeleteInterpreter ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"Delete Interpreter"}},
     DeleteUser:{ screen: DeleteUser ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"Delete User"}},
     ViewInfo:{ screen: ViewInfo ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"View Interpreter Info"}},
-    // SpeachToText:{ screen: SpeachToText ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"Speach To Text"}},
+    SpeachToText:{ screen: SpeachToText ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"Speach To Text"}},
     //VerifyTransUser:{ screen: VerifyTransUser ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"Verify Translator User"}},
 
     UserInfo:{ screen: UserInfo ,headerTitle: 'EAR ME'},
