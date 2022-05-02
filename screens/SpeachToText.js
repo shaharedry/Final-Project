@@ -1,4 +1,4 @@
-import Voice from '@react-native-community/voice';
+import Voice from '@react-native-voice/voice';
 import { TouchableHighlight } from "react-native";
 
 const [pitch, setPitch] = useState('');
