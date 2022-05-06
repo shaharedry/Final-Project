@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
-import { View, Image, StyleSheet, TouchableOpacity, Text, Alert, Button } from 'react-native'
+import { View, Image, StyleSheet, TouchableOpacity, Text, Alert, Button , Linking} from 'react-native'
 import colors from '../constants/Colors';
 import firebase ,{db} from '../FireBase/fire';
-
+import { LogBox } from 'react-native';
+LogBox.ignoreLogs(['Setting a timer']);
+LogBox.ignoreLogs(['Require cycle']);
 class Main extends React.Component {
     render(){
         return (
@@ -21,9 +23,15 @@ class Main extends React.Component {
                     }} color={colors.secondery} />
             </View>
 
-            {/* <View style={styles.buttonContainer}>
-                <Button title="Speak" onPress={() => {
+            <View style={styles.buttonContainer}>
+                <Button title="Text to Speach" onPress={() => {
                     this.props.navigation.navigate({routeName: 'TextToSpeach'})
+                    }} color={colors.secondery} />
+            </View>
+
+            {/* <View style={styles.buttonContainer}>
+                <Button title="Speach to Text" onPress={() => {
+                    this.props.navigation.navigate({routeName: 'SpeachToText'})
                     }} color={colors.secondery} />
             </View> */}
 
@@ -42,11 +50,12 @@ class Main extends React.Component {
                     this.props.navigation.navigate({routeName: ''})
                     }} color={colors.secondery} />
             </View>
-            {/* <View style={styles.buttonContainer}>
-                <Button title="Verify User" onPress={() => {
-                    this.props.navigation.navigate({routeName: 'VerifyUser'})
+
+            <View style={styles.buttonContainer}>
+                <Button title="Interpreter Site" onPress={() => {
+                    Linking.openURL('https://www.signnow.co.il/')
                     }} color={colors.secondery} />
-            </View> */}
+            </View>
             {/* <View style={styles.buttonContainer}>
             <Button title="Login as Guest" onPress={() => {
                 firebase.auth().signInAnonymously().then(()=>{

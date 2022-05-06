@@ -3,7 +3,7 @@ import {View, Text, StyleSheet, Image, Button} from 'react-native';
 import colors from '../../constants/Colors'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { withNavigation } from 'react-navigation';
-
+import { NavigationActions ,StackActions } from 'react-navigation'
 import { LogBox } from 'react-native'; /// unfreeze for running on phones
 import Navigation from '../../Navigation/Navigation';
 
@@ -52,8 +52,13 @@ class ClubHomePage extends React.Component {
                             }} color={colors.secondery} />
                     </View>
                     <View style={styles.buttonContainer}>
+                        <Button title="Delete Interpreter" onPress={() => {
+                        this.props.navigation.navigate({routeName: 'DeleteInterpreter'})
+                            }} color={colors.secondery} />
+                    </View>
+                    <View style={styles.buttonContainer}>
                         <Button title="Logout" onPress={() => {
-                            props.navigation.dispatch(resetAction);
+                            this.props.navigation.dispatch(this.resetAction);
                             // props.navigation.reset(
                             //     AsyncStorage.clear()
                             //     [NavigationActions.navigate({routeName: 'Main'})],
@@ -98,7 +103,7 @@ const styles = StyleSheet.create({
     },
     buttonContainer:{
         width: 150,
-        height: 50,
+        height: 80,
         justifyContent: 'center',
         paddingBottom: 10 ,
         paddingTop: 10,

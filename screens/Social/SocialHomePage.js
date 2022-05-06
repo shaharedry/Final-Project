@@ -3,7 +3,7 @@ import {View, Text, StyleSheet, Image, Button, Alert} from 'react-native';
 import colors from '../../constants/Colors'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { withNavigation } from 'react-navigation';
-
+import { NavigationActions ,StackActions } from 'react-navigation'
 import { LogBox } from 'react-native'; /// unfreeze for running on phones
 import Navigation from '../../Navigation/Navigation';
 
@@ -17,10 +17,6 @@ class SocialHomePage extends React.Component {
             isLoaded:false
         }
     }
-    resetAction = StackActions.reset({
-        index: 0,
-        actions: [NavigationActions.navigate({ routeName: 'Main' })],
-      });
 
         componentDidMount(){
             let username = null    
@@ -30,7 +26,7 @@ class SocialHomePage extends React.Component {
                         if(value!= null) {
                             username=value;
                             this.setState({Username:username})
-                            Alert.alert('Title','name from async is: '+username)
+                            //Alert.alert('Title','name from async is: '+username)
                         }
                     })
                 } catch (error){
@@ -57,8 +53,8 @@ class SocialHomePage extends React.Component {
                             }} color={colors.secondery} />
                     </View>
                     <View style={styles.buttonContainer}>
-                        <Button title="Create Social User" onPress={() => {
-                            this.props.navigation.navigate({routeName: 'SignUp1'})
+                        <Button title="Create Club User" onPress={() => {
+                            this.props.navigation.navigate({routeName: 'signUp4'})
                             }} color={colors.secondery} />
                     </View>
                     <View style={styles.buttonContainer}>
@@ -78,7 +74,10 @@ class SocialHomePage extends React.Component {
                     </View>
                     <View style={styles.buttonContainer}>
                         <Button title="Logout" onPress={() => {
-                            props.navigation.dispatch(resetAction);
+                            this.props.navigation.dispatch(StackActions.reset({
+                                index: 0,
+                                actions: [NavigationActions.navigate({ routeName: 'Main' })],
+                              }));
                         }} color={colors.secondery} />
                     </View>
                 </View>   
@@ -117,12 +116,12 @@ const styles = StyleSheet.create({
         height: '100%'
     },
     buttonContainer:{
-        width: 150,
-        height: 50,
+        width: 250,
+        height: 80,
         justifyContent: 'center',
-        paddingBottom: 10 ,
-        paddingTop: 10,
-        borderRadius: 10,
+        paddingBottom: 3 ,
+        paddingTop: 3,
+        borderRadius: 1,
         color: 'red'
     }
 })

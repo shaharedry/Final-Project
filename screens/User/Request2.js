@@ -50,7 +50,7 @@ const Request2 = props => {
                     Role: '2',    
                     checked: false,
                     TranslatorHours:null,
-                    Verified: false
+                    Verified: 'false'
                 }
                 db.collection('User')
                     .doc(FullnameInput)
@@ -63,7 +63,7 @@ const Request2 = props => {
                     "Created Succesfully",
                     "Deaf user "+FullnameInput+" User has been created succesfully!",
                     [
-                      { text: "OK", onPress: () => this.props.navigation.navigate({routeName: 'Main'}) } //fix later
+                      { text: "OK", onPress: () => props.navigation.navigate({routeName: 'Main'}) } //fix later
                     ]
                   );
             }

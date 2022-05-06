@@ -3,6 +3,7 @@ import {View, Text, StyleSheet ,Button, Alert } from 'react-native';
 import colors from '../../constants/Colors';
 import Firebase, {db} from '../../FireBase/fire';
 import Input from '../../components/Input';
+import { NavigationActions ,StackActions } from 'react-navigation'
 //import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const signUp3 = props => {
@@ -15,6 +16,10 @@ const signUp3 = props => {
     const [EmailInput,setEmail]= useState('');
     const EmailHandler = EmailText => {
         setEmail(EmailText.replace(/^[0-9](9,12)/))
+    }
+    const [DisplayEmailInput,setDisplayEmail]= useState('');
+    const DisplayEmailHandler = EmailText => {
+        setDisplayEmail(DisplayEmailText.replace(/^[0-9](9,12)/))
     }
 
     const [PhoneInput,setPhone]= useState('');
@@ -49,6 +54,7 @@ const signUp3 = props => {
                 const user = {
                     uid: response.user.uid,
                     email: EmailInput,
+                    DisplayEmail: DisplayEmailInput,
                     fullname: FullnameInput,
                     phone: PhoneInput,
                     id: IDInput,
@@ -91,7 +97,7 @@ const signUp3 = props => {
 
     return (
         <View style={styles.InputContainer}>
-            <Text>Sign Up Interpreter</Text>
+            <Text>Sign Up Translator</Text>
             <Input
                 testID={'fullname'}
                 style={styles.inputField}
@@ -111,6 +117,16 @@ const signUp3 = props => {
                 keyboardType="email-address"
                 onChangeText={EmailHandler}
                 value={EmailInput}
+            />
+                        <Input 
+                testID={'DisplayEmail'}
+                style={styles.inputField}
+                blurOnSubmit
+                autoCorrect={false}
+                placeholder='Email to contact'
+                keyboardType="email-address"
+                onChangeText={DisplayEmailHandler}
+                value={DisplayEmailInput}
             />
             <Input 
                 testID={'phone'}
