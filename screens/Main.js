@@ -5,6 +5,7 @@ import firebase ,{db} from '../FireBase/fire';
 import { LogBox } from 'react-native';
 LogBox.ignoreLogs(['Setting a timer']);
 LogBox.ignoreLogs(['Require cycle']);
+
 class Main extends React.Component {
     render(){
         return (
@@ -29,11 +30,11 @@ class Main extends React.Component {
                     }} color={colors.secondery} />
             </View>
 
-            {/* <View style={styles.buttonContainer}>
+            <View style={styles.buttonContainer}>
                 <Button title="Speach to Text" onPress={() => {
                     this.props.navigation.navigate({routeName: 'SpeachToText'})
                     }} color={colors.secondery} />
-            </View> */}
+            </View> 
 
             <View style={styles.buttonContainer}>
                 <Button title="Create User" onPress={() => {

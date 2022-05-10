@@ -1,23 +1,25 @@
 import React from 'react'; 
-import Colors from '../../constants/Colors';
 import {View, Text,TextInput, StyleSheet, Alert, Button} from 'react-native';
 import firebase ,{db} from '../../FireBase/fire'
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Colors from '../../constants/Colors';
 
 
-class TransInfo extends React.Component {
+class ViewBasket extends React.Component {
     constructor(){
         super()
         this.state={
             Name:'null',
             PhoneNum:null,
-            hoursDone:0,
             Email:null,
             ID:null,
             isLoaded:false,
             gotname:false,
-            Edit:false,
-            Hoz:0
+            Edit: false,
+            validPhone:true,
+            validEmail:true,
+            BasketMoney: null,
+            TranslatorHours: null
         }
     }
 
@@ -26,7 +28,7 @@ class TransInfo extends React.Component {
     componentDidMount(){
         let UserName = null    
         try{
-            AsyncStorage.getItem('TranslatorName')
+            AsyncStorage.getItem('UserName')
                 .then(value => {
                     if(value!= null) {
                         UserName=value;
@@ -37,31 +39,19 @@ class TransInfo extends React.Component {
                 console.warn(error)
         }
         console.log("UserName is : "+UserName)
-        db.collection('Interpreter').get().then( snapshot =>{
-            let Userame=null;
-            let phone=null;
-            let temail=null;
-            let Id=null;
-            let Hourz=0;
-            let hoz=0;
+        db.collection('User').get().then( snapshot =>{
+            let BasketMoneyz=null;
+            let TranslatorHoursz= null
             snapshot.forEach( doc =>{
                 const KEY = Object.keys(doc.data());
                 KEY.forEach( (key_id) => {
                     if(key_id=='fullname'){
                         if(doc.data().fullname == UserName){
-                            Userame = doc.data().fullname
-                            phone = doc.data().phone
-                            temail = doc.data().email
-                            Id = doc.data().id
-                            Hourz = doc.data().HoursDone
-                            hoz = doc.data().HoursApproved
+                            BasketMoneyz = doc.data().BasketMoney
+                            TranslatorHoursz = doc.data().TranslatorHours
                         }
-                        this.setState({PhoneNum:phone})
-                        this.setState({Email:temail})
-                        this.setState({ID:Id})
-                        this.setState({Name:Userame})
-                        this.setState({hoursDone:Hourz})
-                        this.setState({Hoz:hoz})
+                        this.setState({BasketMoney:BasketMoneyz})
+                        this.setState({TranslatorHours:TranslatorHoursz})
                     }
                 })
             })
@@ -69,109 +59,19 @@ class TransInfo extends React.Component {
         this.setState({isLoaded:true})
     }
 
-    UpdateInfo(){
-        const Info_Name=this.state.Name
-        const Info_Email=this.state.Email
-        const Info_Phone=this.state.PhoneNum
-        const Info_ID=this.state.ID
-        const Info_HZ=this.state.hoursDone
-        const Info_Hz=this.state.Hoz
-
-      db.collection("Interpreter").doc(Info_Name).update({
-        email:Info_Email ,
-        id:Info_ID ,
-        fullname:Info_Name ,
-        phone:Info_Phone,
-        HoursDone:Info_HZ,
-        HoursApproved:Info_Hz})
-    }
-
-    CheckValidPhone(){
-      var x=this.state.PhoneNum
-      if ((!isNaN(x)) && ((x.length)==10) == false){
-        Alert.alert('Error!','Invalid Phone Number!')
-        return false
-      }
-      return true
-    }
-
-    CheckValidEmail(){
-      var x=this.state.Email
-      for(var i=0;i<(x.length);i++){
-        if(x[i]=='@')
-        return true;
-      }
-      Alert.alert('Error!','Invalid Email address!')
-      return false
-    }
 
     render(){
         if(this.state.isLoaded==true && this.state.gotname==true){
-            if(this.state.Edit==false){
                 return (
                     <View>
-                        <Text>Name: {(this.state.Name)}</Text> 
-                        <Text>Email: {(this.state.Email)}</Text>
-                        <Text>Hours Done: {(this.state.hoursDone)}</Text>
-                        <Text>Hours Approved: {(this.state.Hoz)}</Text>
-                        <Text>Phone: {(this.state.PhoneNum)}</Text> 
-                        <Text>ID: {(this.state.ID)}</Text> 
-                        
-                        <Button title="Edit" onPress={() => {
-                            this.setState({Edit:true})
-                        }} color={Colors.secondery} />
-                    </View>
-                ); 
-            }
-            else{
-                return (
-                  <View>
-                    <Text>Name: {(this.state.Name)}</Text> 
-                    <Text>ID: {(this.state.ID)}</Text> 
-                    <Text>Email: </Text>
-                    <TextInput
-                    style={styles.inputField}
-                    blurOnSubmit
-                    autoCorrect={false}
-                    placeholder='email address'
-                    keyboardType="email-address"
-                    onChangeText={(EmailVal)=>this.setState({Email:EmailVal})}
-                    value={this.state.Email}
-                    />
-                    <Text>PhoneNumber: </Text>
-                    <TextInput
-                    style={styles.inputField}
-                    blurOnSubmit
-                    autoCorrect={false}
-                    placeholder='Phone Number'
-                    keyboardType="phone-pad"
-                    onChangeText={(PhoneVal)=>this.setState({PhoneNum:PhoneVal})}
-                    value={this.state.PhoneNum}
-                    />
-                    <Button title="Finish Editing" onPress={() => {
-                         Alert.alert('Save Changes?','Are you sure u would like to save this changes?',
-                            [
-                              {
-                                text: "Yes",
-                                onPress: () => {
-                                  if(this.CheckValidPhone() && this.CheckValidEmail()){
-                                    this.UpdateInfo();
-                                    this.setState({Edit:false})
-                                  }
-                                },
-                              },
-                              {
-                                text: "No",
-                                onPress: () => {
-                                  this.setState({Edit:false})
-                                }
-                              },
-                            ])
-                        }}color={Colors.secondery} />
+                        <Text>Interpreter hours left: {(this.state.TranslatorHours)}</Text> 
+                        <Text>Interpreter hours used: {45-(this.state.TranslatorHours)}</Text>
+                        <Text>Money left: {(this.state.BasketMoney)}</Text>
+                        <Text>Money used: {3500-(this.state.BasketMoney)}</Text>
                     </View>
                 )
+                
             }
-        }
         else{
             return(
                 <Text>Nothing Loaded,Please wait!</Text>
@@ -284,4 +184,4 @@ class TransInfo extends React.Component {
             })
             
   
-export default TransInfo;
+export default ViewBasket;

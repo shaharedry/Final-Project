@@ -73,6 +73,11 @@ class SocialHomePage extends React.Component {
                             }} color={colors.secondery} />
                     </View>
                     <View style={styles.buttonContainer}>
+                        <Button title="Approve Hours" onPress={() => {
+                        this.props.navigation.navigate({routeName: 'ApproveHours'})
+                            }} color={colors.secondery} />
+                    </View>
+                    <View style={styles.buttonContainer}>
                         <Button title="Logout" onPress={() => {
                             this.props.navigation.dispatch(StackActions.reset({
                                 index: 0,

@@ -18,7 +18,7 @@ class LoginV2 extends React.Component{
                 textInputValue: 'User',
                 textInputNum: 0,
                 selectedLanguage : null,
-                From: ['User', 'Translator','SocialWorker','ClubWorker','Admin'],
+                From: ['User', 'Interpreter','SocialWorker','ClubWorker','Admin'],
                 data: [],
                 Loaded: true,
                 checked: false
@@ -45,6 +45,7 @@ class LoginV2 extends React.Component{
     }
 
     GoTo(type){
+        Alert.alert('Name from GoTo is: '+this.state.fullname)
         if(type=='Admin'){
             //Alert.alert('Checking!','fullname is: '+this.state.whatchyamacallit)
             this.props.navigation.reset(
@@ -60,7 +61,7 @@ class LoginV2 extends React.Component{
                 0,
             );
         }
-        if(type=='Translator'){
+        if(type=='Interpreter'){
             this.AddItem('TranslatorName',this.state.fullname);
             this.props.navigation.reset(
                 [NavigationActions.navigate({routeName: 'TransHomePage'})],
@@ -161,6 +162,7 @@ class LoginV2 extends React.Component{
                                 }
                             }
                             let type = this.state.textInputValue
+                            //Alert.alert("Value is: "+this.state.textInputValue +"Num is: "+this.state.textInputNum)
                             let EmailInput = this.state.email
                             let PassInput = this.state.password
                             // firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then(
@@ -179,6 +181,7 @@ class LoginV2 extends React.Component{
                                                 function(doc) {
                                                     // if(doc.data().email == EmailInput)
                                                     tempname = doc.data().fullname
+                                                    //Alert.alert('Name from db is: '+tempname)
                                                     //Alert.alert('Checking!','fullname  is: '+tempname)
                                                     //this.GoTo(type);
                                                 }
@@ -186,6 +189,7 @@ class LoginV2 extends React.Component{
                                             ,
                                             //Alert.alert('Checking!','fullname  is: '+tempname),
                                             this.setState({fullname:tempname}),
+                                            //Alert.alert('Name in fullname is: '+tempname)
                                             this.GoTo(type)
                                         }  
                                     )

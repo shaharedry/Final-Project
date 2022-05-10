@@ -6,6 +6,7 @@ import { withNavigation } from 'react-navigation';
 import { NavigationActions ,StackActions } from 'react-navigation'
 import { LogBox } from 'react-native'; /// unfreeze for running on phones
 import Navigation from '../../Navigation/Navigation';
+LogBox.ignoreLogs(['new NativeEventEmitter']);
 
 //LogBox.ignoreLogs(['Setting a timer']); /// unfreeze for running on phones
 
@@ -53,6 +54,16 @@ class UserHomePage extends React.Component {
                     <View style={styles.buttonContainer}>
                         <Button title="Interpreter List" onPress={() => {
                         this.props.navigation.navigate({routeName: 'ViewInfo'})
+                            }} color={colors.secondery} />
+                    </View>
+                    <View style={styles.buttonContainer}>
+                        <Button title="Basket Info" onPress={() => {
+                        this.props.navigation.navigate({routeName: 'ViewBasket'})
+                            }} color={colors.secondery} />
+                    </View>
+                    <View style={styles.buttonContainer}>
+                        <Button title="Report Interpreter Hours" onPress={() => {
+                        this.props.navigation.navigate({routeName: 'ReportInterpHours'})
                             }} color={colors.secondery} />
                     </View>
                     <View style={styles.buttonContainer}>

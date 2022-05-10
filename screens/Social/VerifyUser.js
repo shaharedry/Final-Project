@@ -1,5 +1,7 @@
 import React from 'react'; 
-import {View, Text, StyleSheet, Alert,TouchableOpacity, CheckBox, FlatList, Button} from 'react-native';
+import {View, Text, StyleSheet, Alert,TouchableOpacity, FlatList, Button} from 'react-native';
+import BouncyCheckbox from "react-native-bouncy-checkbox";
+import RNBounceable from "@freakycoder/react-native-bounceable";
 import firebase ,{db} from '../../FireBase/fire'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -36,7 +38,8 @@ class VerifyUser extends React.Component {
                                 phone:doc.data().phone,
                                 id:doc.data().id,
                                 checked:doc.data().checked,
-                                uid:doc.data().uid
+                                uid:doc.data().uid,
+                                BasketMoney:doc.data().BasketMoney
                             })
                             i+=1;
                             this.setState({length:i})

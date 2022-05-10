@@ -1,6 +1,8 @@
 import React from 'react';
-import { View, Text, StyleSheet, Alert, TouchableOpacity, CheckBox, FlatList, Button } from 'react-native';
+import { View, Text, StyleSheet, Alert, TouchableOpacity, FlatList, Button } from 'react-native';
 import firebase, { db } from '../FireBase/fire'
+import BouncyCheckbox from "react-native-bouncy-checkbox";
+import RNBounceable from "@freakycoder/react-native-bounceable";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
@@ -51,7 +53,8 @@ class ViewInfo extends React.Component {
             return this.state.UnverifiedUsers.map((item, key) => {
                 return (
                     <TouchableOpacity style={{ flexDirection: "row", alignItems: "center", }} key={key} onPress={() => { this.UpdateList(item.fullname) }}>
-                        <CheckBox value={item.checked} onChange={() => { this.checkBox_Test }} />
+                        {/* <CheckBox value={item.checked} onChange={() => { this.checkBox_Test }} /> */}
+                        <BouncyCheckbox value={item.checked} onChange={() => { this.checkBox_Test }} />
                         <Text style={{ fontWeight: "bold" }}>{item.fullname}</Text>
                     </TouchableOpacity>
                 )

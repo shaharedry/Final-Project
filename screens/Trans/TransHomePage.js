@@ -21,7 +21,7 @@ class TransHomePage extends React.Component {
         componentDidMount(){
             let username = null    
             try{
-                AsyncStorage.getItem('SocialWorkerName')
+                AsyncStorage.getItem('TranslatorName')
                     .then(value => {
                         if(value!= null) {
                             username=value;
@@ -48,8 +48,13 @@ class TransHomePage extends React.Component {
                             }} color={colors.secondery} />
                     </View>
                     <View style={styles.buttonContainer}>
+                        <Button title="Report Hours" onPress={() => {
+                        this.props.navigation.navigate({routeName: 'ReportHours'})
+                            }} color={colors.secondery} />
+                    </View>
+                    <View style={styles.buttonContainer}>
                         <Button title="Logout" onPress={() => {
-                            props.navigation.dispatch(StackActions.reset({
+                            this.props.navigation.dispatch(StackActions.reset({
                                 index: 0,
                                 actions: [NavigationActions.navigate({ routeName: 'Main' })],
                               }))

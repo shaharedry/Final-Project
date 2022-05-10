@@ -56,7 +56,8 @@ const Request3 = props => {
                     Role: '3',    
                     checked: false,
                     Verified: false,
-                    HoursDone:null
+                    HoursDone:0,
+                    HoursApproved:0
                 }
                 db.collection('Interpreter')
                     .doc(FullnameInput)
