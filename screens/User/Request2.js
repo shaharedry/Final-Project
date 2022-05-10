@@ -50,7 +50,8 @@ const Request2 = props => {
                     Role: '2',    
                     checked: false,
                     TranslatorHours:null,
-                    Verified: 'false'
+                    Verified: 'false',
+                    BasketMoney: 3000
                 }
                 db.collection('User')
                     .doc(FullnameInput)

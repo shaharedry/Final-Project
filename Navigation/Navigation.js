@@ -15,11 +15,13 @@ import signUp4 from '../screens/Club/signUp4';
 import ClubInfo from '../screens/Club/ClubInfo';
 import DeleteInterpreter from '../screens/Club/DeleteInterpreter';
 import DeleteUser from '../screens/Club/DeleteUser';
+import Basket from '../screens/Club/Basket';
 
 //Social
 import SocialHomePage from '../screens/Social/SocialHomePage';
 import signUp1 from '../screens/Social/signUp1'
 import SocialInfo from '../screens/Social/SocialInfo';
+import ApproveHours from '../screens/Social/ApproveHours';
 //import VerifyUser from '../screens/Social/VerifyUser';
 
 //Translator
@@ -27,6 +29,7 @@ import TransHomePage from '../screens/Trans/TransHomePage';
 import signUp3 from '../screens/Trans/signUp3'
 import TransInfo from '../screens/Trans/TransInfo';
 import Request3 from '../screens/Trans/Request3';
+import ReportHours from '../screens/Trans/ReportHours';
 //import VerifyTransUser from '../screens/Social/VerifyTransUser';
 
 //User
@@ -35,11 +38,13 @@ import signUp2 from '../screens/User/signUp2'
 import UserInfo from '../screens/User/UserInfo';
 import Request2 from '../screens/User/Request2';
 import ViewInfo from '../screens/ViewInfo';
+import ViewBasket from '../screens/User/ViewBasket'
+import ReportInterpHours from '../screens/User/ReportInterpHours';
 
 //Guest
 import GuestHomePage from '../screens/Guest/GuestHomePage';
 import guestScreen from '../screens/Guest/guestScreen'
-import SpeachToText from '../screens/SpeachToText';
+//import SpeachToText from '../screens/SpeachToText';
 import TextToSpeach from '../screens/TextToSpeach';
 import Test from '../screens/Test.js';
 
@@ -66,7 +71,12 @@ const AppNavigator = createStackNavigator({
     DeleteInterpreter:{ screen: DeleteInterpreter ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"Delete Interpreter"}},
     DeleteUser:{ screen: DeleteUser ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"Delete User"}},
     ViewInfo:{ screen: ViewInfo ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"View Interpreter Info"}},
-    SpeachToText:{ screen: SpeachToText ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"Speach To Text"}},
+    ViewBasket:{ screen: ViewBasket ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"View User Basket Info"}},
+    Basket:{ screen: Basket ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"Reeset Basket Info"}},
+    ReportHours:{ screen: ReportHours ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"Report Hours"}},
+    ReportInterpHours:{ screen: ReportInterpHours ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"Report Interpreter Hours"}},
+    ApproveHours:{ screen: ApproveHours ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"Approve Hours"}},
+    //SpeachToText:{ screen: SpeachToText ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"Speach To Text"}},
     //VerifyTransUser:{ screen: VerifyTransUser ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"Verify Translator User"}},
 
     UserInfo:{ screen: UserInfo ,headerTitle: 'EAR ME'},
