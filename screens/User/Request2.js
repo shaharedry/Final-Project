@@ -1,44 +1,46 @@
 import React, { useCallback, useState } from 'react';
-import {View, Text, StyleSheet ,Button, Alert } from 'react-native';
-import Firebase, {db} from '../../FireBase/fire';
+import { View, Text, Dimensions, StyleSheet, Button, Alert } from 'react-native';
+import Firebase, { db } from '../../FireBase/fire';
 import colors from '../../constants/Colors';
 import Input from '../../components/Input';
 //import AsyncStorage from '@react-native-async-storage/async-storage';
 
+
+var width = Dimensions.get('window').width
 const Request2 = props => {
-   
-    const [FullnameInput,setFname]= useState('');
+
+    const [FullnameInput, setFname] = useState('');
     const FullnameHandler = FullnameText => {
         setFname(FullnameText.replace(/[^A-Za-z]+[^A-Za-z]/))
     }
 
-    const [EmailInput,setEmail]= useState('');
+    const [EmailInput, setEmail] = useState('');
     const EmailHandler = EmailText => {
         setEmail(EmailText.replace(/^[0-9](9,12)/))
     }
 
-    const [PhoneInput,setPhone]= useState('');
+    const [PhoneInput, setPhone] = useState('');
     const PhoneHandler = PhoneText => {
         setPhone(PhoneText.replace(/^[0-9](9,12)/))
     }
-    
-    const [IDInput,setID]= useState('');
+
+    const [IDInput, setID] = useState('');
     const IDHandler = IDText => {
         setID(IDText.replace(/^[0-9](9,9)/))
     }
-    
-    const [PassInput,setPass]= useState('');
+
+    const [PassInput, setPass] = useState('');
     const PassHandler = PassText => {
         setPass(PassText)
     }
-    
-    const [VerifyPass, setVerifyPass] = useState ('');
-    const VerifyHandler = VerifyPassText =>{
+
+    const [VerifyPass, setVerifyPass] = useState('');
+    const VerifyHandler = VerifyPassText => {
         setVerifyPass(VerifyPassText)
     }
 
-    const signup = async() =>{ 
-        try{
+    const signup = async () => {
+        try {
             const response = await Firebase.auth().createUserWithEmailAndPassword(EmailInput, PassInput)
             if (response.user.uid) {
                 const user = {
@@ -47,9 +49,9 @@ const Request2 = props => {
                     fullname: FullnameInput,
                     phone: PhoneInput,
                     id: IDInput,
-                    Role: '2',    
+                    Role: '2',
                     checked: false,
-                    TranslatorHours:null,
+                    TranslatorHours: null,
                     Verified: 'false',
                     BasketMoney: 3000
                 }
@@ -59,27 +61,27 @@ const Request2 = props => {
                 //AddItem('ChildFullname',user.fullname);
                 //AddItem('ChildId', user.id)
                 //AddItem('ChildPhone', user.phonenum)
-                
+
                 Alert.alert(
                     "Created Succesfully",
-                    "Deaf user "+FullnameInput+" User has been created succesfully!",
+                    "Deaf user " + FullnameInput + " User has been created succesfully!",
                     [
-                      { text: "OK", onPress: () => props.navigation.navigate({routeName: 'Main'}) } //fix later
+                        { text: "OK", onPress: () => props.navigation.navigate({ routeName: 'Main' }) } //fix later
                     ]
-                  );
+                );
             }
 
-        } catch (e){
-            if(e.code == 'auth/invalid-email'){
+        } catch (e) {
+            if (e.code == 'auth/invalid-email') {
                 Alert.alert("Bad Email!", e.message)
                 console.log(e);
             }
-            if(e.code == 'auth/email-already-in-use'){
+            if (e.code == 'auth/email-already-in-use') {
                 Alert.alert("This Email is already Registered!", "The email address is already in use by another account.")
                 console.log(e);
             }
-            else{
-                Alert.alert(e.code,e.message)
+            else {
+                Alert.alert(e.code, e.message)
                 console.log(e);
             }
         }
@@ -87,7 +89,7 @@ const Request2 = props => {
 
     return (
         <View style={styles.InputContainer}>
-            <Text>Sign Up as User</Text>
+            <Text style={{ color: "darkblue" }}>Request to Sign Up as Deaf User</Text>
             <Input
                 testID={'fullname'}
                 style={styles.inputField}
@@ -98,7 +100,7 @@ const Request2 = props => {
                 onChangeText={FullnameHandler}
                 value={FullnameInput}
             />
-            <Input 
+            <Input
                 testID={'email'}
                 style={styles.inputField}
                 blurOnSubmit
@@ -108,7 +110,7 @@ const Request2 = props => {
                 onChangeText={EmailHandler}
                 value={EmailInput}
             />
-            <Input 
+            <Input
                 testID={'phone'}
                 style={styles.inputField}
                 blurOnSubmit
@@ -128,7 +130,7 @@ const Request2 = props => {
                 onChangeText={IDHandler}
                 value={IDInput}
             />
-            <Input 
+            <Input
                 testID={'password'}
                 style={styles.inputField}
                 blurOnSubmit
@@ -139,7 +141,7 @@ const Request2 = props => {
                 value={PassInput}
                 secureTextEntry={true}
             />
-            <Input 
+            <Input
                 style={styles.inputField}
                 blurOnSubmit
                 autoCorrect={false}
@@ -149,79 +151,85 @@ const Request2 = props => {
                 value={VerifyPass}
                 secureTextEntry={true}
             />
-            <View style={styles.buttonContainer}>
-                        <Button title="Sign Up" onPress={() => {
-                            if(PassInput!=''){
-                                if(VerifyPass==PassInput){
-                                    signup();
-                                }
-                                else{
-                                    Alert.alert(
-                                        'Error',
-                                        'Passwords do no match!',
-                                        [
-                                          {text: 'OK'}
-                                        ],
-                                        {cancelable: false},
-                                      );
-                                      console.log(VerifyPass);
-                                }
-                            }
-                            else{
-                                Alert.alert(
-                                    'Error',
-                                    'Please enter a Password',
-                                    [
-                                      {text: 'OK'}
-                                    ],
-                                    {cancelable: false},
-                                  );
-                                  console.log("No Password!");
-                            }
-                        }} color={colors.secondery} />
-                </View>
+            <View style={styles.box}>
+                <Button title="Sign Up" onPress={() => {
+                    if (PassInput != '') {
+                        if (VerifyPass == PassInput) {
+                            signup();
+                        }
+                        else {
+                            Alert.alert(
+                                'Error',
+                                'Passwords do no match!',
+                                [
+                                    { text: 'OK' }
+                                ],
+                                { cancelable: false },
+                            );
+                            console.log(VerifyPass);
+                        }
+                    }
+                    else {
+                        Alert.alert(
+                            'Error',
+                            'Please enter a Password',
+                            [
+                                { text: 'OK' }
+                            ],
+                            { cancelable: false },
+                        );
+                        console.log("No Password!");
+                    }
+                }} color={colors.secondery} />
+            </View>
         </View>
-    //</TouchableWithoutFeedback>
+        //</TouchableWithoutFeedback>
     );
 };
 
 
 const styles = StyleSheet.create({
-screen: {
-    marginTop: 5,
-    marginBottom: 10,
-    width: '100%',
-    borderColor: '#acc',
-    borderRadius: 3,
-    borderWidth: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#fff'
-},
-InputContainer: {
-    padding: 10,
-    flex: 1,
-    fontSize: 16,
-    color: '#333',
-    justifyContent: 'center',
-    alignItems: 'center'
-},
-inputField: {
-    padding: 10,
-    marginTop: 15,
-    marginBottom: 10,
-    fontSize: 16,
-    width:180,
-    borderRadius: 18,
-    borderWidth: 1
-},
-buttonContainer:{
-    width: 250,
-    height: 150,
-    justifyContent: 'center',
-    paddingBottom: 100 ,
-    borderRadius: 10
-}
+    screen: {
+        marginTop: 5,
+        marginBottom: 10,
+        width: '100%',
+        borderColor: '#acc',
+        borderRadius: 3,
+        borderWidth: 1,
+        flexDirection: 'row',
+        alignItems: 'center',
+        backgroundColor: '#fff'
+    },
+    box: {
+        backgroundColor: 'lightblue',
+        height: 40,
+        width: width / 2 - 10,
+        margin: 5
+    },
+    InputContainer: {
+        padding: 10,
+        flex: 1,
+        fontSize: 16,
+        color: '#333',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    inputField: {
+        padding: 10,
+        marginTop: 15,
+        marginBottom: 10,
+        fontSize: 16,
+        width: 180,
+        borderRadius: 18,
+        borderWidth: 1
+    },
+    // buttonContainer:{
+    //     width: 250,
+    //     height: 150,
+    //     justifyContent: 'center',
+    //     paddingBottom: 100 ,
+    //     borderRadius: 10
+    // }
 })
 
 

@@ -1,5 +1,5 @@
 import React,{ useState ,useEffect} from 'react';
-import {View, Text, StyleSheet, Image, Button} from 'react-native';
+import {View, Text, StyleSheet, Dimensions, Image, Button} from 'react-native';
 import colors from '../../constants/Colors'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { withNavigation } from 'react-navigation';
@@ -10,6 +10,7 @@ LogBox.ignoreLogs(['new NativeEventEmitter']);
 
 //LogBox.ignoreLogs(['Setting a timer']); /// unfreeze for running on phones
 
+var width = Dimensions.get('window').width
 class UserHomePage extends React.Component {
     constructor(){
         super()
@@ -43,29 +44,37 @@ class UserHomePage extends React.Component {
         if(this.state.isLoaded){
             return (
                 <View style={styles.screen}>
-                    <Text>UserHomePage Profile Screen</Text>
+                    <Text>User Home Page Profile Screen</Text>
                     <Text>Hello {this.state.Username}!</Text> 
-
+                    <View style={styles.box}>
                     <View style={styles.buttonContainer}>
                         <Button title="Personal Info" onPress={() => {
                         this.props.navigation.navigate({routeName: 'UserInfo'})
                             }} color={colors.secondery} />
                     </View>
+                    </View>
+                    <View style={styles.box}>
                     <View style={styles.buttonContainer}>
                         <Button title="Interpreter List" onPress={() => {
                         this.props.navigation.navigate({routeName: 'ViewInfo'})
                             }} color={colors.secondery} />
                     </View>
+                    </View>
+                    <View style={styles.box}>
                     <View style={styles.buttonContainer}>
                         <Button title="Basket Info" onPress={() => {
                         this.props.navigation.navigate({routeName: 'ViewBasket'})
                             }} color={colors.secondery} />
                     </View>
+                    </View>
+                    <View style={styles.box}>
                     <View style={styles.buttonContainer}>
-                        <Button title="Report Interpreter Hours" onPress={() => {
+                        <Button title="Report Hours" onPress={() => {
                         this.props.navigation.navigate({routeName: 'ReportInterpHours'})
                             }} color={colors.secondery} />
                     </View>
+                    </View>
+                    <View style={styles.box}>
                     <View style={styles.buttonContainer}>
                         <Button title="Logout" onPress={() => {
                             this.props.navigation.dispatch(this.resetAction);
@@ -75,6 +84,7 @@ class UserHomePage extends React.Component {
                             //     1,
                             // );
                     }} color={colors.secondery} />
+                    </View>
                     </View>
                 </View>   
             );
@@ -111,15 +121,21 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%'
     },
-    buttonContainer:{
-        width: 150,
-        height: 60,
-        justifyContent: 'center',
-        paddingBottom: 10 ,
-        paddingTop: 10,
-        borderRadius: 10,
-        color: 'red'
-    }
+    box: {
+        backgroundColor: 'lightblue',
+        height: 40,
+        width: width / 2 - 10,
+        margin: 5,
+    },
+    // buttonContainer:{
+    //     width: 230,
+    //     height: 60,
+    //     justifyContent: 'center',
+    //     paddingBottom: 10 ,
+    //     paddingTop: 10,
+    //     borderRadius: 10,
+    //     color: 'red'
+    // }
 })
 
 

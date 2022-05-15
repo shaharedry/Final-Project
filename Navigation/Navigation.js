@@ -1,6 +1,7 @@
 import { createStackNavigator } from 'react-navigation-stack'
 import { createAppContainer } from 'react-navigation';
 import Colors from '../constants/Colors'
+import { View, Text, Image } from 'react-native';
 
 import Main from '../screens/Main'
 import LoginV2 from '../screens/LoginV2'
@@ -49,6 +50,16 @@ import TextToSpeach from '../screens/TextToSpeach';
 import Test from '../screens/Test.js';
 
 
+
+function LogoTitle() {
+    return (
+      <Image
+        style={{ width: 120, height: 40 }}
+        source={require('../assets/Logo/logo3.png')}
+      />
+    );
+  }
+
 const AppNavigator = createStackNavigator({
     Main:{ screen: Main ,headerTitle: 'EAR ME'},
     LoginV2:{ screen: LoginV2 ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"Login"}},
@@ -57,7 +68,7 @@ const AppNavigator = createStackNavigator({
     signUp3:{ screen: signUp3 ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"Create Translator User"}},
     signUp4:{ screen: signUp4 ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"Create Club User"}},
    // VerifyUser:{ screen: VerifyUser , headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"Verify User"}},
-    Request2: { screen: Request2 , headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"Create User"}},
+    Request2: { screen: Request2 , headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"Create Deaf User"}},
     Request3: { screen: Request3 , headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"Create Translator User"}},
     guestScreen:{ screen: guestScreen ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"Guest Screen"}},
     adminProfile:{ screen: adminProfile ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"Admin Profile"}},
@@ -88,7 +99,7 @@ const AppNavigator = createStackNavigator({
 {
     defaultNavigationOptions : {
         headerShown: true,
-        
+        headerRight:<LogoTitle />,
         //headerTransparent: true,
         headerTitleAlign: 'center',
         //headerTitle: 'Ear Me',
