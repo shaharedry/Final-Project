@@ -8,6 +8,7 @@ LogBox.ignoreLogs(['Setting a timer']);
 LogBox.ignoreLogs(['Require cycle']);
 LogBox.ignoreLogs(['Console Warning']);
 LogBox.ignoreLogs(['AsyncStorage']);
+LogBox.ignoreLogs(['']);
 
 
 var width = Dimensions.get('window').width
@@ -45,7 +46,7 @@ class Main extends React.Component {
                     <View style={styles.box}>
                         <View style={styles.buttonContainer}>
                             <Button title="Speach to Text" onPress={() => {
-                                this.props.navigation.navigate({ routeName: 'SpeachToText' })
+                                this.props.navigation.navigate({ routeName: 'SpeechToText2' })
                             }} color={colors.secondery} />
                         </View>
                     </View>

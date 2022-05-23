@@ -3,16 +3,11 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Navigation from './Navigation/Navigation';
 //import Tabs from './Navigation/Tab';
-import BottomTabNavigator from './Navigation/TabNav';
 
-import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import SpeechToText from './screens/SpeechToText'
 
-import Main from './screens/Main'
-import LoginV2 from './screens/LoginV2';
-import TextToSpeach from './screens/TextToSpeach';
 
-const Tab = createBottomTabNavigator();
+//const Tab = createBottomTabNavigator();
 export default function App() {
   return (
     // <NavigationContainer>
@@ -25,7 +20,7 @@ export default function App() {
     // </NavigationContainer>
     
   <Navigation>
-    
+
   </Navigation>
   
  )

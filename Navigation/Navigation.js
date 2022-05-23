@@ -45,7 +45,8 @@ import ReportInterpHours from '../screens/User/ReportInterpHours';
 //Guest
 import GuestHomePage from '../screens/Guest/GuestHomePage';
 import guestScreen from '../screens/Guest/guestScreen'
-//import SpeachToText from '../screens/SpeachToText';
+//import SpeechToText from '../screens/SpeechToText';
+//import SpeechToText2 from '../screens/SpeechToText2';
 import TextToSpeach from '../screens/TextToSpeach';
 import Test from '../screens/Test.js';
 
@@ -87,7 +88,8 @@ const AppNavigator = createStackNavigator({
     ReportHours:{ screen: ReportHours ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"Report Hours"}},
     ReportInterpHours:{ screen: ReportInterpHours ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"Report Interpreter Hours"}},
     ApproveHours:{ screen: ApproveHours ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"Approve Hours"}},
-    //SpeachToText:{ screen: SpeachToText ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"Speach To Text"}},
+    //SpeechToText:{ screen: SpeechToText ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"Speach To Text"}},
+    //SpeechToText2:{ screen: SpeechToText2 ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"Speach To Text"}},
     //VerifyTransUser:{ screen: VerifyTransUser ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"Verify Translator User"}},
 
     UserInfo:{ screen: UserInfo ,headerTitle: 'EAR ME'},
