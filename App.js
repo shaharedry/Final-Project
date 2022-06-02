@@ -4,20 +4,26 @@ import { StyleSheet, Text, View } from 'react-native';
 import Navigation from './Navigation/Navigation';
 //import Tabs from './Navigation/Tab';
 
+import SpeechToText from './screens/SpeechToText'
 
+
+//const Tab = createBottomTabNavigator();
 export default function App() {
   return (
- 
+    // <NavigationContainer>
+    //   {/* <Navigation/> */}
+    //   <Tab.Navigator>
+    //     <Tab.Screen name="Main" component={Main} />
+    //     <Tab.Screen name="TextToSpeach" component={TextToSpeach} />
+    //     <Tab.Screen name="LoginV2" component={LoginV2} />
+    //   </Tab.Navigator>
+    // </NavigationContainer>
+    
   <Navigation>
-    {/* <Tabs/> */}
+
   </Navigation>
   
  )
-    // <View style={styles.container}>
-    //   <Text>Open up App.js to start working on your app!</Text>
-    //   <StatusBar style="auto" />
-    // </View>
-    ;
 }
 
 const styles = StyleSheet.create({

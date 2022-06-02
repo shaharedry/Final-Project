@@ -1,10 +1,12 @@
 import React, { useCallback, useState } from 'react';
-import {View, Text, StyleSheet ,Button, Alert } from 'react-native';
+import {View, Text,Dimensions, StyleSheet ,Button, Alert } from 'react-native';
 import colors from '../../constants/Colors';
 import Firebase, {db} from '../../FireBase/fire';
 import Input from '../../components/Input';
 //import AsyncStorage from '@react-native-async-storage/async-storage';
 
+
+var width = Dimensions.get('window').width
 const Request3 = props => {
     
     const [FullnameInput,setFname]= useState('');
@@ -93,7 +95,7 @@ const Request3 = props => {
 
     return (
         <View style={styles.InputContainer}>
-            <Text>Sign Up Translator</Text>
+            <Text style={{ color: "darkblue" }}>Request to Sign Up as Translator</Text>
             <Input
                 testID={'fullname'}
                 style={styles.inputField}
@@ -114,7 +116,7 @@ const Request3 = props => {
                 onChangeText={EmailHandler}
                 value={EmailInput}
             />
-                                    <Input 
+            <Input 
                 testID={'DisplayEmail'}
                 style={styles.inputField}
                 blurOnSubmit
@@ -165,38 +167,40 @@ const Request3 = props => {
                 value={VerifyPass}
                 secureTextEntry={true}
             />
+            <View style={styles.box}>
             <View style={styles.buttonContainer}>
-                        <Button title="Sign Up" onPress={() => {
-                            if(PassInput!=''){
-                                if(VerifyPass==PassInput){
-                                    signup();
-                                }
-                                else{
-                                    Alert.alert(
-                                        'Error',
-                                        'Passwords do no match!',
-                                        [
-                                          {text: 'OK'}
-                                        ],
-                                        {cancelable: false},
-                                      );
-                                      console.log(VerifyPass);
-                                }
-                            }
-                            else{
-                                Alert.alert(
-                                    'Error',
-                                    'Please enter a Password',
-                                    [
-                                      {text: 'OK'}
-                                    ],
-                                    {cancelable: false},
-                                  );
-                                  console.log("No Password!");
-                            }
-                        }} color={colors.secondery} />
-                </View>
+                <Button title="Sign Up" onPress={() => {
+                    if(PassInput!=''){
+                        if(VerifyPass==PassInput){
+                            signup();
+                        }
+                        else{
+                            Alert.alert(
+                                'Error',
+                                'Passwords do no match!',                                        
+                                [
+                                  {text: 'OK'}
+                                ],
+                                {cancelable: false},
+                               );
+                            console.log(VerifyPass);
+                        }
+                    }
+                    else{
+                        Alert.alert(
+                            'Error',
+                            'Please enter a Password',
+                            [
+                                {text: 'OK'}
+                            ],
+                            {cancelable: false},
+                          );
+                          console.log("No Password!");
+                    }
+                }} color={colors.secondery} />
         </View>
+        </View>
+    </View>
     //</TouchableWithoutFeedback>
     );
                     }
@@ -213,6 +217,14 @@ screen: {
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: '#fff'
+},
+box: {
+    backgroundColor:colors.background,
+    height: 40,
+    width: width / 2 - 10,
+    margin: 5,
+    marginBottom: 35,
+    borderRadius: 16,
 },
 InputContainer: {
     padding: 10,

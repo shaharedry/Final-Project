@@ -1,6 +1,7 @@
 import { createStackNavigator } from 'react-navigation-stack'
 import { createAppContainer } from 'react-navigation';
 import Colors from '../constants/Colors'
+import { View, Text, Image, Button } from 'react-native';
 
 import Main from '../screens/Main'
 import LoginV2 from '../screens/LoginV2'
@@ -44,51 +45,79 @@ import ReportInterpHours from '../screens/User/ReportInterpHours';
 //Guest
 import GuestHomePage from '../screens/Guest/GuestHomePage';
 import guestScreen from '../screens/Guest/guestScreen'
-//import SpeachToText from '../screens/SpeachToText';
+//import SpeechToText from '../screens/SpeechToText';
+//import SpeechToText2 from '../screens/SpeechToText2';
 import TextToSpeach from '../screens/TextToSpeach';
 import Test from '../screens/Test.js';
 
 
-const AppNavigator = createStackNavigator({
-    Main:{ screen: Main ,headerTitle: 'EAR ME'},
-    LoginV2:{ screen: LoginV2 ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"Login"}},
-    signUp1:{ screen: signUp1 ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"Create Social User"}},
-    signUp2:{ screen: signUp2 ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"Create User"}},
-    signUp3:{ screen: signUp3 ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"Create Translator User"}},
-    signUp4:{ screen: signUp4 ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"Create Club User"}},
-   // VerifyUser:{ screen: VerifyUser , headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"Verify User"}},
-    Request2: { screen: Request2 , headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"Create User"}},
-    Request3: { screen: Request3 , headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"Create Translator User"}},
-    guestScreen:{ screen: guestScreen ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"Guest Screen"}},
-    adminProfile:{ screen: adminProfile ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"Admin Profile"}},
-    AdminHomePage:{ screen: AdminHomePage ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"Admin"}},
-    ClubHomePage:{ screen: ClubHomePage ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"Club HomePage"}},
-    SocialHomePage:{ screen: SocialHomePage ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"Social HomePage"}},
-    TransHomePage:{ screen: TransHomePage ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"Translator HomePage"}},
-    UserHomePage:{ screen: UserHomePage ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"User HomePage"}},
-    GuestHomePage:{ screen: GuestHomePage ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"Guest HomePage"}},
-    TextToSpeach:{ screen: TextToSpeach ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"Text to Speach"}},
-    DeleteInterpreter:{ screen: DeleteInterpreter ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"Delete Interpreter"}},
-    DeleteUser:{ screen: DeleteUser ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"Delete User"}},
-    ViewInfo:{ screen: ViewInfo ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"View Interpreter Info"}},
-    ViewBasket:{ screen: ViewBasket ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"View User Basket Info"}},
-    Basket:{ screen: Basket ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"Reeset Basket Info"}},
-    ReportHours:{ screen: ReportHours ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"Report Hours"}},
-    ReportInterpHours:{ screen: ReportInterpHours ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"Report Interpreter Hours"}},
-    ApproveHours:{ screen: ApproveHours ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"Approve Hours"}},
-    //SpeachToText:{ screen: SpeachToText ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"Speach To Text"}},
-    //VerifyTransUser:{ screen: VerifyTransUser ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:"Verify Translator User"}},
 
-    UserInfo:{ screen: UserInfo ,headerTitle: 'EAR ME'},
-    SocialInfo:{ screen: SocialInfo ,headerTitle: 'EAR ME'},
-    ClubInfo:{ screen: ClubInfo ,headerTitle: 'EAR ME'},
-    TransInfo:{ screen: TransInfo ,headerTitle: 'EAR ME'},
-    Test:{ screen: Test ,headerTitle: 'EAR ME'},
+function LogoTitle() {
+    return (
+      <Image
+        style={{ width: 110, height: 40 }}
+        source={require('../assets/Logo/logo13.png')}
+      />
+    );
+  }
+  const MyCustomHeaderBackImage = () => (
+    <Image
+      source={require('../assets/back.png')}
+      style={{width: 40, height: 40}}
+    />
+  );
+const AppNavigator = createStackNavigator({
+    Main:{ screen: Main ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:""}},
+    LoginV2:{ screen: LoginV2 ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:""}},
+    signUp1:{ screen: signUp1 ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:""}},
+    signUp2:{ screen: signUp2 ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:""}},
+    signUp3:{ screen: signUp3 ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:""}},
+    signUp4:{ screen: signUp4 ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:""}},
+   // VerifyUser:{ screen: VerifyUser , headerTitle: 'EAR ME',navigationOptions:{ headerTitle:""}},
+    Request2: { screen: Request2 , headerTitle: 'EAR ME',navigationOptions:{ headerTitle:""}},
+    Request3: { screen: Request3 , headerTitle: 'EAR ME',navigationOptions:{ headerTitle:""}},
+    guestScreen:{ screen: guestScreen ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:""}},
+    adminProfile:{ screen: adminProfile ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:""}},
+    AdminHomePage:{ screen: AdminHomePage ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:""}},
+    ClubHomePage:{ screen: ClubHomePage ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:""}},
+    SocialHomePage:{ screen: SocialHomePage ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:""}},
+    TransHomePage:{ screen: TransHomePage ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:""}},
+    UserHomePage:{ screen: UserHomePage ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:""}},
+    GuestHomePage:{ screen: GuestHomePage ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:""}},
+    TextToSpeach:{ screen: TextToSpeach ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:""}},
+    DeleteInterpreter:{ screen: DeleteInterpreter ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:""}},
+    DeleteUser:{ screen: DeleteUser ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:""}},
+    ViewInfo:{ screen: ViewInfo ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:""}},
+    ViewBasket:{ screen: ViewBasket ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:""}},
+    Basket:{ screen: Basket ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:""}},
+    ReportHours:{ screen: ReportHours ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:""}},
+    ReportInterpHours:{ screen: ReportInterpHours ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:""}},
+    ApproveHours:{ screen: ApproveHours ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:""}},
+    //SpeechToText:{ screen: SpeechToText ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:""}},
+    //SpeechToText2:{ screen: SpeechToText2 ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:""}},
+    //VerifyTransUser:{ screen: VerifyTransUser ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:""}},
+
+    UserInfo:{ screen: UserInfo ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:""}},
+    SocialInfo:{ screen: SocialInfo ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:""}},
+    ClubInfo:{ screen: ClubInfo ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:""}},
+    TransInfo:{ screen: TransInfo ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:""}},
+    Test:{ screen: Test ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:""}},
 },
+
 {
     defaultNavigationOptions : {
         headerShown: true,
-        
+        headerBackImage: MyCustomHeaderBackImage,
+        headerRight:<LogoTitle />,
+        headerBackTitleVisible: false,
+        // headerLeft:(
+        //   <Button
+        //     onPress={() =>navigation.goBack(null)}
+        //     title="<"
+        //     color="#1b95f2"
+        //     backgroundColor="#1b95f2"
+        //   />
+        // ),
         //headerTransparent: true,
         headerTitleAlign: 'center',
         //headerTitle: 'Ear Me',

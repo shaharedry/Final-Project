@@ -1,5 +1,6 @@
 export default{
     primary: 'white',
-    secondery: 'blue',
-    title: 'darkblue'
+    secondery: 'white',
+    title: 'darkblue',
+    background: "#1b95f2"
 }
