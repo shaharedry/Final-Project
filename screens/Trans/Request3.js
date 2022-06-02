@@ -167,7 +167,7 @@ const Request3 = props => {
                 value={VerifyPass}
                 secureTextEntry={true}
             />
-            {/* <View style={styles.box}>
+            <View style={styles.box}>
             <View style={styles.buttonContainer}>
                 <Button title="Sign Up" onPress={() => {
                     if(PassInput!=''){
@@ -199,7 +199,7 @@ const Request3 = props => {
                     }
                 }} color={colors.secondery} />
         </View>
-        </View> */}
+        </View>
     </View>
     //</TouchableWithoutFeedback>
     );
@@ -219,10 +219,12 @@ screen: {
     backgroundColor: '#fff'
 },
 box: {
-    backgroundColor: 'lightblue',
+    backgroundColor:colors.background,
     height: 40,
     width: width / 2 - 10,
-    margin: 5
+    margin: 5,
+    marginBottom: 35,
+    borderRadius: 16,
 },
 InputContainer: {
     padding: 10,

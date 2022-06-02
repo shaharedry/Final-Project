@@ -1,8 +1,9 @@
-import React, { useCallback, useState } from 'react';
+import React, { useRef, useCallback, useState } from 'react';
 import { View, Text, Dimensions, StyleSheet, Button, Alert } from 'react-native';
 import Firebase, { db } from '../../FireBase/fire';
 import colors from '../../constants/Colors';
 import Input from '../../components/Input';
+import { TextInput } from 'react-native-paper';
 //import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
@@ -87,6 +88,11 @@ const Request2 = props => {
         }
     }
 
+    const ref_email = useRef(null);
+    const ref_phone = useRef();
+    const ref_id = useRef();
+    const ref_pass = useRef();
+    const ref_verify = useRef();
     return (
         <View style={styles.InputContainer}>
             <Text style={{ color: "darkblue" }}>Request to Sign Up as Deaf User</Text>
@@ -95,13 +101,17 @@ const Request2 = props => {
                 style={styles.inputField}
                 blurOnSubmit
                 autoCorrect={false}
+                autoFocus={true}
                 placeholder='Full Name'
                 keyboardType="ascii-capable"
                 onChangeText={FullnameHandler}
                 value={FullnameInput}
+                //returnKeyType="next"
+                //onSubmitEditing={() => { ref_email.current.focus() }}
             />
             <Input
                 testID={'email'}
+                ref={ref_email}
                 style={styles.inputField}
                 blurOnSubmit
                 autoCorrect={false}
@@ -109,9 +119,12 @@ const Request2 = props => {
                 keyboardType="email-address"
                 onChangeText={EmailHandler}
                 value={EmailInput}
+                //returnKeyType="next"
+                //onSubmitEditing={() => { this.ref_phone.focus(); }}
             />
             <Input
                 testID={'phone'}
+                ref={ref_phone}
                 style={styles.inputField}
                 blurOnSubmit
                 autoCorrect={false}
@@ -119,9 +132,12 @@ const Request2 = props => {
                 keyboardType="phone-pad"
                 onChangeText={PhoneHandler}
                 value={PhoneInput}
+                //returnKeyType="next"
+                //onSubmitEditing={() => { this.ref_id.focus(); }}
             />
             <Input
                 testID={'id'}
+                ref={ref_id}
                 style={styles.inputField}
                 blurOnSubmit
                 autoCorrect={false}
@@ -129,9 +145,12 @@ const Request2 = props => {
                 keyboardType="number-pad"
                 onChangeText={IDHandler}
                 value={IDInput}
+                //returnKeyType="next"
+                //onSubmitEditing={() => { this.ref_password.focus(); }}
             />
             <Input
                 testID={'password'}
+                ref={ref_pass}
                 style={styles.inputField}
                 blurOnSubmit
                 autoCorrect={false}
@@ -140,9 +159,12 @@ const Request2 = props => {
                 onChangeText={PassHandler}
                 value={PassInput}
                 secureTextEntry={true}
+                //returnKeyType="next"
+                //onSubmitEditing={() => { this.ref_verify.focus(); }}
             />
             <Input
                 style={styles.inputField}
+                ref={ref_verify}
                 blurOnSubmit
                 autoCorrect={false}
                 placeholder='Verify Password'
@@ -150,6 +172,8 @@ const Request2 = props => {
                 onChangeText={VerifyHandler}
                 value={VerifyPass}
                 secureTextEntry={true}
+                // returnKeyType="Done"
+                // onSubmitEditing={() => { }}
             />
             <View style={styles.box}>
                 <Button title="Sign Up" onPress={() => {
@@ -201,10 +225,12 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff'
     },
     box: {
-        backgroundColor: 'lightblue',
+        backgroundColor:colors.background,
         height: 40,
         width: width / 2 - 10,
-        margin: 5
+        margin: 5,
+        marginBottom: 35,
+        borderRadius: 16,
     },
     InputContainer: {
         padding: 10,
@@ -219,8 +245,8 @@ const styles = StyleSheet.create({
         marginTop: 15,
         marginBottom: 10,
         fontSize: 16,
-        width: 180,
-        borderRadius: 18,
+        width: 240,
+        borderRadius: 30,
         borderWidth: 1
     },
     // buttonContainer:{

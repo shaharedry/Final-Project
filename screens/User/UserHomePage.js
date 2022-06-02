@@ -6,6 +6,7 @@ import { withNavigation } from 'react-navigation';
 import { NavigationActions, StackActions } from 'react-navigation'
 import { LogBox } from 'react-native'; /// unfreeze for running on phones
 import Navigation from '../../Navigation/Navigation';
+import Colors from '../../constants/Colors';
 LogBox.ignoreLogs(['new NativeEventEmitter']);
 
 //LogBox.ignoreLogs(['Setting a timer']); /// unfreeze for running on phones
@@ -47,49 +48,49 @@ class UserHomePage extends React.Component {
                     <Text style={styles.setFontSizeOne}>Hello,{"\n"} {this.state.Username}!</Text>
                     <View style={styles.box}>
                         <View style={styles.buttonContainer}>
-                            <Button title="Personal Info" onPress={() => {
+                            <Button title="Personal Info      " onPress={() => {
                                 this.props.navigation.navigate({ routeName: 'UserInfo' })
                             }} color={colors.secondery} />
                         </View>
                     </View>
                     <View style={styles.box}>
                         <View style={styles.buttonContainer}>
-                            <Button title="Interpreter List" onPress={() => {
+                            <Button title="Interpreter List      " onPress={() => {
                                 this.props.navigation.navigate({ routeName: 'ViewInfo' })
                             }} color={colors.secondery} />
                         </View>
                     </View>
                     <View style={styles.box}>
                         <View style={styles.buttonContainer}>
-                            <Button title="Basket Info" onPress={() => {
+                            <Button title="Basket Info      " onPress={() => {
                                 this.props.navigation.navigate({ routeName: 'ViewBasket' })
                             }} color={colors.secondery} />
                         </View>
                     </View>
                     <View style={styles.box}>
                         <View style={styles.buttonContainer}>
-                            <Button title="Report Interpreter Hours" onPress={() => {
+                            <Button title="Report Interpreter Hours      " onPress={() => {
                                 this.props.navigation.navigate({ routeName: 'ReportInterpHours' })
                             }} color={colors.secondery} />
                         </View>
                     </View>
                     <View style={styles.box}>
                         <View style={styles.buttonContainer}>
-                            <Button title="Text to Speech" onPress={() => {
+                            <Button title="Text to Speech      " onPress={() => {
                                 this.props.navigation.navigate({ routeName: 'ReportInterpHours' })
                             }} color={colors.secondery} />
                         </View>
                     </View>
                     <View style={styles.box}>
                         <View style={styles.buttonContainer}>
-                            <Button title="Speech to Text" onPress={() => {
+                            <Button title="Speech to Text      " onPress={() => {
                                 this.props.navigation.navigate({ routeName: 'ReportInterpHours' })
                             }} color={colors.secondery} />
                         </View>
                     </View>
                     <View style={styles.box}>
                         <View style={styles.buttonContainer}>
-                            <Button title="Logout" onPress={() => {
+                            <Button title="Logout      " onPress={() => {
                                 this.props.navigation.dispatch(this.resetAction);
                                 // props.navigation.reset(
                                 //     AsyncStorage.clear()
@@ -137,15 +138,18 @@ const styles = StyleSheet.create({
     },
     box: {
         borderRadius: 16,
-        backgroundColor: 'lightblue',
+        backgroundColor: Colors.background,
         height: 40,
+
         //width: width / 2 - 10,
         margin: 5,
-        marginBottom: 35
+        marginBottom: 30
     },
     setFontSizeOne: {
-        fontSize: 30,
-        fontWeight: "bold"
+        textAlign: 'center',
+        fontSize: 40,
+        fontWeight: "bold",
+        paddingBottom:10
     },
     buttonContainer: {
         // width: 230,

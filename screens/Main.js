@@ -4,6 +4,7 @@ import colors from '../constants/Colors';
 import firebase, { db } from '../FireBase/fire';
 import { LogBox } from 'react-native';
 import { Dimensions } from 'react-native-web';
+import Colors from '../constants/Colors';
 LogBox.ignoreLogs(['Setting a timer']);
 LogBox.ignoreLogs(['Require cycle']);
 LogBox.ignoreLogs(['Console Warning']);
@@ -16,6 +17,9 @@ class Main extends React.Component {
     render() {
         return (
             <View>
+                <View style={styles.title}>
+                    <Text>Main</Text>
+                </View>
                 {/* should put in Header in Navigation */}
                 {/* <View style={styles.ImageContainer}>
                     <Image
@@ -74,7 +78,7 @@ class Main extends React.Component {
                             }} color={colors.secondery} />
                         </View>
                     </View>
-                    <View style={styles.box}>
+                    {/* <View style={styles.box}>
                         <View style={styles.buttonContainer}>
                         <Button title="Login as Guest" onPress={() => {
                             firebase.auth().signInAnonymously().then(() => {
@@ -84,7 +88,7 @@ class Main extends React.Component {
                             })
                         }} color={colors.secondery} />
                         </View>
-                    </View>
+                    </View> */}
                     <View style={styles.box}>
                         <View style={styles.buttonContainer}>
                             <Button title="Interpreter Site" onPress={() => {
@@ -119,10 +123,12 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
     },
     box: {
-        backgroundColor: 'lightblue',
+        backgroundColor:Colors.background,
         height: 40,
         width: width / 2 - 10,
         margin: 5,
+        marginBottom: 35,
+        borderRadius: 16,
     },
     // buttonContainer: {
     //     width: 250,
@@ -142,6 +148,9 @@ const styles = StyleSheet.create({
     image: {
         width: '100%',
         height: '100%'
+    },
+    title:{
+        alignItems:"center",
     }
 })
 

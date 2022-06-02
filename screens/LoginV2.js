@@ -276,7 +276,7 @@ const styles = StyleSheet.create({
         paddingTop: 10,
         borderRadius: 10,
         color: 'blue'
-    }
+    },
 })
 
 export default LoginV2;
