@@ -1,10 +1,10 @@
 import React from 'react';
-import { View, Text, TextInput, StyleSheet, Alert, Button } from 'react-native';
+import { View, Text, TextInput, StyleSheet, Alert, Button , Dimensions} from 'react-native';
 import firebase, { db } from '../../FireBase/fire'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Colors from '../../constants/Colors';
 
-
+var width = Dimensions.get('window').width
 class ReportHours extends React.Component {
     constructor() {
         super()
@@ -103,14 +103,14 @@ class ReportHours extends React.Component {
 
             return (
                 <View>
-                    <Text>User Name:</Text>
+                     <Text>      User Name:</Text>
+
                     
                     
                     <TextInput
                         style={styles.inputField}
                         blurOnSubmit
                         autoCorrect={false}
-                        placeholder='User Name'
                         keyboardType="ascii-capable"
                         onChangeText={(EmailVal) => this.setState({ Name: EmailVal })}
                         value={this.state.Name}
@@ -126,19 +126,19 @@ class ReportHours extends React.Component {
                         onChangeText={(PhoneVal) => this.setState({ ID: PhoneVal })}
                         value={this.state.ID}
                     /> */}
-                                        <Text>Hours: </Text>
+                                        <Text>      Hours: </Text>
                     <TextInput
                         style={styles.inputField}
                         blurOnSubmit
                         autoCorrect={false}
-                        placeholder='Phone Number'
                         keyboardType="phone-pad"
                         pattern="[0-9]*"
                         onChangeText={(PhoneVal) => this.setState({ Hours: PhoneVal })}
                         value={this.state.Hours}
                     />
-                    <Button title="Finish Editing" onPress={() => {
-                        Alert.alert('Save Changes?', 'Are you sure u would like to save this changes?',
+                     <View style={styles.box}>
+                    <Button title="Report" onPress={() => {
+                        Alert.alert('Report Hours?', 'Are you sure you?',
                             [
                                 {
                                     text: "Yes",
@@ -154,6 +154,7 @@ class ReportHours extends React.Component {
                                 },
                             ])
                     }} color={Colors.secondery} />
+                </View>
                 </View>
             )
 
@@ -179,6 +180,15 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#fff'
     },
+    box: {
+        backgroundColor: Colors.background,
+        height: 40,
+        width: width / 2 - 10,
+        margin: 5,
+        marginBottom: 35,
+        borderRadius: 16,
+        alignSelf: 'center'
+    },
     InputContainer: {
         padding: 10,
         flex: 1,
@@ -193,7 +203,9 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         fontSize: 16,
         borderRadius: 8,
-        borderWidth: 1
+        borderWidth: 1,
+        width:350,
+        alignSelf:'center'
     },
     container: {
         flex: 1,

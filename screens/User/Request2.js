@@ -95,116 +95,126 @@ const Request2 = props => {
     const ref_verify = useRef();
     return (
         <View style={styles.InputContainer}>
-            <Text style={{ color: "darkblue" }}>Request to Sign Up as Deaf User</Text>
-            <Input
-                testID={'fullname'}
-                style={styles.inputField}
-                blurOnSubmit
-                autoCorrect={false}
-                autoFocus={true}
-                placeholder='Full Name'
-                keyboardType="ascii-capable"
-                onChangeText={FullnameHandler}
-                value={FullnameInput}
+            <View style={styles.title}>
+                <Text style={styles.setFontSizeOne}>{"\n"}{"\n"}Request to Sign Up as Deaf User</Text>
+            </View>
+            <View style={styles.InputContainer2}>
+                <Input
+                    testID={'fullname'}
+                    style={styles.inputField}
+                    blurOnSubmit
+                    autoCorrect={false}
+                    autoFocus={true}
+                    placeholder='Full Name'
+                    keyboardType="ascii-capable"
+                    onChangeText={FullnameHandler}
+                    value={FullnameInput}
+                    placeholderTextColor='black'
                 //returnKeyType="next"
                 //onSubmitEditing={() => { ref_email.current.focus() }}
-            />
-            <Input
-                testID={'email'}
-                ref={ref_email}
-                style={styles.inputField}
-                blurOnSubmit
-                autoCorrect={false}
-                placeholder='Email'
-                keyboardType="email-address"
-                onChangeText={EmailHandler}
-                value={EmailInput}
+                />
+                <Input
+                    testID={'email'}
+                    ref={ref_email}
+                    style={styles.inputField}
+                    blurOnSubmit
+                    autoCorrect={false}
+                    placeholder='Email'
+                    keyboardType="email-address"
+                    onChangeText={EmailHandler}
+                    value={EmailInput}
+                    placeholderTextColor='black'
                 //returnKeyType="next"
                 //onSubmitEditing={() => { this.ref_phone.focus(); }}
-            />
-            <Input
-                testID={'phone'}
-                ref={ref_phone}
-                style={styles.inputField}
-                blurOnSubmit
-                autoCorrect={false}
-                placeholder='Phone'
-                keyboardType="phone-pad"
-                onChangeText={PhoneHandler}
-                value={PhoneInput}
+                />
+                <Input
+                    testID={'phone'}
+                    ref={ref_phone}
+                    style={styles.inputField}
+                    blurOnSubmit
+                    autoCorrect={false}
+                    placeholder='Phone'
+                    keyboardType="phone-pad"
+                    onChangeText={PhoneHandler}
+                    value={PhoneInput}
+                    placeholderTextColor='black'
                 //returnKeyType="next"
                 //onSubmitEditing={() => { this.ref_id.focus(); }}
-            />
-            <Input
-                testID={'id'}
-                ref={ref_id}
-                style={styles.inputField}
-                blurOnSubmit
-                autoCorrect={false}
-                placeholder='ID number'
-                keyboardType="number-pad"
-                onChangeText={IDHandler}
-                value={IDInput}
+                />
+                <Input
+                    testID={'id'}
+                    ref={ref_id}
+                    style={styles.inputField}
+                    blurOnSubmit
+                    autoCorrect={false}
+                    placeholder='ID number'
+                    keyboardType="number-pad"
+                    onChangeText={IDHandler}
+                    value={IDInput}
+                    placeholderTextColor='black'
                 //returnKeyType="next"
                 //onSubmitEditing={() => { this.ref_password.focus(); }}
-            />
-            <Input
-                testID={'password'}
-                ref={ref_pass}
-                style={styles.inputField}
-                blurOnSubmit
-                autoCorrect={false}
-                placeholder='Password'
-                keyboardType="visible-password"
-                onChangeText={PassHandler}
-                value={PassInput}
-                secureTextEntry={true}
+                />
+                <Input
+                    testID={'password'}
+                    ref={ref_pass}
+                    style={styles.inputField}
+                    blurOnSubmit
+                    autoCorrect={false}
+                    placeholder='Password'
+                    keyboardType="visible-password"
+                    onChangeText={PassHandler}
+                    value={PassInput}
+                    secureTextEntry={true}
+                    placeholderTextColor='black'
                 //returnKeyType="next"
                 //onSubmitEditing={() => { this.ref_verify.focus(); }}
-            />
-            <Input
-                style={styles.inputField}
-                ref={ref_verify}
-                blurOnSubmit
-                autoCorrect={false}
-                placeholder='Verify Password'
-                keyboardType="visible-password"
-                onChangeText={VerifyHandler}
-                value={VerifyPass}
-                secureTextEntry={true}
-                // returnKeyType="Done"
-                // onSubmitEditing={() => { }}
-            />
-            <View style={styles.box}>
-                <Button title="Sign Up" onPress={() => {
-                    if (PassInput != '') {
-                        if (VerifyPass == PassInput) {
-                            signup();
+                />
+                <Input
+                    style={styles.inputField}
+                    ref={ref_verify}
+                    blurOnSubmit
+                    autoCorrect={false}
+                    placeholder='Verify Password'
+                    keyboardType="visible-password"
+                    onChangeText={VerifyHandler}
+                    value={VerifyPass}
+                    secureTextEntry={true}
+                    placeholderTextColor='black'
+                    returnKeyType="Done"
+                    onSubmitEditing={() => { }}
+                />
+                <View style={styles.box}>
+                    <Button title="Sign Up" onPress={() => {
+                        if (PassInput != '') {
+                            if (VerifyPass == PassInput) {
+                                signup();
+                            }
+                            else {
+                                Alert.alert(
+                                    'Error',
+                                    'Passwords do no match!',
+                                    [
+                                        { text: 'OK' }
+                                    ],
+                                    { cancelable: false },
+                                );
+                                console.log(VerifyPass);
+                            }
                         }
                         else {
                             Alert.alert(
                                 'Error',
-                                'Passwords do no match!',
+                                'Please enter a Password',
                                 [
                                     { text: 'OK' }
                                 ],
                                 { cancelable: false },
                             );
-                            console.log(VerifyPass);
+                            console.log("No Password!");
                         }
-                    }
-                    else {
-                        Alert.alert(
-                            'Error',
-                            'Please enter a Password',
-                            [
-                                { text: 'OK' }
-                            ],
-                            { cancelable: false },
-                        );
-                        console.log("No Password!");
-                    }
-                }} color={colors.secondery} />
+                    }} color={colors.secondery} />
+                </View>
             </View>
         </View>
         //</TouchableWithoutFeedback>
@@ -224,8 +234,18 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#fff'
     },
+    setFontSizeOne: {
+        textAlign: 'center',
+        fontSize: 20,
+        fontWeight: "bold",
+        //paddingBottom: 10,
+        //paddingTop: 10
+    },
+    title: {
+        alignItems: "center",
+    },
     box: {
-        backgroundColor:colors.background,
+        backgroundColor: colors.background,
         height: 40,
         width: width / 2 - 10,
         margin: 5,
@@ -237,7 +257,16 @@ const styles = StyleSheet.create({
         flex: 1,
         fontSize: 16,
         color: '#333',
-        justifyContent: 'center',
+        // justifyContent: 'center',
+        alignItems: 'center'
+    }, 
+    InputContainer2: {
+        padding: 10,
+        flex: 1,
+        fontSize: 16,
+        color: '#333',
+        paddingTop:50,
+        //justifyContent: 'center',
         alignItems: 'center'
     },
     inputField: {

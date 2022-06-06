@@ -64,13 +64,18 @@ class ViewBasket extends React.Component {
         if (this.state.isLoaded == true && this.state.gotname == true) {
             return (
                 <View>
-                    <Text>Interpreter hours left: {(this.state.TranslatorHours)}</Text>
-                    <Text>Interpreter hours used: {45 - (this.state.TranslatorHours)}</Text>
-                    <Text>Money left: {(this.state.BasketMoney)}</Text>
-                    <Text>Money used: {3500 - (this.state.BasketMoney)}</Text>
+                   
+                        <View style={styles.title}>
+                            <Text style={styles.setFontSizeOne}>Basket Info</Text>
+                        </View>
+                        <Text>Interpreter hours left: {(this.state.TranslatorHours)}</Text>
+                        <Text>Interpreter hours used: {45 - (this.state.TranslatorHours)}</Text>
+                        <Text>Money left: {(this.state.BasketMoney)}</Text>
+                        <Text>Money used: {3500 - (this.state.BasketMoney)}</Text>
 
 
-                </View>
+                    </View>
+                
 
             )
 
@@ -103,6 +108,12 @@ const styles = StyleSheet.create({
         color: '#333',
         justifyContent: 'center',
         alignItems: 'center'
+    },
+    setFontSizeOne: {
+        textAlign: 'center',
+        fontSize: 40,
+        fontWeight: "bold",
+        paddingBottom: 10
     },
     inputField: {
         padding: 10,

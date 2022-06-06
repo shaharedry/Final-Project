@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { Text, View, StyleSheet, Button } from 'react-native';
+import { Text, View, StyleSheet, Button, TextInput, Image, TouchableOpacity } from 'react-native';
 import { Audio } from 'expo-av';
+import Colors from '../constants/Colors';
 
 
 export default function TextToSpeach2() {
@@ -34,6 +35,15 @@ export default function TextToSpeach2() {
     //         console.log('Transcription: ' +transcription)
     // }
 
+    function LogoTitle() {
+        return (
+            <Image
+                style={{ width: 110, height: 40 }}
+                source={require('../assets/mic.png')}
+            />
+        );
+    }
+
     async function startRecording() {
         try {
             console.log('Requesting permissions..');
@@ -64,10 +74,36 @@ export default function TextToSpeach2() {
 
     return (
         <View style={styles.container}>
-            <Button
-                title={recording ? 'Stop Recording' : 'Start Recording'}
-                onPress={recording ? stopRecording : startRecording}
-            />
+            <Text style={styles.setFontSizeOne}>Speech To Text</Text>
+            <Text></Text>
+            <View style={styles.container2}>
+                <Button
+                    color='black'
+                    title={recording ? 'Push to stop' : 'Push to start'}
+                    onPress={recording ? stopRecording : startRecording}
+                />
+                <Text></Text>
+                <View>
+                    <TouchableOpacity style={styles.button} onPress={recording ? stopRecording : startRecording}>
+                        <Image    style={{ width: 70, height: 70 , borderRadios: 50}} source={require("../assets/mic2.png")} />
+                    </TouchableOpacity>
+                </View>
+                <Text></Text>
+                {/* <View style={styles.box2}>              
+                    <View style={styles.buttonContainer}>
+                        <Button title="" onPress={() => {
+
+                        }} color={Colors.secondery} />
+                    </View>
+                </View> */}
+                <View style={styles.box}>
+                    <View style={styles.buttonContainer}>
+                        <Button title="" onPress={() => {
+
+                        }} color={'black'} />
+                    </View>
+                </View>
+            </View>
         </View>
     );
 }
@@ -75,8 +111,62 @@ export default function TextToSpeach2() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        //justifyContent: 'center',
+        //backgroundColor: '#ecf0f1',
+        //padding: 10,
+        alignItems: 'center'
+    }, setFontSizeOne: {
+        fontWeight: "bold",
+        textAlign: 'center',
+        fontSize: 40,
+        //paddingBottom: 10,
+        paddingTop: 10
+    }, container2: {
+        flex: 1,
         justifyContent: 'center',
-        backgroundColor: '#ecf0f1',
+        alignItems: 'center'
+    }, textInput: {
+        height: 200,
+        width: 300,
+        borderBottomColor: 'grey',
+        borderBottomWidth: 1,
+        marginVertical: 10,
+        color: "white",
+        textAlignVertical: "top"
+    }, box: {
+        backgroundColor: 'black',
+        height: 100,
+        width: 200,
+        margin: 5,
+        marginBottom: 35,
+        borderRadius: 16,
+    }, box2: {
+        backgroundColor: Colors.background,
+        height: 90,
+        width: 90,
+        margin: 5,
+        marginBottom: 35,
+        borderRadius: 16,
+    }, buttonGPlusStyle: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        backgroundColor: Colors.background,
+        borderWidth: 0.5,
+        borderColor: '#fff',
+        height: 40,
+        borderRadius: 5,
+        margin: 5,
+    },
+    buttonImageIconStyle: {
         padding: 10,
+        margin: 5,
+        height: 25,
+        width: 25,
+        resizeMode: 'stretch',
+    },
+    buttonTextStyle: {
+        color: '#fff',
+        marginBottom: 4,
+        marginLeft: 10,
     },
 });

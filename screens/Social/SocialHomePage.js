@@ -19,6 +19,11 @@ class SocialHomePage extends React.Component {
         }
     }
 
+    resetAction = StackActions.reset({
+        index: 0,
+        actions: [NavigationActions.navigate({ routeName: 'Main' })],
+    });
+
     componentDidMount() {
         let username = null
         try {
@@ -41,8 +46,7 @@ class SocialHomePage extends React.Component {
         if (this.state.isLoaded) {
             return (
                 <View style={styles.screen}>
-                    <Text>SocialWorkerHomePage Profile Screen</Text>
-                    <Text>Hello {this.state.Username}!</Text>
+                    <Text style={styles.setFontSizeOne}>Hello,{"\n"} {this.state.Username}!</Text>
                     <View style={styles.box}>
                         <View style={styles.buttonContainer}>
                             <Button title="Create User" onPress={() => {
@@ -138,10 +142,20 @@ const styles = StyleSheet.create({
         height: '100%'
     },
     box: {
-        backgroundColor: 'lightblue',
+        backgroundColor: colors.background,
         height: 40,
-        width: width / 2 +10,
+        width: width / 2 - 10,
         margin: 5,
+        marginBottom: 35,
+        borderRadius: 16,
+
+    },
+    setFontSizeOne: {
+        textAlign: 'center',
+        fontSize: 40,
+        fontWeight: "bold",
+        paddingTop: 10,
+        paddingBottom: 50
     },
     // buttonContainer: {
     //     width: 250,

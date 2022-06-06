@@ -56,7 +56,7 @@ class UserHomePage extends React.Component {
                     <View style={styles.box}>
                         <View style={styles.buttonContainer}>
                             <Button title="Interpreter List      " onPress={() => {
-                                this.props.navigation.navigate({ routeName: 'ViewInfo' })
+                                this.props.navigation.navigate({ routeName: 'ListOfInterp' })
                             }} color={colors.secondery} />
                         </View>
                     </View>
@@ -77,14 +77,14 @@ class UserHomePage extends React.Component {
                     <View style={styles.box}>
                         <View style={styles.buttonContainer}>
                             <Button title="Text to Speech      " onPress={() => {
-                                this.props.navigation.navigate({ routeName: 'ReportInterpHours' })
+                                this.props.navigation.navigate({ routeName: 'TextToSpeach' })
                             }} color={colors.secondery} />
                         </View>
                     </View>
                     <View style={styles.box}>
                         <View style={styles.buttonContainer}>
                             <Button title="Speech to Text      " onPress={() => {
-                                this.props.navigation.navigate({ routeName: 'ReportInterpHours' })
+                                this.props.navigation.navigate({ routeName: 'SpeechToText2' })
                             }} color={colors.secondery} />
                         </View>
                     </View>
@@ -149,7 +149,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: 40,
         fontWeight: "bold",
-        paddingBottom:10
+        paddingBottom: 10
     },
     buttonContainer: {
         // width: 230,

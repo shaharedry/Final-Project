@@ -68,7 +68,7 @@ class LoginV2 extends React.Component {
                 0,
             );
         }
-        if (type == 'Social Worker') {
+        if (type == 'SocialWorker') {
             //Alert.alert('Title','name is: '+this.state.fullname )
             this.AddItem('SocialWorkerName', this.state.fullname);
             this.props.navigation.reset(
@@ -76,7 +76,7 @@ class LoginV2 extends React.Component {
                 0,
             );
         }
-        if (type == 'Club Worker') {
+        if (type == 'ClubWorker') {
             this.AddItem('ClubName', this.state.fullname);
             this.props.navigation.reset(
                 [NavigationActions.navigate({ routeName: 'ClubHomePage' })],
@@ -87,7 +87,7 @@ class LoginV2 extends React.Component {
 
     AddItem = async (saveas, save) => {
         try {
-            console.log("saving to async storage: " + save)
+            //console.log("saving to async storage: " + save)
             await AsyncStorage.setItem(saveas, save)
         } catch (error) {
             console.warn(error)
@@ -161,16 +161,17 @@ class LoginV2 extends React.Component {
                                         }
                                     }
                                     let type = this.state.textInputValue
-                                    //Alert.alert("Value is: "+this.state.textInputValue +"Num is: "+this.state.textInputNum)
+                                    if(type == 'Social Worker'){
+                                        type = 'SocialWorker'
+                                    }
+                                    if(type == 'Club Worker'){
+                                        type = 'ClubWorker'
+                                    }
                                     let EmailInput = this.state.email
                                     let PassInput = this.state.password
-                                    // firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then(
-                                    //    (res) => {
-                                    //      this.GoTo(type)
-                                    // }
-                                    // ).catch(error => this.setState({ errorMessage: error.message }))
-                                    // }} color={colors.secondery} />
+
                                     let tempname = null;
+                                    console.log('1')
                                     firebase.auth().signInWithEmailAndPassword(EmailInput, PassInput)
                                         .then(
                                             (res) => {
@@ -178,6 +179,7 @@ class LoginV2 extends React.Component {
                                                     snapshot => {
                                                         snapshot.forEach(
                                                             function (doc) {
+                                                                console.log('3')
                                                                 // if(doc.data().email == EmailInput)
                                                                 tempname = doc.data().fullname
                                                                 //Alert.alert('Name from db is: '+tempname)
@@ -197,7 +199,7 @@ class LoginV2 extends React.Component {
                                                 //this.GoTo(type)
                                             }
                                         )
-                                }}color={colors.secondery} />
+                                }} color={colors.secondery} />
                             </View>
                         </View>
 
