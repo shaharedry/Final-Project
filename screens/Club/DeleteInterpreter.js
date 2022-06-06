@@ -92,6 +92,10 @@ class DeleteInterpreter extends React.Component {
         if (this.state.isLoaded == true) {
             return (
                 <View style={styles.container}>
+                <View style={styles.title}>
+                    <Text style={styles.setFontSizeOne}>Delete Interpreters</Text>
+                </View>
+                <View></View>
                     {this.renderList()}
                 </View>
             )
@@ -117,6 +121,18 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#fff'
     },
+    setFontSizeOne: {
+        textAlign: 'center',
+        fontSize: 30,
+        fontWeight: "bold",
+        //paddingBottom: 10,
+        //paddingTop: 10
+    },
+    title: {
+        alignItems: "center",
+        paddingBottom:40,
+        paddingTop:20
+    },
     InputContainer: {
         padding: 10,
         flex: 1,
@@ -132,12 +148,6 @@ const styles = StyleSheet.create({
         fontSize: 16,
         borderRadius: 8,
         borderWidth: 1
-    },
-    container: {
-        flex: 0.5,
-        paddingBottom: 22,
-        paddingRight: 30,
-        paddingLeft: 150
     },
     preloader: {
         left: 0,

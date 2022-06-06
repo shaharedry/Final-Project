@@ -32,6 +32,7 @@ import TransInfo from '../screens/Trans/TransInfo';
 import Request3 from '../screens/Trans/Request3';
 import ReportHours from '../screens/Trans/ReportHours';
 import VerifyTransUser from '../screens/Social/VerifyTransUser';
+import ListOfInterp from '../screens/Trans/ListOfInterp';
 
 //User
 import UserHomePage from '../screens/User/UserHomePage';
@@ -94,6 +95,7 @@ const AppNavigator = createStackNavigator({
     ApproveHours:{ screen: ApproveHours ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:""}},
     SpeechToText2:{ screen: SpeechToText2 ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:""}},
     VerifyTransUser:{ screen: VerifyTransUser ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:""}},
+    ListOfInterp:{ screen: ListOfInterp ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:""}},
 
     UserInfo:{ screen: UserInfo ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:""}},
     SocialInfo:{ screen: SocialInfo ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:""}},

@@ -31,7 +31,7 @@ class Main extends React.Component {
                 <View style={styles.screen}>
                     <View style={styles.box}>
                         <View style={styles.buttonContainer}>
-                            <Button title="Login" onPress={() => {
+                            <Button title="Login " onPress={() => {
                                 this.props.navigation.navigate('LoginV2')
                                 //    this.props.navigation.navigate({routeName: 'LoginV2'})
                             }} color={colors.secondery} />
@@ -40,7 +40,7 @@ class Main extends React.Component {
 
                     <View style={styles.box}>
                         <View style={styles.buttonContainer}>
-                            <Button title="Text to Speach" onPress={() => {
+                            <Button title="Text to Speech " onPress={() => {
                                 this.props.navigation.navigate('TextToSpeach')
                                 // this.props.navigation.navigate({ routeName: 'TextToSpeach' })
                             }} color={colors.secondery} />
@@ -49,7 +49,7 @@ class Main extends React.Component {
 
                     <View style={styles.box}>
                         <View style={styles.buttonContainer}>
-                            <Button title="Speach to Text" onPress={() => {
+                            <Button title="Speech to Text " onPress={() => {
                                 this.props.navigation.navigate({ routeName: 'SpeechToText2' })
                             }} color={colors.secondery} />
                         </View>
@@ -57,7 +57,7 @@ class Main extends React.Component {
 
                     <View style={styles.box}>
                         <View style={styles.buttonContainer}>
-                            <Button title="Create Deaf User" onPress={() => {
+                            <Button title="Create Deaf User " onPress={() => {
                                 this.props.navigation.navigate({ routeName: 'Request2' })
                             }} color={colors.secondery} />
                         </View>
@@ -65,7 +65,7 @@ class Main extends React.Component {
 
                     <View style={styles.box}>
                         <View style={styles.buttonContainer}>
-                            <Button title="Create Translator User" onPress={() => {
+                            <Button title="Create Interpreter User " onPress={() => {
                                 this.props.navigation.navigate({ routeName: 'Request3' })
                             }} color={colors.secondery} />
                         </View>
@@ -73,8 +73,8 @@ class Main extends React.Component {
 
                     <View style={styles.box}>
                         <View style={styles.buttonContainer}>
-                            <Button title="Translator List" onPress={() => {
-                                this.props.navigation.navigate({ routeName: '' })
+                            <Button title="Translator List " onPress={() => {
+                                this.props.navigation.navigate({ routeName: 'ListOfInterp' })
                             }} color={colors.secondery} />
                         </View>
                     </View>
@@ -91,7 +91,7 @@ class Main extends React.Component {
                     </View> */}
                     <View style={styles.box}>
                         <View style={styles.buttonContainer}>
-                            <Button title="Interpreter Site" onPress={() => {
+                            <Button title="Interpreter Site " onPress={() => {
                                 Linking.openURL('https://www.signnow.co.il/')
                             }} color={colors.secondery} />
                         </View>

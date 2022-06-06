@@ -48,7 +48,7 @@ const signUp4 = props => {
                     fullname: FullnameInput,
                     phone: PhoneInput,
                     id: IDInput,
-                    Role: '3',    
+                    Role: '4',    
                     checked: false
                 }
                 db.collection('ClubWorker')
@@ -96,6 +96,7 @@ const signUp4 = props => {
                 keyboardType="ascii-capable"
                 onChangeText={FullnameHandler}
                 value={FullnameInput}
+                placeholderTextColor = 'black'
             />
             <Input 
                 testID={'email'}
@@ -106,6 +107,7 @@ const signUp4 = props => {
                 keyboardType="email-address"
                 onChangeText={EmailHandler}
                 value={EmailInput}
+                placeholderTextColor = 'black'
             />
             <Input 
                 testID={'phone'}
@@ -116,6 +118,7 @@ const signUp4 = props => {
                 keyboardType="phone-pad"
                 onChangeText={PhoneHandler}
                 value={PhoneInput}
+                placeholderTextColor = 'black'
             />
             <Input
                 testID={'id'}
@@ -126,6 +129,7 @@ const signUp4 = props => {
                 keyboardType="number-pad"
                 onChangeText={IDHandler}
                 value={IDInput}
+                placeholderTextColor = 'black'
             />
             <Input 
                 testID={'password'}
@@ -137,6 +141,7 @@ const signUp4 = props => {
                 onChangeText={PassHandler}
                 value={PassInput}
                 secureTextEntry={true}
+                placeholderTextColor = 'black'
             />
             <Input 
                 style={styles.inputField}
@@ -147,6 +152,7 @@ const signUp4 = props => {
                 onChangeText={VerifyHandler}
                 value={VerifyPass}
                 secureTextEntry={true}
+                placeholderTextColor = 'black'
             />
             <View style={styles.buttonContainer}>
                         <Button title="Sign Up" onPress={() => {

@@ -60,7 +60,7 @@ class VerifyUser extends React.Component {
             return(
                 <TouchableOpacity style={{ flexDirection: "row", alignItems: "center" , }} key={key} onPress={()=> 
                 {this.UpdateList(item.fullname)}}>
-                    <CheckBox value={item.checked} onChange={()=> {this.checkBox_Test}}/>
+                    <BouncyCheckbox value={item.checked} onChange={()=> {this.checkBox_Test}}/>
                     <Text style={{fontWeight:"bold"}}>{item.fullname}</Text>
                 </TouchableOpacity>
             )

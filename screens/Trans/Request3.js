@@ -95,7 +95,10 @@ const Request3 = props => {
 
     return (
         <View style={styles.InputContainer}>
-            <Text style={{ color: "darkblue" }}>Request to Sign Up as Translator</Text>
+        <View style={styles.title}>
+            <Text style={styles.setFontSizeOne}>{"\n"}{"\n"}Request to Sign Up as an Interpreter User</Text>
+        </View>
+        <View style={styles.InputContainer2}>
             <Input
                 testID={'fullname'}
                 style={styles.inputField}
@@ -105,6 +108,7 @@ const Request3 = props => {
                 keyboardType="ascii-capable"
                 onChangeText={FullnameHandler}
                 value={FullnameInput}
+                placeholderTextColor = 'black'
             />
             <Input 
                 testID={'email'}
@@ -115,6 +119,7 @@ const Request3 = props => {
                 keyboardType="email-address"
                 onChangeText={EmailHandler}
                 value={EmailInput}
+                placeholderTextColor = 'black'
             />
             <Input 
                 testID={'DisplayEmail'}
@@ -125,6 +130,7 @@ const Request3 = props => {
                 keyboardType="email-address"
                 onChangeText={DisplayEmailHandler}
                 value={DisplayEmailInput}
+                placeholderTextColor = 'black'
             />
             <Input 
                 testID={'phone'}
@@ -135,6 +141,7 @@ const Request3 = props => {
                 keyboardType="phone-pad"
                 onChangeText={PhoneHandler}
                 value={PhoneInput}
+                placeholderTextColor = 'black'
             />
             <Input
                 testID={'id'}
@@ -145,6 +152,7 @@ const Request3 = props => {
                 keyboardType="number-pad"
                 onChangeText={IDHandler}
                 value={IDInput}
+                placeholderTextColor = 'black'
             />
             <Input 
                 testID={'password'}
@@ -156,6 +164,7 @@ const Request3 = props => {
                 onChangeText={PassHandler}
                 value={PassInput}
                 secureTextEntry={true}
+                placeholderTextColor = 'black'
             />
             <Input 
                 style={styles.inputField}
@@ -166,6 +175,7 @@ const Request3 = props => {
                 onChangeText={VerifyHandler}
                 value={VerifyPass}
                 secureTextEntry={true}
+                placeholderTextColor = 'black'
             />
             <View style={styles.box}>
             <View style={styles.buttonContainer}>
@@ -201,6 +211,7 @@ const Request3 = props => {
         </View>
         </View>
     </View>
+    </View>
     //</TouchableWithoutFeedback>
     );
                     }
@@ -226,12 +237,31 @@ box: {
     marginBottom: 35,
     borderRadius: 16,
 },
+setFontSizeOne: {
+    textAlign: 'center',
+    fontSize: 20,
+    fontWeight: "bold",
+    //paddingBottom: 10,
+    //paddingTop: 10
+},
+title: {
+    alignItems: "center",
+},
 InputContainer: {
     padding: 10,
     flex: 1,
     fontSize: 16,
     color: '#333',
-    justifyContent: 'center',
+    // justifyContent: 'center',
+    alignItems: 'center'
+}, 
+InputContainer2: {
+    padding: 10,
+    flex: 1,
+    fontSize: 16,
+    color: '#333',
+    paddingTop:20,
+    //justifyContent: 'center',
     alignItems: 'center'
 },
 inputField: {
@@ -239,8 +269,8 @@ inputField: {
     marginTop: 15,
     marginBottom: 10,
     fontSize: 16,
-    width:180,
-    borderRadius: 18,
+    width: 240,
+    borderRadius: 30,
     borderWidth: 1
 },
 })

@@ -1,18 +1,18 @@
 import React from 'react';
-import { View, Text, TextInput, StyleSheet, Alert, Button } from 'react-native';
+import { View, Text, TextInput, StyleSheet, Alert, Button, Dimensions } from 'react-native';
 import firebase, { db } from '../../FireBase/fire'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Colors from '../../constants/Colors';
 
-
+var width = Dimensions.get('window').width
 class ReportInterpHours extends React.Component {
     constructor() {
         super()
         this.state = {
             Name: 'null',
             ID: null,
-            Hours:0,
-            GHours:0,
+            Hours: 0,
+            GHours: 0,
             isLoaded: false,
             gotname: false,
             InterpreterName: null
@@ -81,7 +81,7 @@ class ReportInterpHours extends React.Component {
         // db.collection("User").doc(UserName).update({
         //     TranslatorHours: Thours
         // })
-        var report = "U:"+UserName+' T:'+this.state.InterpreterName
+        var report = "U:" + UserName + ' T:' + this.state.InterpreterName
         db.collection("Requests").doc(report).set({
             Interpreter: this.state.InterpreterName,
             User: UserName,
@@ -102,14 +102,14 @@ class ReportInterpHours extends React.Component {
 
             return (
                 <View>
-                    <Text>Interpreter Name:</Text>
-                    
-                    
+                    <Text style={styles.setFontSizeOne}>Report Interpreter Hours</Text>
+                    <Text>      Interpreter Name:</Text>
+
+
                     <TextInput
                         style={styles.inputField}
                         blurOnSubmit
                         autoCorrect={false}
-                        placeholder='Interpreter Name'
                         keyboardType="ascii-capable"
                         onChangeText={(EmailVal) => this.setState({ InterpreterName: EmailVal })}
                         value={this.state.InterpreterName}
@@ -125,34 +125,35 @@ class ReportInterpHours extends React.Component {
                         onChangeText={(PhoneVal) => this.setState({ ID: PhoneVal })}
                         value={this.state.ID}
                     /> */}
-                                        <Text>Hours: </Text>
+                    <Text>      Hours: </Text>
                     <TextInput
                         style={styles.inputField}
                         blurOnSubmit
                         autoCorrect={false}
-                        placeholder='Phone Number'
                         keyboardType="phone-pad"
                         pattern="[0-9]*"
                         onChangeText={(PhoneVal) => this.setState({ Hours: PhoneVal })}
                         value={this.state.Hours}
                     />
-                    <Button title="Finish Editing" onPress={() => {
-                        Alert.alert('Save Changes?', 'Are you sure u would like to save this changes?',
-                            [
-                                {
-                                    text: "Yes",
-                                    onPress: () => {
-                                       this.Report()
+                    <View style={styles.box}>
+                        <Button title="Report" onPress={() => {
+                            Alert.alert('Report Hours?', 'Are you sure you?',
+                                [
+                                    {
+                                        text: "Yes",
+                                        onPress: () => {
+                                            this.Report()
+                                        },
                                     },
-                                },
-                                {
-                                    text: "No",
-                                    onPress: () => {
-                                        this.props.navigation.navigate({routeName: 'UserHomePage'})
-                                    }
-                                },
-                            ])
-                    }} color={Colors.secondery} />
+                                    {
+                                        text: "No",
+                                        onPress: () => {
+                                            this.props.navigation.navigate({ routeName: 'UserHomePage' })
+                                        }
+                                    },
+                                ])
+                        }} color={Colors.secondery} />
+                    </View>
                 </View>
             )
 
@@ -178,6 +179,21 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#fff'
     },
+    setFontSizeOne: {
+        textAlign: 'center',
+        fontSize: 40,
+        fontWeight: "bold",
+        paddingBottom: 10
+    },
+    box: {
+        backgroundColor: Colors.background,
+        height: 40,
+        width: width / 2 - 10,
+        margin: 5,
+        marginBottom: 35,
+        borderRadius: 16,
+        alignSelf: 'center'
+    },
     InputContainer: {
         padding: 10,
         flex: 1,
@@ -192,7 +208,9 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         fontSize: 16,
         borderRadius: 8,
-        borderWidth: 1
+        borderWidth: 1,
+        width:350,
+        alignSelf:'center'
     },
     container: {
         flex: 1,
