@@ -1,137 +1,82 @@
-import React, { useEffect, useState } from 'react';
-import { SafeAreaView, StyleSheet, TouchableHighlight, Image, TouchableOpacity, View } from 'react-native';
-import Voice from '@react-native-voice/voice';
+import * as React from 'react';
+import { Text, View, StyleSheet, Button } from 'react-native';
+import { Audio } from 'expo-av';
 
-const SpeechToText2 = () => {
-    const [result, setResult] = useState('');
-    const [pitch, setPitch] = useState('');
-    const [error, setError] = useState('');
-    const [end, setEnd] = useState('');
-    const [started, setStarted] = useState('');
-    const [results, setResults] = useState([]);
-    const [partialResults, setPartialResults] = useState([]);
 
-    const onSpeechStart = (e) => {
-        setStarted('True')
-    };
-    const onSpeechEnd = () => {
-        setStarted(null);
-        setEnd('True');
-    };
-    const onSpeechError = (e) => {
-        setError(JSON.stringify(e.error));
-    };
-    const onSpeechResults = (e) => {
-        setResults(e.value)
-    };
-    const onSpeechPartialResults = (e) => {
-        setPartialResults(e.value)
-    };
-    const onSpeechVolumeChanged = (e) => {
-        setPitch(e.value)
-    };
+export default function TextToSpeach2() {
+    const [recording, setRecording] = React.useState();
 
-    const startSpeechRecognizing = async () => {
-        setPitch('')
-        setError('')
-        setStarted('')
-        setResults([])
-        setPartialResults([])
-        setEnd('')
+    // const speech = require('@google-cloud/speech');
+    // const fs = require('fs');
+
+    // async function speechClient(uri){
+    //     const client = new speech.SpeechClient();
+    //     const filename = uri
+
+    //     const file = fs.readFileSync(filename);
+    //     const audioBytes = file.toString('base64');
+
+    //     const audio = { content:audioBytes};
+    //     const config= {
+    //         encoding: 'LINEAR16',
+    //         sampleRateHertz: 16000,
+    //         languageCode: 'he-IL'
+    //     };
+
+    //     const request = {
+    //         audio:audio,
+    //         config:config
+    //     };
+
+    //     const [response] = await client.recognize(request);
+    //     const transcription = response.results.map(result =>
+    //         result.alternatives[0].transcript).join('\n');
+    //         console.log('Transcription: ' +transcription)
+    // }
+
+    async function startRecording() {
         try {
-            await Voice.start('en-US',
-                { EXTRA_SPEECH_INPUT_MINIMUM_LENGTH_MILLIS: 10000 });
-        } catch (e) {
-            console.error(e);
-        }
-    };
-    const stopSpeechRecognizing = async () => {
-        try {
-            await Voice.stop();
-            setStarted(null);
-        } catch (e) {
-            console.error(e);
-        }
-    };
-    useEffect(() => {
-        Voice.onSpeechStart = onSpeechStart;
-        Voice.onSpeechEnd = onSpeechEnd;
-        Voice.onSpeechError = onSpeechError;
-        Voice.onSpeechResults = onSpeechResults;
-        Voice.onSpeechPartialResults = onSpeechPartialResults;
-        Voice.onSpeechVolumeChanged = onSpeechVolumeChanged;
-
-        //return Voice.destroy().then(Voice.removeAllListeners);
-    })
-
-    const onSpeechStartHandler = (e) => {
-        console.log("start handler ==>", e)
-    }
-
-    const onSpeachEndHandler = (e) => {
-        console.log("end handler ", e)
-    }
-
-    const onSpeechResultsHandler = (e) => {
-        console.log("result ", e)
-    }
-
-    //  const startRecording = async() =>{
-    //      try{
-    //          await (Voice.start('en-US') || Voice.start('he-IL'))
-    //      } catch (error){
-    //          console.log('error raised',error)
-    //      }
-    //  }
-
-    const stopRecording = async () => {
-        try {
-            await Voice.stop()
-        } catch (error) {
-            console.log('error raised', error)
+            console.log('Requesting permissions..');
+            await Audio.requestPermissionsAsync();
+            await Audio.setAudioModeAsync({
+                allowsRecordingIOS: true,
+                playsInSilentModeIOS: true,
+            });
+            console.log('Starting recording..');
+            const { recording } = await Audio.Recording.createAsync(
+                Audio.RECORDING_OPTIONS_PRESET_HIGH_QUALITY
+            );
+            setRecording(recording);
+            console.log('Recording started');
+        } catch (err) {
+            console.error('Failed to start recording', err);
         }
     }
+
+    async function stopRecording() {
+        console.log('Stopping recording..');
+        setRecording(undefined);
+        await recording.stopAndUnloadAsync();
+        const uri = recording.getURI()
+        console.log('Recording stopped and stored at', uri);
+        speechClient(uri);
+    }
+
     return (
-        <View>
-            <TouchableHighlight
-                onPress={ startSpeechRecognizing }
-                style={{ marginVertical: 100 }}>
-                <Image
-                    style={styles.button} source={{ uri: 'https://png.pngtree.com/png-vector/20190329/ourlarge/pngtree-vector-microphone-icon-png-image_889382.jpg', }}
-                />
-            </TouchableHighlight>
-
-            <TouchableHighlight
-                onPress={ stopSpeechRecognizing }
-                style={{ marginVertical: 100 }}>
-                <Image
-                    style={styles.button} source={{ uri: 'https://preview.redd.it/axorctfsk4v01.jpg?auto=webp&s=b9f5f8c1a353bd10aa7f3fa61e24b756ff042a7b', }}
-                />
-            </TouchableHighlight>
+        <View style={styles.container}>
+            <Button
+                title={recording ? 'Stop Recording' : 'Start Recording'}
+                onPress={recording ? stopRecording : startRecording}
+            />
         </View>
     );
-};
+}
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center',
+        backgroundColor: '#ecf0f1',
+        padding: 10,
     },
-    TextInputStyle: {
-        flexDirection: 'flow',
-        height: 48,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'white',
-        borderRadius: 20,
-        paddingHorizontal: 16,
-        shadowOffset: { width: 0, height: 1 },
-        shadowRadius: 2,
-        elevation: 2,
-        shadowOpacity: 0.4
-    }
 });
-
-
-export default SpeechToText2;
