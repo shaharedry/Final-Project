@@ -18,7 +18,7 @@ class LoginV2 extends React.Component {
             textInputValue: 'User',
             textInputNum: 0,
             selectedLanguage: null,
-            From: ['User', 'Interpreter', 'SocialWorker', 'ClubWorker', 'Admin'],
+            From: ['User', 'Interpreter', 'Social Worker', 'Club Worker', 'Admin'],
             data: [],
             Loaded: true,
             checked: false
@@ -68,7 +68,7 @@ class LoginV2 extends React.Component {
                 0,
             );
         }
-        if (type == 'SocialWorker') {
+        if (type == 'Social Worker') {
             //Alert.alert('Title','name is: '+this.state.fullname )
             this.AddItem('SocialWorkerName', this.state.fullname);
             this.props.navigation.reset(
@@ -76,7 +76,7 @@ class LoginV2 extends React.Component {
                 0,
             );
         }
-        if (type == 'ClubWorker') {
+        if (type == 'Club Worker') {
             this.AddItem('ClubName', this.state.fullname);
             this.props.navigation.reset(
                 [NavigationActions.navigate({ routeName: 'ClubHomePage' })],
@@ -98,8 +98,9 @@ class LoginV2 extends React.Component {
         if (this.state.Loaded) {
             return (
                 <View style={styles.screen}>
+                    <Text style={styles.setFontSizeOne}>Login</Text>
                     <View style={styles.InputContainer}>
-                    <View >
+                        <View >
                             <Text>Login as:</Text>
                             <Text></Text>
                             <ModalSelector
@@ -113,9 +114,10 @@ class LoginV2 extends React.Component {
                             </ModalSelector>
                         </View>
                         <Text></Text>
-                        
+
                         <Text>Email:</Text>
                         <Input
+                            label="Email"
                             testID={'email'}
                             style={styles.inputField}
                             blurOnSubmit
@@ -142,60 +144,61 @@ class LoginV2 extends React.Component {
 
 
 
-
-                        <View style={styles.buttoncontainer}>
-                            <Button title="Sign In" onPress={() => {
-                                if (this.CheckMe() == true) {
-                                    this.setState({ checked: true })
-                                }
-                                else {
-                                    if (this.state.email == null && this.state.password == null)
-                                        Alert.alert('Error!', 'Please enter an email and password!')
-                                    else {
-                                        if (this.state.email == null)
-                                            Alert.alert('Error!', 'Please enter an email!')
-                                        if (this.state.password == null)
-                                            Alert.alert('Error!', 'Please enter a password!')
+                        <View style={styles.box}>
+                            <View style={styles.buttoncontainer}>
+                                <Button title="Sign In" onPress={() => {
+                                    if (this.CheckMe() == true) {
+                                        this.setState({ checked: true })
                                     }
-                                }
-                                let type = this.state.textInputValue
-                                //Alert.alert("Value is: "+this.state.textInputValue +"Num is: "+this.state.textInputNum)
-                                let EmailInput = this.state.email
-                                let PassInput = this.state.password
-                                // firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then(
-                                //    (res) => {
-                                //      this.GoTo(type)
-                                // }
-                                // ).catch(error => this.setState({ errorMessage: error.message }))
-                                // }} color={colors.secondery} />
-                                let tempname = null;
-                                firebase.auth().signInWithEmailAndPassword(EmailInput, PassInput)
-                                    .then(
-                                        (res) => {
-                                            db.collection(type).where("email", "==", EmailInput).get().then(
-                                                snapshot => {
-                                                    snapshot.forEach(
-                                                        function (doc) {
-                                                            // if(doc.data().email == EmailInput)
-                                                            tempname = doc.data().fullname
-                                                            //Alert.alert('Name from db is: '+tempname)
-                                                            //Alert.alert('Checking!','fullname  is: '+tempname)
-                                                            //this.GoTo(type);
-                                                        }
-                                                    )
-                                                        ,
-                                                        //Alert.alert('Checking!','fullname  is: '+tempname),
-                                                        this.setState({ fullname: tempname }),
-                                                        //Alert.alert('Name in fullname is: '+tempname)
-                                                        this.GoTo(type)
-                                                }
-                                            )
-                                            //this.setState({whatchyamacallit:tempname})
-                                            //Alert.alert('Checking!','fullname  is: '+this.state.whatchyamacallit+' should be '+tempname)
-                                            //this.GoTo(type)
+                                    else {
+                                        if (this.state.email == null && this.state.password == null)
+                                            Alert.alert('Error!', 'Please enter an email and password!')
+                                        else {
+                                            if (this.state.email == null)
+                                                Alert.alert('Error!', 'Please enter an email!')
+                                            if (this.state.password == null)
+                                                Alert.alert('Error!', 'Please enter a password!')
                                         }
-                                    )
-                            }} />
+                                    }
+                                    let type = this.state.textInputValue
+                                    //Alert.alert("Value is: "+this.state.textInputValue +"Num is: "+this.state.textInputNum)
+                                    let EmailInput = this.state.email
+                                    let PassInput = this.state.password
+                                    // firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then(
+                                    //    (res) => {
+                                    //      this.GoTo(type)
+                                    // }
+                                    // ).catch(error => this.setState({ errorMessage: error.message }))
+                                    // }} color={colors.secondery} />
+                                    let tempname = null;
+                                    firebase.auth().signInWithEmailAndPassword(EmailInput, PassInput)
+                                        .then(
+                                            (res) => {
+                                                db.collection(type).where("email", "==", EmailInput).get().then(
+                                                    snapshot => {
+                                                        snapshot.forEach(
+                                                            function (doc) {
+                                                                // if(doc.data().email == EmailInput)
+                                                                tempname = doc.data().fullname
+                                                                //Alert.alert('Name from db is: '+tempname)
+                                                                //Alert.alert('Checking!','fullname  is: '+tempname)
+                                                                //this.GoTo(type);
+                                                            }
+                                                        )
+                                                            ,
+                                                            //Alert.alert('Checking!','fullname  is: '+tempname),
+                                                            this.setState({ fullname: tempname }),
+                                                            //Alert.alert('Name in fullname is: '+tempname)
+                                                            this.GoTo(type)
+                                                    }
+                                                )
+                                                //this.setState({whatchyamacallit:tempname})
+                                                //Alert.alert('Checking!','fullname  is: '+this.state.whatchyamacallit+' should be '+tempname)
+                                                //this.GoTo(type)
+                                            }
+                                        )
+                                }}color={colors.secondery} />
+                            </View>
                         </View>
 
                     </View>
@@ -249,6 +252,12 @@ const styles = StyleSheet.create({
         height: 100,
         width: 200,
         justifyContent: 'space-between',
+    }, setFontSizeOne: {
+        textAlign: 'center',
+        fontSize: 40,
+        fontWeight: "bold",
+        //paddingBottom: 10,
+        paddingTop: 10
     },
     InputContainer: {
         padding: 10,
@@ -268,15 +277,22 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         borderWidth: 1
     },
-    buttonContainer: {
-        width: 150,
-        height: 50,
-        justifyContent: 'center',
-        paddingBottom: 10,
-        paddingTop: 10,
-        borderRadius: 10,
-        color: 'blue'
+    box: {
+        backgroundColor: colors.background,
+        height: 40,
+        margin: 5,
+        marginBottom: 35,
+        borderRadius: 16,
     },
+    // buttoncontainer: {
+    //     width: 150,
+    //     height: 50,
+    //     justifyContent: 'center',
+    //     paddingBottom: 10,
+    //     paddingTop: 10,
+    //     borderRadius: 10,
+    //     color: 'blue'
+    // },
 })
 
 export default LoginV2;

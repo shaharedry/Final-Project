@@ -23,7 +23,7 @@ import SocialHomePage from '../screens/Social/SocialHomePage';
 import signUp1 from '../screens/Social/signUp1'
 import SocialInfo from '../screens/Social/SocialInfo';
 import ApproveHours from '../screens/Social/ApproveHours';
-//import VerifyUser from '../screens/Social/VerifyUser';
+import VerifyUser from '../screens/Social/VerifyUser';
 
 //Translator
 import TransHomePage from '../screens/Trans/TransHomePage';
@@ -31,7 +31,7 @@ import signUp3 from '../screens/Trans/signUp3'
 import TransInfo from '../screens/Trans/TransInfo';
 import Request3 from '../screens/Trans/Request3';
 import ReportHours from '../screens/Trans/ReportHours';
-//import VerifyTransUser from '../screens/Social/VerifyTransUser';
+import VerifyTransUser from '../screens/Social/VerifyTransUser';
 
 //User
 import UserHomePage from '../screens/User/UserHomePage';
@@ -45,8 +45,7 @@ import ReportInterpHours from '../screens/User/ReportInterpHours';
 //Guest
 import GuestHomePage from '../screens/Guest/GuestHomePage';
 import guestScreen from '../screens/Guest/guestScreen'
-//import SpeechToText from '../screens/SpeechToText';
-//import SpeechToText2 from '../screens/SpeechToText2';
+import SpeechToText2 from '../screens/SpeechToText2';
 import TextToSpeach from '../screens/TextToSpeach';
 import Test from '../screens/Test.js';
 
@@ -73,7 +72,7 @@ const AppNavigator = createStackNavigator({
     signUp2:{ screen: signUp2 ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:""}},
     signUp3:{ screen: signUp3 ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:""}},
     signUp4:{ screen: signUp4 ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:""}},
-   // VerifyUser:{ screen: VerifyUser , headerTitle: 'EAR ME',navigationOptions:{ headerTitle:""}},
+    VerifyUser:{ screen: VerifyUser , headerTitle: 'EAR ME',navigationOptions:{ headerTitle:""}},
     Request2: { screen: Request2 , headerTitle: 'EAR ME',navigationOptions:{ headerTitle:""}},
     Request3: { screen: Request3 , headerTitle: 'EAR ME',navigationOptions:{ headerTitle:""}},
     guestScreen:{ screen: guestScreen ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:""}},
@@ -93,9 +92,8 @@ const AppNavigator = createStackNavigator({
     ReportHours:{ screen: ReportHours ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:""}},
     ReportInterpHours:{ screen: ReportInterpHours ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:""}},
     ApproveHours:{ screen: ApproveHours ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:""}},
-    //SpeechToText:{ screen: SpeechToText ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:""}},
-    //SpeechToText2:{ screen: SpeechToText2 ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:""}},
-    //VerifyTransUser:{ screen: VerifyTransUser ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:""}},
+    SpeechToText2:{ screen: SpeechToText2 ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:""}},
+    VerifyTransUser:{ screen: VerifyTransUser ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:""}},
 
     UserInfo:{ screen: UserInfo ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:""}},
     SocialInfo:{ screen: SocialInfo ,headerTitle: 'EAR ME',navigationOptions:{ headerTitle:""}},

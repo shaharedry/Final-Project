@@ -18,7 +18,7 @@ class Main extends React.Component {
         return (
             <View>
                 <View style={styles.title}>
-                    <Text>Main</Text>
+                    <Text style={styles.setFontSizeOne}>Ear-Me</Text>
                 </View>
                 {/* should put in Header in Navigation */}
                 {/* <View style={styles.ImageContainer}>
@@ -123,12 +123,18 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
     },
     box: {
-        backgroundColor:Colors.background,
+        backgroundColor: Colors.background,
         height: 40,
         width: width / 2 - 10,
         margin: 5,
         marginBottom: 35,
         borderRadius: 16,
+    }, setFontSizeOne: {
+        textAlign: 'center',
+        fontSize: 40,
+        fontWeight: "bold",
+        //paddingBottom: 10,
+        paddingTop: 10
     },
     // buttonContainer: {
     //     width: 250,
@@ -149,8 +155,8 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%'
     },
-    title:{
-        alignItems:"center",
+    title: {
+        alignItems: "center",
     }
 })
 
